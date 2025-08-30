@@ -1,4 +1,4 @@
-2name: Publish Quarto Project
+name: Publish Quarto Project
 
 on:
   push:
@@ -23,11 +23,9 @@ jobs:
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v1
 
-      - name: Publish to GitHub Pages
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        permissions:
-          contents: write
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _book
+          force_orphan: true
