@@ -12,8 +12,8 @@ Let's read-in data from 2023 to take a look:
 library(stats19)
 library(dplyr)
 library(ggplot2)
-ac = get_stats19(year = 2023, type = "accidents")
-ca = get_stats19(year = 2023, type = "casualties")
+ac = get_stats19(year = 2023, type = "acciden")
+ca = get_stats19(year = 2023, type = "casualt")
 ve = get_stats19(year = 2023, type = "vehicle")
 ```
 
@@ -95,8 +95,11 @@ This information can be used as the basis of who-hit-who visualisation, in this 
 ```{r}
 #| message: false
 #| fig-cap: "Barplot of recoded casualty type frequencies"
-remotes::install_github("saferactive/trafficalmr")
-library(trafficalmr)
+# remotes::install_github("saferactive/trafficalmr")
+# library(trafficalmr)
+# Add functions from script:
+url_source = "https://github.com/saferactive/trafficalmr/raw/refs/heads/master/R/tc_recode.R"
+source(url_source)
 ac_cas_joined$cas_type = tc_recode_casualties(ac_cas_joined$casualty_type)
 p = c(`HGV_occupant|Minibus_occupant|Taxi_occupant|Moto*.+` = "Other")
 ac_cas_joined$cas_type = tc_recode_casualties(ac_cas_joined$cas_type, pattern = p)

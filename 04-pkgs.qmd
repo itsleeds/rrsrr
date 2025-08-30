@@ -52,7 +52,7 @@ You might think that now that the package has been installed we can start using 
 
 ```{r}
 #| error: true
-find_file_name(years = 2020, type = "casualties")
+find_file_name(years = 2020, type = "casualt")
 ```
 
 ## Loading packages
@@ -69,7 +69,7 @@ Other than the message telling us about the package's datasets (most packages lo
 Now we can use functions from the package without an error message, as follows:
 
 ```{r}
-find_file_name(years = 2020, type = "casualties")
+find_file_name(years = 2020, type = "casualt")
 ```
 
 This raises the question: how do you know which functions are available in a particular package?
@@ -78,7 +78,7 @@ Try typing `stats19::` and then hitting `Tab`, for example.
 You should see a load of function names appear, which you view by pressing `Up` and `Down` on your keyboard.
 
 The final thing to say about packages is that they can be used without being loaded by typing `package::function()`.  We used this before in Section 2.8, where we imported csv data using the `readr` package via `readr::read_csv()`.   
-So `stats19::find_file_name(years = 2020, type = "casualties")` works even if the package isn't loaded.
+So `stats19::find_file_name(years = 2020, type = "casualt")` works even if the package isn't loaded.
 
 You can test this by running the `sf_extSoftVersion()` command from the `sf` package. This command reports the versions of key geographic libraries installed on your system. In the first attempt below, the command fails and reports an error. In the second and third attempts, utilising `::` and `library`, you can see that the command succeeds:   
 
