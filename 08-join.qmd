@@ -90,32 +90,103 @@ The same approach can be used to join vehicle data onto the crash record data:
 ac_veh_joined = inner_join(ac, ve)
 ```
 
-This information can be used as the basis of who-hit-who visualisation, in this case looking at vehicles involved in the most common type of casualties (recoded using the `trafficalmr` package):
+This information can be used as the basis of who-hit-who visualisation, in this case looking at vehicles involved in the most common type of casualties (see the [`trafficalmr` package](https://github.com/saferactive/trafficalmr) for functions to recode stats19 data):
+
+```{r}
+#| eval: false
+#| echo: false
+remotes::install_github("saferactive/trafficalmr")
+library(trafficalmr)
+url_source = "https://github.com/saferactive/trafficalmr/raw/refs/heads/master/R/tc_recode.R"
+source(url_source)
+cas_lookup = c(
+  otorcyc = "Motorcyclist",
+  `7.5` = "HGV_occupant",
+  Goods = "HGV_occupant",
+  `Car occupant` = "Car_occupant",
+  Van = "Van_occupant",
+  coach = "Bus_occupant",
+  Minibus = "Minibus_occupant",
+  Taxi = "Taxi_occupant",
+  Agri = "Other",
+  Missing = "Other",
+  Mobility = "Other",
+  Tram = "Other",
+  Horse = "Other",
+  Other = "Other",
+  issing = "Other"
+)
+```
 
 ```{r}
 #| message: false
 #| fig-cap: "Barplot of recoded casualty type frequencies"
-# remotes::install_github("saferactive/trafficalmr")
-# library(trafficalmr)
-# Add functions from script:
-url_source = "https://github.com/saferactive/trafficalmr/raw/refs/heads/master/R/tc_recode.R"
-source(url_source)
-ac_cas_joined$cas_type = tc_recode_casualties(ac_cas_joined$casualty_type)
-p = c(`HGV_occupant|Minibus_occupant|Taxi_occupant|Moto*.+` = "Other")
-ac_cas_joined$cas_type = tc_recode_casualties(ac_cas_joined$cas_type, pattern = p)
+casualty_types_df = ac_cas_joined |>
+  count(casualty_type) |>
+  arrange(desc(n))
+# top_casualty_types
+#  1 Car occupant                                              71145
+#  2 Pedestrian                                                19263
+#  3 Cyclist                                                   14999
+#  4 Motorcycle 125cc and under rider or passenger              9115
+#  5 Motorcycle over 500cc rider or passenger                   4385
+#  6 Van / Goods vehicle (3.5 tonnes mgw or under) occupant     3815
+#  7 Bus or coach occupant (17 or more pass seats)              2399
+#  8 Motorcycle over 125cc and up to 500cc rider or  passenger  1924
+#  9 Other vehicle occupant                                     1531
+# 10 Taxi/Private hire car occupant                             1530
+recode_casualties = function(x) {
+  x_updated = dplyr::case_when(
+    stringr::str_detect(x, "Moto") ~ "Motorcyclist",
+    stringr::str_detect(x, "Car|Pedestrian|Cyclist") ~ x,
+    TRUE ~ "Other"
+  )
+}
+ac_cas_joined$cas_type = recode_casualties(ac_cas_joined$casualty_type)
 barplot(table(ac_cas_joined$cas_type))
 ```
 
 To find the largest vehicle involved in each casualty, we can similarly pre-process the vehicle data as follows:
 
+
 ```{r}
-p = c(`Van*.+` = "Van", `Pedal cycle` = "Bicycle",
-  `(M|m)otorcycle*.+|Elec*.+` = "Motorcycle",
-  `Taxi*|Data*.+|Agri*.+|Ridden*.+|Mobility*.+|Tram*.+|(M|m)otorcycle*.+|Elec*.+` = "Other",
-  `Bus*.+` = "Bus", `Bus|Minibus*.+|Other*.+` = "Other", `Goods*.+` = "HGV")
-ac_veh_joined$veh_type = tc_recode_vehicle_type(ac_veh_joined$vehicle_type, p)
-l = c("Bicycle", "Car", "Other", "Van", "HGV")
-ac_veh_joined$vehicle = factor(ac_veh_joined$veh_type, levels = l, ordered = TRUE)
+#| eval: false
+#| echo: false
+# from trafficalmr
+# p = c(`Van*.+` = "Van", `Pedal cycle` = "Bicycle",
+#   `(M|m)otorcycle*.+|Elec*.+` = "Motorcycle",
+#   `Taxi*|Data*.+|Agri*.+|Ridden*.+|Mobility*.+|Tram*.+|(M|m)otorcycle*.+|Elec*.+` = "Other",
+#   `Bus*.+` = "Bus", `Bus|Minibus*.+|Other*.+` = "Other", `Goods*.+` = "HGV")
+# ac_veh_joined$veh_type = tc_recode_vehicle_type(ac_veh_joined$vehicle_type, p)
+```
+
+```{r}
+vehicle_types_df = ac_veh_joined |>
+  count(vehicle_type) |>
+  arrange(desc(n))
+#  1 Car                                   130164
+#  2 Pedal cycle                            15667
+#  3 Van / Goods 3.5 tonnes mgw or under    11727
+#  4 Motorcycle 125cc and under              9710
+#  5 Motorcycle over 500cc                   4473
+#  6 Bus or coach (17 or more pass seats)    3171
+#  7 Taxi/Private hire car                   3073
+#  8 Goods 7.5 tonnes mgw and over           2647
+#  9 Other vehicle                           2200
+# 10 Motorcycle over 125cc and up to 500cc   1975
+recode_vehicles = function(x) {
+  x_updated = dplyr::case_when(
+    stringr::str_detect(x, "Pedal") ~ "Bicycle",
+    stringr::str_detect(x, "Car") ~ "Car",
+    stringr::str_detect(x, "Van") ~ "Van",
+    stringr::str_detect(x, "HGV|over") ~ "HGV",
+    TRUE ~ "Other"
+  )
+  return(x_updated)
+}
+ac_veh_joined$veh_type = recode_vehicles(ac_veh_joined$vehicle_type)
+levels = c("Bicycle", "Car", "Other", "Van", "HGV")
+ac_veh_joined$vehicle = factor(ac_veh_joined$veh_type, levels = levels, ordered = TRUE)
 summary(ac_veh_joined$vehicle)
 ac_veh_largest = ac_veh_joined %>% 
   group_by(accident_index) %>% 
