@@ -34,10 +34,9 @@ jobs:
           use-public-rspm: true
 
       - name: Install R dependencies
-        run: |
-          install.packages("remotes")
-          remotes::install_local(".")
-        shell: Rscript {0}
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: deps::., any::sessioninfo
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
