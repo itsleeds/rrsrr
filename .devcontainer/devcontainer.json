@@ -1,0 +1,20 @@
+{
+	"name": "Transport data science container",
+	// Use pre-built image by default:
+	"image": "ghcr.io/itsleeds/tds",
+	// Uncomment the build section below and comment out "image" above to rebuild from ../Dockerfile
+	// "build": {
+	// 	"dockerfile": "../Dockerfile"
+	// },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"reditorsupport.r",
+				"GitHub.copilot-chat",
+				"quarto.quarto",
+				"ms-python.python",
+				"ms-toolsai.jupyter"
+			]
+		}
+	}
+}
