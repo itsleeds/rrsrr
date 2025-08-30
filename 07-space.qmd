@@ -43,7 +43,7 @@ crashes_sf = st_as_sf(crashes_sf, coords = c("longitude", "latitude"), crs = 432
 
 **Exercises:**
 
-1. Plot only the geometry column of `crashes_sf` (**Hint:** the solution may contain `$geometry`). If the result is like that in Figure 7.1, congratulations, it worked!
+1. Plot only the geometry column of `crashes_sf` (**Hint:** the solution may contain `$geometry`). If the result is like that in @fig-crashes-sf-ex-1, congratulations, it worked!
 1. Plot `crashes_sf`, only showing the age variable.
 1. Plot the 2^nd^ and 3^rd^ crashes, showing which happened in the dark.
 1. **Bonus:** How far apart are the points? (**Hint:** `sf` functions begin with `st_`)
@@ -62,6 +62,14 @@ plot(crashes_sf[2:3, "dark"])
 
 You can read and write spatial data with `read_sf()` and `write_sf()`, as shown below (see `?read_sf`):
 
+First, let's create the `zones` object that we'll use for demonstration:
+
+```{r}
+zones = pct::get_pct_zones("isle-of-wight")[1:9]
+```
+
+Now we can read and write spatial data:
+
 ```{r}
 #| eval: false
 write_sf(zones, "zones.geojson") # saves the spatial dataset called zones as geojson file type
@@ -74,11 +82,7 @@ See [Chapter 6](https://geocompr.robinlovelace.net/read-write.html) of *Geocompu
 ## sf polygons
 
 `sf` objects can also represent administrative zones.
-This is illustrated below with reference to `zones`, a spatial object representing the Isle of Wight, that we will download using the `pct` package (**Note:** the `[1:9]` appended to the function selects only the first 9 columns).
-
-```{r}
-zones = pct::get_pct_zones("isle-of-wight")[1:9]
-```
+This is illustrated below with reference to `zones`, a spatial object representing the Isle of Wight, that we created in the previous section.
 **Exercises:**
 
 1. What is the class of the `zones` object?
@@ -113,9 +117,9 @@ Colours can be set with the `col` argument.
 
 **Exercises:**
 
-1. Plot the geometry of the zones, with the zones containing crashes overlaid on top in red (see Figure 7.2).
-2. Plot the zone containing the 2^nd^ crash in blue (see Figure 7.2).
-3. **Bonus:** Plot all zones that intersect with a zone containing crashes, with the actual crash points plotted in black (see Figure 7.2).
+1. Plot the geometry of the zones, with the zones containing crashes overlaid on top in red (see @fig-sp-ex-1).
+2. Plot the zone containing the 2^nd^ crash in blue (see @fig-sp-ex-2).
+3. **Bonus:** Plot all zones that intersect with a zone containing crashes, with the actual crash points plotted in black (see @fig-sp-ex-3).
 
 ```{r}
 #| label: fig-sp-ex
@@ -146,9 +150,9 @@ The above code takes the `geo_code` column data from `zones`, matches it to the 
 
 **Exercises:**
 
-1. Plot the `casualty_age` variable of the new `zones_joined` object (see Figure 7.3, to verify the result).
-2. How many zones are returned in the previous command? 
-3. Select only the `geo_code` column from the `zones` and the `dark` column from `crashes_sf` and use the `left = FALSE` argument to return only zones in which crashes occurred. Plot the result. (**Hint:** it should look like the map shown in Figure 7.3)
+1. Plot the `casualty_age` variable of the new `zones_joined` object (see @fig-joinf-1, to verify the result).
+2. How many zones are returned in the previous command?
+3. Select only the `geo_code` column from the `zones` and the `dark` column from `crashes_sf` and use the `left = FALSE` argument to return only zones in which crashes occurred. Plot the result. (**Hint:** it should look like the map shown in @fig-joinf-2)
 
 See [Chapter 4](https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining) of *Geocomputation with R* for further information on geographic joins.
 
@@ -204,8 +208,7 @@ Try the following attribute operations on the `zones` data:
 
 ```{r}
 #| eval: true
-# load example dataset if it doesn't already exist
-zones = pct::get_pct_zones("isle-of-wight")
+# use the zones dataset we created earlier
 sel = zones$all > 3000  # create a subsetting object
 zones_large = zones[sel, ] # subset areas with a population over 3,000
 zones_2 = zones[zones$geo_name == "Isle of Wight 002",] # subset based on 'equality' query
@@ -237,7 +240,7 @@ tmap_mode("plot") # this sets the tmap mode to plotting as opposed to interactiv
 
 **Exercises:**
 
-1. Create the plots of the `zones` object using `plot()` and `tm_shape() + tm_polygons()` functions (see Figure 7.4).
+1. Create the plots of the `zones` object using `plot()` and `tm_shape() + tm_polygons()` functions (see @fig-plot3-1).
 2. Create an interactive version of the `tmap` plot by setting `tmap_mode("view")` and re-running the plotting commands.
 3. Add an additional layer to the interactive map showing the location of crashes, using marker and dot symbols.
 4. **Bonus:** Change the default basemap (**Hint:** you may need to search in the package documentation or online for the solution).
