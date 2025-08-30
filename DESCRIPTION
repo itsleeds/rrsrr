@@ -18,7 +18,4 @@ Imports:
     pct,
     kableExtra,
     tmap,
-    osmdata,
-    trafficalmr
-Remotes:
-    saferactive/trafficalmr
+    osmdata
