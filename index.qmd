@@ -1,7 +1,3 @@
----
-title: "Reproducible Road Safety Research with R"
----
-
 # Preamble {-}
 
 ## About the Author {-}
