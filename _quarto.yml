@@ -1,6 +1,7 @@
 
 project:
   type: book
+  output-dir: _book
 
 execute:
   cache: true
