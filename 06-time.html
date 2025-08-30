@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Temporal data – Reproducible Road Safety Research with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-space.html" rel="next">
+<link href="./05-data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b6bb56fdcb9e0a4df7bf312da36dd473.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-time.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Temporal data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Reproducible Road Safety Research with R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Reproducible Road Safety Research with R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">title: “Introduction”</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-pkgs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Manipulating data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-time.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Temporal data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-join.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Joining road crash tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-next.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Next steps</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#temporal-analysis-of-crash-data" id="toc-temporal-analysis-of-crash-data" class="nav-link active" data-scroll-target="#temporal-analysis-of-crash-data"><span class="header-section-number">7.1</span> Temporal analysis of crash data</a></li>
+  <li><a href="#handling-dates-and-date-times" id="toc-handling-dates-and-date-times" class="nav-link" data-scroll-target="#handling-dates-and-date-times"><span class="header-section-number">7.2</span> Handling dates and date-times</a></li>
+  <li><a href="#hours-minutes-seconds-with-hms" id="toc-hours-minutes-seconds-with-hms" class="nav-link" data-scroll-target="#hours-minutes-seconds-with-hms"><span class="header-section-number">7.3</span> Hours, minutes seconds with hms</a></li>
+  <li><a href="#the-lubridate-package" id="toc-the-lubridate-package" class="nav-link" data-scroll-target="#the-lubridate-package"><span class="header-section-number">7.4</span> The lubridate package</a></li>
+  <li><a href="#dates-in-a-data-frame" id="toc-dates-in-a-data-frame" class="nav-link" data-scroll-target="#dates-in-a-data-frame"><span class="header-section-number">7.5</span> Dates in a data frame</a></li>
+  <li><a href="#components-of-time-objects" id="toc-components-of-time-objects" class="nav-link" data-scroll-target="#components-of-time-objects"><span class="header-section-number">7.6</span> Components of time objects</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="time" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Temporal data</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Time is ubiquitous in road safety data, since collisions and road safety implementations always happen at some point in time. This section will show how you can analyse the temporal dimensions of the real world <code>crashes_2021</code> object we created in Section 4, and then demonstrate how to handle time series data in base R, as well as with <code>hms</code> and <code>lubridate</code> packages. The aim is to get you up-to-speed with how data analysis with time data ‘feels’ before learning the details in subsequent sections. If you are the kind of person who likes to know the details first, feel free to skip this section and return to it later.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>crashes <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">casualty_type =</span> <span class="fu">c</span>(<span class="st">"pedestrian"</span>, <span class="st">"cyclist"</span>, <span class="st">"cat"</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">casualty_age =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">20</span>, <span class="at">to =</span> <span class="dv">60</span>, <span class="at">by =</span> <span class="dv">20</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">vehicle_type =</span> <span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"bus"</span>, <span class="st">"tank"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dark =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="temporal-analysis-of-crash-data" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="temporal-analysis-of-crash-data"><span class="header-section-number">7.1</span> Temporal analysis of crash data</h2>
+<p>To get a feel for temporal data analysis in R, let’s start by reading-in crash data for 2021 with the <code>stats19</code> package by typing the following into the Source Editor and running the code, line-by-line, as taught in Section 3:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats19)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>crashes_2021 <span class="ot">=</span> <span class="fu">get_stats19</span>(<span class="dv">2021</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that, unlike the longer <code>crashes_2021 = get_stats19(year = 2021, type = "accidents")</code> used in Section 4, we did not use <em>named arguments</em> in this code chunk. Instead of <code>year = 2021</code>, we simply typed 2021. That is possible because R functions can be specified by name matching or order: the first argument of <code>get_stats()</code> is <code>year</code>, so the function is expecting a year value. Also, although we didn’t explicitly specify the <code>accidents</code> table, <code>type = "accidents"</code> is the default value, so <code>type</code> only needs to be specified when importing casualty and vehicle datasets.</p>
+<p>With that educational aside out of the way, we will now take a look at the time variables that are actually in our newly read-in dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>crashes_2021 <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">matches</span>(<span class="st">"time|date"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "date"     "time"     "datetime"</code></pre>
+</div>
+</div>
+<p>Building on the previous section and a bit of guesswork, it should be clear what just happened: we selected variables that <em>match</em> (with the <code>matches()</code> function) the character strings <code>"time"</code> or (as indicated by the <code>|</code> vertical pipe symbol) <code>"date"</code> and returned the matching variable names. This shows that the <code>stats19</code> package gives you not one, not two, but three temporal variables.</p>
+<p><strong>Exercises:</strong></p>
+<ol type="1">
+<li>Print the first 6 and then the first 10 elements of each of the three temporal variables in <code>crashes_2021</code>.</li>
+<li>What is the class of each variable (technically, of each vector)?</li>
+<li><strong>Bonus:</strong> Extract the weekday from the variable called <code>date</code>.</li>
+<li><strong>Bonus:</strong> How many crashes happened on Monday?</li>
+</ol>
+<p>Of the three time variables, it should be clear from the outcome of previous exercises that <code>datetime</code> contains the most useful information. To consolidate the plotting know-how learned in Section 4, we shall start by simply plotting the <code>datetime</code> object (Figure 6.1). Plotting data is a good way of understanding new datasets and the variables they contain. Create the following three plots to show how <code>date</code> and <code>time</code> vary as a function of <code>datetime</code>:</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2021) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(datetime, date))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2021) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(datetime, time))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"07:00"</span>, <span class="st">"09:00"</span>, <span class="st">"12:00"</span>, <span class="st">"17:00"</span>, <span class="st">"19:00"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2021) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(datetime, time), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">breaks =</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-ggtime1-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ggtime1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-time_files/figure-html/fig-ggtime1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggtime1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Three plots of the datetime (x axis) in relation to the date and time axis.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-ggtime1-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ggtime1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-time_files/figure-html/fig-ggtime1-2.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggtime1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Three plots of the datetime (x axis) in relation to the date and time axis.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-ggtime1-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ggtime1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-time_files/figure-html/fig-ggtime1-3.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggtime1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3: Three plots of the datetime (x axis) in relation to the date and time axis.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The three figures above tell us many things about the contents of the three temporal variables. It evenprovides insight into the temporal distribution of road casualties in Great Britain. The first two plots (Figure 6.1 and 6.2) show: 1) that the <code>date</code> variable is identical to the <code>datetime</code> variable (at least on the daily resolution than can be seen on the graph); and 2) that <code>time</code> values repeat regularly for the range of dates in <code>datetime</code> (from the start of Jan 2021 to end of Dec 2021). Figure 6.3 makes use of <code>ggplot2</code>‘s functionality to show only certain labels on the Y axis and reduced opacity, so that overlapping points are not completely black. This by far is the most useful of the three plots, showing that most crashes happen between around 7am and 7pm, with a ’long tail’ of crashes in the evening, and that for most of the year there is a clear weekly cycle, reflecting the uptick in crashes during the rush hour commute on weekdays, a pattern that is greatly diminished during several weeks in summer (perhaps corresponding with summer holidays). The 52 weeks of the year can be distinguished even in this small and simple plot, highlighting the ability of visualisation to help understand data. Next, let’s look at how the time-of-day that crashes occur varies as a function of season, severity and day of week.</p>
+<p>From the <code>datetime</code> object of class <code>POSIXct</code>, any type of time information can be extracted. This includes the minute, hour, day of week and month of the crash (or other) event that the object records.</p>
+<p>Building on the time series plot we created in Section 4, let’s create a graph showing how the hourly distribution of crash numbers changes during the course of a working week. We will do this first by <em>preprocessing</em> the data, creating a new object called <code>crashes_dow</code>, containing <code>hour</code> and <code>day</code> columns, then filtering out weekend, and plotting the results, as shown in the code chunk below and Figure 6.4:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># days of the week:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dow <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Sunday"</span>, <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span>, <span class="st">"Saturday"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>crashes_dow <span class="ot">=</span> crashes_2021 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hour =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(datetime)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day =</span> <span class="fu">factor</span>(<span class="fu">weekdays</span>(date), <span class="at">levels =</span> dow)) </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>crashes_dow <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hour) <span class="sc">&amp;</span> <span class="sc">!</span>day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Saturday"</span>, <span class="st">"Sunday"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hour)) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="fl">1.01</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>day, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-ggfacetwkday" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ggfacetwkday-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-time_files/figure-html/fig-ggfacetwkday-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggfacetwkday-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: Facetted time series showing how the number of crashes increases during the working week.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The result in Figure 6.4 is useful, but if we’re interested in the number of crashes per hour on different days of the week <em>relative to the average</em>, we need to undertake more preprocessing steps. We will count the number of crashes per hour for all 5 working days and then divide by 5 to get the average number of crashes per hour during weekdays. Then we will count the number of crashes per hour/week combination. Finally we will divide the latter by the former. These steps are shown in the code chunk below, which results in Figure 6.5.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>crashes_day_rel <span class="ot">=</span> crashes_dow <span class="sc">%&gt;%</span>  <span class="co"># create 'day of week relative' object  </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hour) <span class="sc">&amp;</span> <span class="sc">!</span>day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Saturday"</span>, <span class="st">"Sunday"</span>)) <span class="sc">%&gt;%</span> <span class="co"># none on weekends</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day, hour) <span class="sc">%&gt;%</span>            <span class="co"># keep only time columns</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hour) <span class="sc">%&gt;%</span>               <span class="co"># group by hour</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_per_hour =</span> <span class="fu">n</span>()<span class="sc">/</span><span class="dv">5</span>) <span class="sc">%&gt;%</span>   <span class="co"># number per hour (divide by 5 for n. days)</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(day, hour) <span class="sc">%&gt;%</span>          <span class="co"># group by day and hour</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_hday =</span> <span class="fu">n</span>(), <span class="at">n_h =</span> <span class="fu">first</span>(n_per_hour)) <span class="sc">%&gt;%</span> <span class="co"># summarise results</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hday_relative =</span> n_hday <span class="sc">/</span> n_h) <span class="co"># calculate relative n. crashes per hour/day</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(crashes_day_rel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        day          hour           n_hday            n_h        
+ Sunday   : 0   Min.   : 0.00   Min.   :  54.0   Min.   :  63.6  
+ Monday   :24   1st Qu.: 5.75   1st Qu.: 195.5   1st Qu.: 252.2  
+ Tuesday  :24   Median :11.50   Median : 662.5   Median : 657.3  
+ Wednesday:24   Mean   :11.50   Mean   : 630.2   Mean   : 630.2  
+ Thursday :24   3rd Qu.:17.25   3rd Qu.: 952.8   3rd Qu.: 899.1  
+ Friday   :24   Max.   :23.00   Max.   :1510.0   Max.   :1397.2  
+ Saturday : 0                                                    
+ hday_relative   
+ Min.   :0.7087  
+ 1st Qu.:0.9309  
+ Median :0.9869  
+ Mean   :1.0000  
+ 3rd Qu.:1.0440  
+ Max.   :1.6220  
+                 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>crashes_day_rel <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(hour, hday_relative)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>day, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-ggfacetrwkayrel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ggfacetrwkayrel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-time_files/figure-html/fig-ggfacetrwkayrel-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggfacetrwkayrel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.5: Facetted time series showing relative number of crashes per hour by day in the working week.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The results clearly show that Friday is a dangerous day as many of the columns are above 1 (<em>NB as this is a relative calculation, columns that are less than 1 indicate that there are less crashes per hour on that day than average whereas those above 1 indicate that there are more crashes per hour on that day than average</em>). The extent to which the high relative number of crashes in the most anomalous hours (Friday evening) is due increased exposure vs increased risk per km travelled cannot be ascertained by this plot but it certainly suggests that Friday afternoon and evening is a worthy focus of road safety research.</p>
+<p><strong>Exercises:</strong></p>
+<ol type="1">
+<li>Building on the code above, show the absolute and relative number of crashes per hour on Saturday and Sunday.</li>
+<li>Filter the dataset so it contains only data from two police forces of your choice (e.g.&nbsp;<code>West Yorkshire</code> and <code>Metropolitan Police</code>).</li>
+<li>Try creating plots similar to those shown above but facetted by police force rather than by day of the week.</li>
+</ol>
+</section>
+<section id="handling-dates-and-date-times" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="handling-dates-and-date-times"><span class="header-section-number">7.2</span> Handling dates and date-times</h2>
+<p>It is worth remembering that base R already has decent support for dates and <code>datetimes</code>, although the base R functions are not particularly intuitive. This is shown in the code chunk below, which creates objects representing the date and time of a fictitious crash event on a cold winter’s morning, 1<sup>st</sup> January 2021, and a subsequent road safety intervention on the 20<sup>th</sup> October 2021:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>crash_datetime_character <span class="ot">=</span> <span class="st">"2021-01-01 08:35"</span> <span class="co"># creates date/time as a character</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>crash_datetime <span class="ot">=</span> <span class="fu">as.POSIXct</span>(crash_datetime_character) <span class="co"># converts date/time to a object of the POSIXct type</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(crash_datetime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>intervention_date_character <span class="ot">=</span> <span class="st">"2021-10-20"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>intervention_date <span class="ot">=</span> <span class="fu">as.Date</span>(intervention_date_character) <span class="co"># converts date/time to a object of the Date type</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(intervention_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># see ?as.POSIXct for more examples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>‘POSIXct’, ‘POSIXt’ and ‘Date’ are data types for dates and time that enable easy manipulation of such data. Fortunately for most users, there are easier ways to work with time series data, starting with the <code>hms</code> package.</p>
+</section>
+<section id="hours-minutes-seconds-with-hms" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="hours-minutes-seconds-with-hms"><span class="header-section-number">7.3</span> Hours, minutes seconds with hms</h2>
+<p>The <code>hms</code> library in the <code>tidyverse</code> can be used to process hours, minutes and seconds, as shown below. See a very basic demo of the package and links to the package’s help pages with the following commands in which we use the package without loading it with the <code>library()</code> function, demonstrating the <code>package::function()</code> syntax taught in Section 4:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>crash_time_character <span class="ot">=</span> <span class="st">"08:35:00"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>crash_time_hms <span class="ot">=</span> hms<span class="sc">::</span><span class="fu">as_hms</span>(crash_time_character)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(crash_time_hms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hms"      "difftime"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>?hms<span class="sc">::</span><span class="st">`</span><span class="at">hms-package</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As the package’s name suggests, it is used for dealing with hours, minutes and seconds. It can round time objects of class <code>hms</code> to the nearest second (or any multiple of a second):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>hms<span class="sc">::</span><span class="fu">round_hms</span>(crash_time_hms, <span class="dv">1</span>)           <span class="co"># time to the nearest second</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>08:35:00</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>hms<span class="sc">::</span><span class="fu">round_hms</span>(crash_time_hms, <span class="dv">1</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span>) <span class="co"># time to the nearest hour</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>09:00:00</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>hms<span class="sc">::</span><span class="fu">round_hms</span>(crash_time_hms, <span class="dv">1</span> <span class="sc">*</span> <span class="dv">30</span> <span class="sc">*</span> <span class="dv">60</span>) <span class="co"># time to the nearest half hour</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>08:30:00</code></pre>
+</div>
+</div>
+<p>It can also convert simple text strings into time objects, e.g.&nbsp;as follows (<strong>Note:</strong> we do not need to include the <code>:00</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>hms<span class="sc">::</span><span class="fu">parse_hm</span>(<span class="st">"08:35"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>08:35:00</code></pre>
+</div>
+</div>
+</section>
+<section id="the-lubridate-package" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="the-lubridate-package"><span class="header-section-number">7.4</span> The lubridate package</h2>
+<p>In many cases the most useful and easy to use package when working with temporal data is <code>lubridate</code>. Having installed it, load it as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The simplest example of a Date object that we can analyze is just the current date, i.e.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-08-30"</code></pre>
+</div>
+</div>
+<p>We can manipulate this object using several <code>lubridate</code> functions to extract the current day, month, year, weekday and so on…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">today</span>()</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(x)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>) <span class="co"># is it the weekend?</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(x)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Base R can also be used to extract data e.g.&nbsp;<code># Base R function to get the day of week weekdays(x)</code>.</p>
+<p><strong>Exercises: </strong></p>
+<ol type="1">
+<li>Look at the help page of the <code>lubridate</code> function <code>month</code> to see how it is possible to extract the current month as a character vector.</li>
+<li>Look at other functions in <code>lubridate</code> to extract the current weekday as a number, the week of year and the day of the year.</li>
+</ol>
+<p>Date variables are often stored simply as character vectors. This is a problem, since R is not always smart enough to distinguish between character vectors representing Dates. <code>lubridate</code> provides functions that can translate a wide range of date encodings such as <code>ymd()</code>, which extracts the Year, Month and Day from a character string, as demonstrated below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"2021-10-17"</span>) <span class="co"># works</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"2021 10 17"</span>) <span class="co"># fails</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2021 10 17"</span>)     <span class="co"># works</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"17/10/2021"</span>)     <span class="co"># works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Import functions, such as <code>read_csv</code>, try to recognize the Date variables. Sometimes this fails. You can manually create Date objects, as shown below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"2009-01-01"</span>, <span class="st">"2009-02-02"</span>, <span class="st">"2009-03-03"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>x_date <span class="ot">=</span> <span class="fu">ymd</span>(x)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>x_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2009-01-01" "2009-02-02" "2009-03-03"</code></pre>
+</div>
+</div>
+<p><strong>Exercises:</strong></p>
+<ol type="1">
+<li>Extract the day, the year-day, the month and the weekday (as a non-abbreviated character vector) of each element of <code>x_date</code>.</li>
+<li>Convert <code>"09/09/93"</code> into a date object and extract its weekday.</li>
+<li><strong>Bonus:</strong> Read the help page of <code>as.Date</code> and <code>strptime</code> for further details on base R functions for dates.</li>
+<li><strong>Bonus:</strong> Read the Chapter 16 of <a href="https://r4ds.had.co.nz/dates-and-times.html">R for Data Science book</a> for further details on <code>lubridate</code> package.</li>
+</ol>
+</section>
+<section id="dates-in-a-data-frame" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="dates-in-a-data-frame"><span class="header-section-number">7.5</span> Dates in a data frame</h2>
+<p>We can use Dates for subsetting events in a dataframe. For example, if we define <code>x_date</code> as before and add it to the <code>crash</code> dataset, i.e.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>crashes<span class="sc">$</span>casualty_day <span class="ot">=</span> x_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we can subset events using Dates. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(crashes, <span class="fu">day</span>(casualty_day) <span class="sc">&lt;</span> <span class="dv">7</span>) <span class="co"># the events that ocurred in the first week of the month</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  casualty_type casualty_age vehicle_type dark  casualty_day
+  &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;        &lt;lgl&gt; &lt;date&gt;      
+1 pedestrian              20 car          TRUE  2009-01-01  
+2 cyclist                 40 bus          FALSE 2009-02-02  
+3 cat                     60 tank         TRUE  2009-03-03  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(crashes, <span class="fu">weekdays</span>(casualty_day) <span class="sc">==</span> <span class="st">"Monday"</span>) <span class="co"># the events occurred on monday</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  casualty_type casualty_age vehicle_type dark  casualty_day
+  &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;        &lt;lgl&gt; &lt;date&gt;      
+1 cyclist                 40 bus          FALSE 2009-02-02  </code></pre>
+</div>
+</div>
+<p><strong>Exercises:</strong></p>
+<ol type="1">
+<li>Select only the events (rows in <code>crashes</code>) that occurred in January.</li>
+<li>Select only the events that ocurred in an odd year-day.</li>
+<li>Select only the events that ocurred in a leap-year (<strong>Hint:</strong> check the function <code>leap_year</code>).</li>
+<li>Select only the events that ocurred during the weekend or in June.</li>
+<li>Select only the events that ocurred during the weekend and in June.</li>
+<li>Count how many events ocurred during each day of the week.</li>
+</ol>
+</section>
+<section id="components-of-time-objects" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="components-of-time-objects"><span class="header-section-number">7.6</span> Components of time objects</h2>
+<p>Now we’ll take a look at the time components of a Date. Using the function <code>hms</code> (acronym for Hour, Minutes, Seconds) and its subfunctions such as <code>hm</code> or <code>ms</code>, we can parse a character vector representing several times into an Hour object (which is technically called a ‘period object’).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"18:23:35"</span>, <span class="st">"00:00:01"</span>, <span class="st">"12:34:56"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>x_hour <span class="ot">=</span> <span class="fu">hms</span>(x)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>x_hour</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "18H 23M 35S" "1S"          "12H 34M 56S"</code></pre>
+</div>
+</div>
+<p>We can manipulate these objects using several <code>lubridate</code> functions to extract the hour component, the minutes, and so on:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(x_hour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18  0 12</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(x_hour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23  0 34</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(x_hour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 35  1 56</code></pre>
+</div>
+</div>
+<p>If the Hour data does not specify the seconds, we just use a subfunction of <code>hms</code>, namely <code>hm</code>, to get the hours and minutes, rather than hours, minutes and seconds.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"18:23"</span>, <span class="st">"00:00"</span>, <span class="st">"12:34"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">x_hour =</span> <span class="fu">hm</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "18H 23M 0S" "0S"         "12H 34M 0S"</code></pre>
+</div>
+</div>
+<p>We can use Hour data also for subsetting events, like we did for Dates. Let’s add a new column for hour to the crashes data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>crashes<span class="sc">$</span>casualty_hms <span class="ot">=</span> <span class="fu">hms</span>(<span class="fu">c</span>(<span class="st">"18:23:35"</span>, <span class="st">"00:00:01"</span>, <span class="st">"12:34:56"</span>))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>crashes<span class="sc">$</span>casualty_hour <span class="ot">=</span> <span class="fu">hour</span>(crashes<span class="sc">$</span>casualty_hms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Exercises:</strong></p>
+<ol type="1">
+<li>Filter only the events that occurred after midday (i.e.&nbsp;the PM events). <strong>Hint:</strong> your answer may include <code>&gt;= 12</code>.</li>
+<li>Filter only the events that ocurred between 15:00 and 19:00.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-data.html" class="pagination-link" aria-label="Manipulating data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Manipulating data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-space.html" class="pagination-link" aria-label="Spatial data">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Spatial data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

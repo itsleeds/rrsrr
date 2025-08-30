@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Next steps – Reproducible Road Safety Research with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08-join.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b6bb56fdcb9e0a4df7bf312da36dd473.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-next.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Next steps</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Reproducible Road Safety Research with R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Reproducible Road Safety Research with R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">title: “Introduction”</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-pkgs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Manipulating data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Temporal data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-join.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Joining road crash tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-next.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Next steps</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#automated-reporting-with-rmarkdown" id="toc-automated-reporting-with-rmarkdown" class="nav-link active" data-scroll-target="#automated-reporting-with-rmarkdown"><span class="header-section-number">10.1</span> Automated reporting with RMarkdown</a></li>
+  <li><a href="#sharing-code" id="toc-sharing-code" class="nav-link" data-scroll-target="#sharing-code"><span class="header-section-number">10.2</span> Sharing code</a></li>
+  <li><a href="#asking-questions" id="toc-asking-questions" class="nav-link" data-scroll-target="#asking-questions"><span class="header-section-number">10.3</span> Asking questions</a></li>
+  <li><a href="#testimonials" id="toc-testimonials" class="nav-link" data-scroll-target="#testimonials"><span class="header-section-number">10.4</span> Testimonials</a>
+  <ul class="collapse">
+  <li><a href="#r-for-professional-road-safety-analysts" id="toc-r-for-professional-road-safety-analysts" class="nav-link" data-scroll-target="#r-for-professional-road-safety-analysts"><span class="header-section-number">10.4.1</span> R for professional road safety analysts</a></li>
+  <li><a href="#r-in-a-road-safety-research-consultancy" id="toc-r-in-a-road-safety-research-consultancy" class="nav-link" data-scroll-target="#r-in-a-road-safety-research-consultancy"><span class="header-section-number">10.4.2</span> R in a road safety research consultancy</a></li>
+  <li><a href="#using-r-in-a-road-safety-charity" id="toc-using-r-in-a-road-safety-charity" class="nav-link" data-scroll-target="#using-r-in-a-road-safety-charity"><span class="header-section-number">10.4.3</span> Using R in a road safety charity</a></li>
+  <li><a href="#using-r-in-other-areas-of-road-safety-research" id="toc-using-r-in-other-areas-of-road-safety-research" class="nav-link" data-scroll-target="#using-r-in-other-areas-of-road-safety-research"><span class="header-section-number">10.4.4</span> Using R in other areas of road safety research</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Next steps</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>You have reached the end of this short guide on reproducible road safety research with R. Armed with the knowledge of what R and RStudio can do, and how add-on packages provide powerful tools for a wide range of data analysis, visualisation and statistical modelling tasks, you should have a much better understanding of the language’s capabilities.</p>
+<p>I hope that in the process of working through the exercises, you have learned not only the technicalities of data science with a powerful tool of the trade, but also a way of working that puts reproducibility centre stage. Learning any new skill takes time and effort. However, in my experience, once you get past a critical threshold, the amount of time saved using the new approach starts to outweigh the amount of time involved in becoming fluent. The same concept applies to other ‘tools of the trade’ that are available, such as the open source geographic information system (GIS) software, QGIS and other languages for data science, such as Python and Julia.</p>
+<p>Rather than go off and learn such additional tools, we encourage you to stick with R. It is preferable to know one language in-depth and then branch out to learn other approaches than to learn many approaches superficially or, as put it in the excellent R for Data Science (R4DS) book: “You will get better faster if you dive deep, rather than spreading yourself thinly over many topics”. In terms of next steps, you cannot go wrong with checking-out the R4DS website which, like this book, has worked examples and exercises in abundance on a much wider range of data science topics. As you will see by visiting <a href="https://r4ds.had.co.nz">r4ds.had.co.nz</a> many of these topics, including workflow and modelling, will be of use from a road safety research perspective.</p>
+<p>A strength of R is its flexibility. It can be used as a calculator one minute and a statistical modelling toolbox the next. R can be used as a web application development framework the next, as illustrated by major shiny apps such as the Propensity to Cycle Tool (try it at <a href="https://www.pct.bike/">www.pct.bike</a>) and tools developed by road safety consultancy Agilysis, described in Section 9.1 below. Indeed, within the R ecosystem there are many sub-ecosystems, each of which has excellence free and open resources for people who want to learn more in a particular domain. If you are particularly in the geographic analysis of road crash data, the book <a href="https://geocompr.robinlovelace.net/"><em>Geocomputation with R</em></a> by yours truly and which has already been mentioned in Chapter 7, is highly recommended. If you are looking for methods of analysing trends and forecasting with time series data, is highly recommended. Indeed, there is a whole library’s worth of open resources to be found on any area of data-driven research online, from web development and visualisation to text analysis. A recommended next step for learning more in regards to any of these areas is the website bookdown.org, which links to books that can also be bought as physical items if you, like many people, prefer learning with a paper resource.</p>
+<p>In fact, with the size and rapidly evolving nature of the R ecosystem, one of the hardest things for a beginner is knowing which packages, functions or workflow options to choose from out of a wide array of options. The internet is there to help you, but it can also hinder your progress by serving-up out-of-date solutions and providing ‘quick fixes’ at the expense of a deep understanding. Therefore, instead of trying to be comprehensive (focussed web searches prioritising tried-and-tested solutions documented in authoritative sources can help with that), the rest of this final section provides pointers on a few particularly useful aspects of R from a road safety analysis perspective. Most people who learn R (or any computer language) will at become frustrated due to tricky-to-fix error messages. As outlined in Section 9.1, written by people who have navigated R’s at first daunting learning curve, it can take only a few weeks of learning to get to the point where saves more time than it consumes and takes your work “to the next level”.</p>
+<section id="automated-reporting-with-rmarkdown" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="automated-reporting-with-rmarkdown"><span class="header-section-number">10.1</span> Automated reporting with RMarkdown</h2>
+<p>An advantage of R is that it has many packages dedicated to the communication and publication of results, vital for policy impact. Perhaps the most important important package with regards to the communication of results is <code>rmarkdown</code>. This is more of a framework than a package, providing a powerful system for generating reports, web pages and even books (this book was written with the bookdown package, which builds on<code>rmarkdown</code>).</p>
+<p>Here is not the place to explain how to use RMarkdown and their associated .Rmd files. The framework is explained in detail in a free and open book. To get started with the framework, however, you can try the following code example, which shows the creation of an Rmd file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="st">"test-document.Rmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Try adding some code chunks and text by following the guidance in the Rmd cheatsheet, which you can get from the Help &gt; Cheatsheets menu in RStudio.</p>
+</section>
+<section id="sharing-code" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="sharing-code"><span class="header-section-number">10.2</span> Sharing code</h2>
+<p>Another way to increase the impact of your code is to share it. This can help collaborate with colleagues, getting feedback from others, and generating interest in your work as part of collaborative research processes that have been in operation for hundreds of years, as summarised by the phrase, ‘Building on the shoulders of giants.’ A more prosaic, but perhaps more important, corollary to that is, ‘Do not reinvent the wheel.’ By getting your code ‘out there’ you will be able to ensure that others can use your code and, because publishing your code encourages searching for other code bases, help you to find components written by others to improve your work. Sharing code can therefore save many hours of time, provided you are happy to read and re-use, and of course give due credit and reference to code and ideas from other people.</p>
+<p>The easiest way to share code in 2023 (and likely for the foreseeable future) is GitHub, an online code sharing, project management and file hosting platform. A great way to get started with GitHub, after you have signed up and created a user name at github.com, is to contribute to an existing project. <strong>Challenge:</strong> suggest a change to the code repository on GitHub that contains the source code of this book.</p>
+</section>
+<section id="asking-questions" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="asking-questions"><span class="header-section-number">10.3</span> Asking questions</h2>
+<p>A final thing to say on R before the testimonials below is how to ask questions. There are many places to ask for help online, including:</p>
+<ul>
+<li><p>The question and answer site https://stackoverflow.com/. You will get quick answers here but be warned, answers may not always be particularly friendly if you ask a question that doesn’t make sense or which has already been answered in the documentation - that should not put you off though, sometimes it’s a case of, ‘Don’t ask, don’t get.’</p></li>
+<li><p>The <a href="https://community.rstudio.com/" class="uri">https://community.rstudio.com/</a> forum, where you may get more detailed and friendlier responses, especially if the question relates to RStudio, although the answer may be slower.</p></li>
+<li><p>Special interest groups such as <a href="https://gis.stackexchange.com/" class="uri">https://gis.stackexchange.com/</a> (for GIS related questions), and the Slack group RSGB Analyst Network for road safety data analysis questions</p></li>
+</ul>
+<p>Perhaps better than all of the above, is to ask a colleague who has slightly more experience than you. That way you will build ‘collaboration networks.’ The final thing to say on asking questions is ‘use reprex!’ To see what I mean by this try typing the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example of creating a good reprex:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>reprex<span class="sc">::</span><span class="fu">reprex</span>({</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> <span class="st">"2"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># why does this fail?</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># but this succeeds?</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="fu">as.numeric</span>(y)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># after running the code above you can share the copied output to help ask questions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note, you can turn any bit of code into a ‘reprex’ by selecting it and by running the ‘Reprex selection’ addin in RStudio, as described on the <a href="https://www.tidyverse.org/help/">Tidyverse website</a>.</p>
+</section>
+<section id="testimonials" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="testimonials"><span class="header-section-number">10.4</span> Testimonials</h2>
+<p>This final section provides insight not only into how R can be used for road safety research from a range of perspectives, but also navigating R’s at times steep learning curve.</p>
+<section id="r-for-professional-road-safety-analysts" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="r-for-professional-road-safety-analysts"><span class="header-section-number">10.4.1</span> R for professional road safety analysts</h3>
+<p>Will Cubbin, Road Safety Strategy Analyst, <a href="https://saferessexroads.org/">Safer Essex Roads Partnership</a></p>
+<p>When I attended the two-day course ‘introduction to R’ I had little confidence in my natural ability to learn coding. Although familiar with many functions in Excel and having dabbled in VBA, my two previous attempts at any kind of computer language both ended in literal failure. At university I failed a module on C++ and in a previous job I failed a training course on SQL!</p>
+<p>As expected the course was a steep learning curve but after two days I had definitely learned a few tricks. However I was still concerned about the amount of material covered by the course that I hadn’t understood. It turned out this was actually a good thing because the breadth of the course showed me what R was capable of, and how it could be useful. The next part of my journey with R was to use the course materials and build on the basics I had learned, to achieve what the course showed was possible.</p>
+<p>I began with the aim of using the geospatial analysis capability in R to visualise collision data in new ways, to give more detailed insight and present it in a way that would inform meaningful action for front line resources. Having a clear goal of “This is what I want to achieve with my first R project” was crucial. The course had given me an idea of the sort of processes I needed to undertake in order to achieve this goal. The post-course support through GitHub was very good, I also learned a lot by finding examples of code on places like GitHub and stackoverflow through Google searches. The other crucial element in getting my first success with R was having time dedicated to working on the project immediately after the course. I spent two weeks working almost exclusively on this project, starting the week after the R course.</p>
+<p>The result was well worth the effort. After the initial two weeks of intensive learning with R, I spent 4 to 6 weeks working on the project a couple of days per week. By the end of this period I had working versions of two interactive mapping tools, comprising: 1) A multi layered leaflet map showing collision locations, collision density along main roads and a “heatmap” (Kernel Density Estimation raster) layer. I made multiple versions of each layer for different modes of transport and behaviours such as drink driving. 2) A ‘shiny’ mapping app showing collision locations and basic details with date filter. I was able to embed this on our website for public use. It can be viewed here <a href="https://saferessexroads.org/collision-data/">SERP website data page</a> under the heading ‘Interactive Map’.</p>
+<p>I soon added a second R script to the first of the two projects described above. This script produced and exported a range of standardised infographics showing various breakdowns of the data contained in the map. This allowed me to almost fully-automate the process for updating a proactive Roads-Policing tasking document. It turned this monthly process, which previously took 1 working day to complete, into one taking just 45 minutes. It also added more useful insight to the monthly tasking product.</p>
+<p>My next steps are to continue another project using an API to access vehicle telematics data. This project extracts driving events, such as harsh braking and harsh cornering, and plots them on an interactive map. I will also be using R for some statistical analysis as part of a research project I have recently started. Thinking of myself as an “Excel native”, I would say R hasn’t replaced Excel, but has been a powerful addition to my toolbox so I can do more interesting and in-depth work than ever before.</p>
+</section>
+<section id="r-in-a-road-safety-research-consultancy" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="r-in-a-road-safety-research-consultancy"><span class="header-section-number">10.4.2</span> R in a road safety research consultancy</h3>
+<p>Dr Craig Smith, Data Scientist, <a href="https://agilysis.co.uk/">Agilysis Ltd</a></p>
+<p>After attending my first R course, I immediately saw how useful the language could be to our team. At <a href="https://agilysis.co.uk/">Agilysis</a>, we have integrated R into almost everything our analytics team does, pushing for our work to be as robust and reproducible as possible. The incredible integration R has with SQL database engines, cloud-based infrastructure like AWS, and proprietary GIS software like ArcGIS, has given us a huge scope to automate a lot of our regular data processing tasks. The added ability to automate the production of reports, charts and maps has allowed us to gain quick insights into our data, speeding up our exploratory analysis. The huge Shiny ecosystem has allowed us to produce interactive applications for sharing our tools and visualisations with stakeholders. There is also a wide range of open-source statistical and machine learning packages available which, when combined with the added capability to translate and use tools from python, has allowed us to innovate and take full advantage of what artificial intelligence has to offer. All of this, embedded in a supportive community of R users that is continually sharing its knowledge and helping spread these skills, means that anything is possible for users, whatever their level of experience. The fact that this community includes a growing number of road safety analysts and transport-focused data scientists (thanks, in part, to this book and the previous R for Road Safety courses) means that there are plenty of like-minded R users all over the country that you can share ideas (and code) with.</p>
+</section>
+<section id="using-r-in-a-road-safety-charity" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="using-r-in-a-road-safety-charity"><span class="header-section-number">10.4.3</span> Using R in a road safety charity</h3>
+<p>Emily Nagler, Data Analyst, <a href="http://www.racfoundation.org">RAC Foundation</a></p>
+<p>I was first introduced to R in my master’s program by a professor who was very enthusiastic as to how much better it was than ArcGIS for spatial analysis. Whilst he did project his views very strongly on us as students, I still tended towards ArcGIS when given a choice between the two. I had never written code before this point, and to me the GUI of ArcGIS was simply easier to work with. However, over the course of my program I incorporated R more and more as our coursework became increasingly complex. Datasets with tens of thousands of rows quickly became a pain in Excel, and the inefficiency of working between two programs rather than one was tedious. Like many of my classmates, I soon realised the point our professor had been trying to make all along: in order to push your analytical capabilities to the next level you need to use the right tool. I can agree that there is a steep learning curve to R, but once you’ve become comfortable with the language, it’s harder to go back than it is to go forward. Meaning, once you reach a point in your proficiency, it’s easier to build on your skills and knowledge of the language than it is to revert back to Excel knowing there is a smarter alternative.</p>
+<p>I found myself face to face with R again in my role at the RAC Foundation a year later, and since I’d already become an R convert, it was easy to pick up again. However, now I saw new benefits from a different perspective, relating to collaboration and reproducibility. Before this point, the only eyes on my scripts were my own, and there was no need to refer back to them once an assignment was done. However, in my role as a data analyst, it is important and necessary to create something that can be shared and understood by others. The ability to have a full account written out line by line makes it much easier to work off someone else’s code and, importantly, to quality check one another’s work. By having a traceable, repeatable analysis, there is a level of accountability with the method that you simply cannot get in Excel.</p>
+<p>Another great aspect of R is the helpful online community presence, thanks to its open source nature. Anyone can access the software, and anyone can contribute to the discussion, which I often find more helpful than the FAQs of a paid for software. I would say that this aspect alone has helped hugely in my work, both academically and professionally. I’m never far from an answer when stuck, no matter how specific the problem gets. In terms of its use in my work on road safety and transport analysis it has become a great tool for combining data with maps, something that I think highlights results in a more insightful way. That being said, visualisation is just as important as the analysis, and I’ve been pleased with the array of packages that can create eye-catching maps, interactive dashboards, and much more outside of the traditional data wrangling capabilities. Looking to the future of my career I see myself continuing to use R and I’m confident that its capabilities will only get better the more people engage with it.</p>
+</section>
+<section id="using-r-in-other-areas-of-road-safety-research" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="using-r-in-other-areas-of-road-safety-research"><span class="header-section-number">10.4.4</span> Using R in other areas of road safety research</h3>
+<p>Do you have a use case of reproducible research? Please get in touch on the <a href="https://github.com/ITSLeeds/rrsrr/issues">issue tracker</a>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./08-join.html" class="pagination-link" aria-label="Joining road crash tables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Joining road crash tables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
