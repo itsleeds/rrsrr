@@ -1,0 +1,32 @@
+
+project:
+  type: book
+  output-dir: _book
+
+execute:
+  cache: true
+
+book:
+  title: "Reproducible Road Safety Research with R"
+  author: "Robin Lovelace"
+  chapters:
+    - index.qmd
+    - 01-intro.qmd
+    - 02-basics.qmd
+    - 03-rstudio.qmd
+    - 04-pkgs.qmd
+    - 05-data.qmd
+    - 06-time.qmd
+    - 07-space.qmd
+    - 08-join.qmd
+    - 09-next.qmd
+
+bibliography:
+  - references.bib
+  - packages.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt

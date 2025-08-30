@@ -4,18 +4,18 @@ Learning a programming language is like learning any language.
 If you’re learning French, for example, you could just dive in and start gesticulating to people in central Paris. 
 However, it’s worth taking the time to understand the structure and key words of the language first. 
 The same applies to data science: it will help if you first understand a little about the syntax and grammar of the language that we will use to in relation to the ‘data’ (the statistical programming language R) before diving into using it for road safety research. 
-This section, parts of which were originally developed for a [2 day course](https://github.com/ITSLeeds/TDS/releases/download/0.2/2day.pdf) on data science, may seem tedious for people who just want to crack on and load-in data.^[
-Thanks to Malcolm Morgan who contributed content that has been included in this section.
-]
+This section, parts of which were originally developed for a [2 day course](https://github.com/ITSLeeds/TDS/releases/download/0.2/2day.pdf) on data science, may seem tedious for people who just want to crack on and load-in data.
 However, working through the examples below is recommended for most people unless you’re already an experienced R user, although even experienced R users may learn something about the language’s syntax and fundamental features.
 
-The first step is to **start RStudio**, e.g. if you are on Windows, this can be achieved by tapping **Start** and searching for RStudio. You should see an **R console** pane like that which is displayed in Figure \@ref(fig:console).
+The first step is to **start RStudio**, e.g. if you are on Windows, this can be achieved by tapping **Start** and searching for RStudio. You should see an **R console** pane like that which is displayed in Figure 2.1.
 
-```{r console, echo=FALSE, fig.cap='The R console pane in RStudio that appears when you first open RStudio. After typing install.packages(stats), you should see the package name auto-complete. Pressing `Enter` at this point will trigger the autocompletion of the command `install.packages("stats19").'}
+```{r}
+#| label: fig-console
+#| fig-cap: 'The R console pane in RStudio that appears when you first open RStudio. After typing install.packages(stats), you should see the package name auto-complete. Pressing `Enter` at this point will trigger the autocompletion of the command `install.packages("stats19").'
 knitr::include_graphics("figures/console.png")
 ```
 
-If you saw something like that which is shown in Figure \@ref(fig:console) congratulations!
+If you saw something like that which is shown in Figure 2.1 congratulations!
 You are ready to start running R code by entering commands into the console.
 
 ## Creating and removing R objects
@@ -31,7 +31,8 @@ pi^(19 + 2) / exp(2 + 19)
 
 Use the same approach to find the square route of 361 (answer not shown):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 sqrt(361)
 ```
 
@@ -39,32 +40,17 @@ This is all well and good, providing a chance to see how R works with numbers an
 However, the code chunks above do not make use of a key benefit of R: it is *object oriented*, meaning it stores values and complex objects, such as data frames representing road casualties, and processes them *in memory* (meaning that R is both fast and memory hungry when working with large datasets). If you are more familiar with Excel, a data frame may be thought of as fulfilling the purpose of a single worksheet containing a set of data.
 
 The two most common ways of creating objects are using `<-` 'arrow' or `=` 'equals' assignment.
-These symbols are *assignment operators* because they assign contents, such as numbers, to named objects.^[
-We use equals assignment for speed of typing and to avoid ambiguity in commands such as `x<-1` vs `x< -1`, although `<-` has historically been (and still is) more commonly used in many fields.
-]
-Let's reproduce the calculations above using objects.
-This makes the final command more concise:
-
-```{r}
-x = 2
-y = 19
-z = x + y
-pi^z / exp(z)
-```
-
-The previous code chunk created and stored three objects called `x`, `y` and `z` and showed how these objects can themselves be used to create additional objects.
-Why `x`, `y` and `z`?
-Lack of imagination!
-
-You can call R objects anything you like, provided they do not start with numbers or contain reserved symbols such as `+` and `-`.
-You can use various stylistic conventions when naming your R objects, including `camelCase` and `dot.case`
-[@baath_state_2012].
+These symbols are *assignment operators* because they assign contents, such as numbers, to named objects.
 We advocate using `snake_case`, a style that avoids upper case characters to ease typing and uses the underscore symbol (`_`) to clearly demarcate spaces between words.
 
 The objects created in the previous code chunk have now served their purpose, which is to demonstrate basic object creation in R. 
 So, based on the wise saying that tidying up is the most important part of a job, we will now remove these objects:
 
 ```{r}
+x = 2
+y = 19
+z = x + y
+pi^z / exp(z)
 rm(x, y, z)
 ```
 
@@ -92,11 +78,7 @@ casualty_age = seq(from = 20, to = 60, by = 20)
 
 ## Object types: vectors and data frames
 
-The final stage in the previous section involved creating two objects with sensible names in our R session.^[
-The R session can be restarted by closing RStudio and then reopening it, or by pressing `Ctl+Shift+F10`.
-Restarting R in this way will make R 'forget' the objects, unless you ask it to save the objects.
-In most cases we advocate *not* saving R objects in your workspace but saving the specific objects you need, something that is covered in Section \@ref(saving-r-objects).
-]
+The final stage in the previous section involved creating two objects with sensible names in our R session.
 After running the previous code chunk the `casualty_*` objects are in the workspace (technically, the 'global environment').
 You should be able to see the object names in the Environment tab in the top right of RStudio.
 Objects can also be listed with the `ls()` command as follows:
@@ -107,7 +89,6 @@ ls()
 
 The previous command executed the function `ls()` with no arguments.
 This helps explain the command `rm(list = ls())`, which removed all objects in the global environment in the previous section.
-<!-- The command basically means 'remove everything', **used with caution**. -->
 This also makes the wider point that functions can accept arguments (in this case the `list` argument of the `rm()` function) that are themselves function calls.
 
 Two key functions for getting the measure of R objects are `class()` and `length()`.
@@ -121,7 +102,8 @@ The class of the `casualty_type` and `casualty_type` objects are `character` (me
 The objects are *vectors*, a sequence of values of the same type.
 Next challenge: guess their length and check your guess was correct by running the following commands (results not shown):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 length(casualty_type)
 length(casualty_age)
 ```
@@ -136,7 +118,8 @@ crashes = data.frame(casualty_type, casualty_age)
 We can see the contents of the new `crashes` object by entering the following line of code.
 This prints its contents (results not shown, you need to run the command on your own computer to see the result):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 crashes
 ```
 
@@ -170,7 +153,8 @@ Two dimensional objects such as matrices and data frames can be subset by rows a
 Subsetting in base R is achieved by using square brackets `[]` after the name of an object.
 **To practice subsetting, run the following commands to index and column name and verify that you get the same results to those that are shown below.**
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 casualty_age[2:3] # second and third casualty_age
 crashes[c(1, 2), ] # first and second row of crashes
 crashes[c(1, 2), 1] # first and second row of crashes, first column
@@ -194,22 +178,11 @@ To confirm that what we think has happened has indeed happened, print out the ob
 crashes
 ```
 
-In Section \@ref(data) we will use `filter()` and `select()` functions to subset rows and columns.
+In Section 5 we will use `filter()` and `select()` functions to subset rows and columns.
 Before we get there, it is worth practicing subsetting using the square brackets to consolidate your understanding of how base R works with vector objects such as `vehicle_type` and data frames such as `crashes`.
 If you can answer the following questions, congratulations,  you are ready to move on.
 If not, it's worth doing some extra reading and practice on the topic of subsetting in base R.
 
-
-```{r, eval=FALSE, echo=FALSE}
-crashes[, c(1, 3)] # first and third column of crashes by positional numbers
-crashes[c(2), c(3)]
-crashes[c(2), c(2, 3)]
-class(crashes[, c(1, 3)])
-class(crashes[c(2), c(3)])
-```
-
-<!-- ## Exercises {-} -->
-<!-- Todo: should these be sections? -->
 
 **Exercises**
 
@@ -224,7 +197,8 @@ class(crashes[c(2), c(3)])
 It is also possible to subset objects by the values of their elements.
 This works because the `[` operator accepts logical vectors returned by queries such as 'Is it less than 3?' (`x < 3` in R) and 'Was it light?' (`crashes$dark == FALSE`), as demonstrated below:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 x[c(TRUE, FALSE, TRUE, FALSE, TRUE)] # 1st, 3rd, and 5th element in x
 x[x == 5] # only when x == 5 (notice the use of double equals)
 x[x < 3] # less than 3
@@ -239,35 +213,33 @@ crashes[crashes$dark == FALSE, ] # just crashes that occured when it wasnt dark
 1. Subset the `crashes` data frame so that only tanks are returned using the `==` operator.
 1. **Bonus**: assign the age of all tanks to 61.
 
-```{r, eval=FALSE, echo=FALSE}
-casualty_age[casualty_age < 50] # the  casualty_age less than 50
-crashes[crashes$vehicle_type == "tank", ] # rows where the name is tank
-crashes$casualty_age[crashes$vehicle_type == "tank"] = 61
-```
-
 ## Dealing with NAs and recoding
 
 R objects can have a value of NA. NA is how R represents missing data.
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 z = c(4, 5, NA, 7)
 ```
 
 NA values are common in real-world data but can cause trouble. For example:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 sum(z) # result is NA
 ```
 
 Some functions can be told to ignore NA values.
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 sum(z, na.rm = TRUE) # result is equal to 4 + 5 + 7
 ```
 
 You can find NAs using the `is.na()` function, and then remove them:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 is.na(z)
 z_no_na = z[!is.na(z)] # note the use of the not operator !
 sum(z_no_na)
@@ -285,11 +257,6 @@ This is called class coercion, and can be done with functions such as `as.logica
 1. Coerce the `vehicle_type` column of `crashes` to the class `character`.
 1. Coerce the `crashes` object into a matrix. What happened to the values?
 1. **Bonus:** What is the difference between the output of `summary()` on `character` and `factor` variables?
-
-```{r, echo=FALSE, eval=FALSE}
-crashes$vehicle_type = as.character(crashes$vehicle_type)
-as.matrix(crashes)
-```
 
 ## Recoding values
 
@@ -329,7 +296,8 @@ identical(crashes, crashes2)
 
 R also supports many other formats, including CSV files, which can be created and imported with the functions `readr::read_csv()` and `readr::write_csv()` (see also the [readr](https://readr.tidyverse.org/) package).
 
-```{r readr-write, eval=FALSE}
+```{r}
+#| eval: false
 readr::write_csv(crashes, "crashes.csv") # uses the write_csv function from the readr package
 crashes3 = readr::read_csv("crashes.csv")
 identical(crashes3, crashes) 
@@ -341,9 +309,6 @@ Notice that `crashes3` and `crashes` are not identical. What has changed? Hint: 
 
 **Bonus: reproduce the following plot by typing the following code into the console.**
 
-<!-- Todo: find a better place for this comment: -->
-<!-- Note: Any characters on a line of R script following the '#' symbol are not read as part of the computer code. It is used for writing plain English comments on the code to help naviage and understand what you have written. It is also used to 'comment-out' lines of code if you do not want them to run. See section 3.6 for more details. -->
-
 ```{r}
 eyes = c(2.3, 4, 3.7, 4)
 eyes = matrix(eyes, ncol = 2, byrow = T)
@@ -351,11 +316,4 @@ mouth = c(2, 2, 2.5, 1.3, 3, 1, 3.5, 1.3, 4, 2)
 mouth = matrix(mouth, ncol = 2, byrow = T)
 plot(eyes, type = "p", main = "RRR!", cex = 2, xlim = c(1, 5), ylim = c(0, 5))
 lines(mouth, type = "l", col = "red")
-```
-
-
-```{r smile, out.width="30%", fig.align="center", echo=FALSE, eval=FALSE}
-# pdf("figures/smile.pdf")
-# dev.off()
-knitr::include_graphics("figures/smile.png")
 ```

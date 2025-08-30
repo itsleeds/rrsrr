@@ -1,22 +1,17 @@
 # Manipulating data {#data}
 
 This section is an introduction to manipulating datasets using the `dplyr` package.
-As outlined in the previous section, `dplyr` and `ggplot2` are part of the `tidyverse`, which aims to provide a user-friendly framework for data science [@grolemund_data_2016].
+As outlined in the previous section, `dplyr` and `ggplot2` are part of the `tidyverse`, which aims to provide a user-friendly framework for data science.
 
 Experience of teaching R over the past few years suggests that many people find it easier to get going with data driven research if they learn the 'tidy' workflow presented in this section.
-However, if you do not like this style of R code or you are simply curious, we encourage you to try alternative approaches for achieving the similar results using base R [@rcoreteam_language_2020]^[
-Run the command `help.start()` to see a resources introducing base R, and [Chapter 6 on lists and data frames](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Lists-and-data-frames) in [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) in particular for an introduction to data manipulation with base R.
-] 
-, the `data.table` R package [@R-data.table] or other languages such as [Python](https://www.python.org/) or [Julia](https://julialang.org/).
+However, if you do not like this style of R code or you are simply curious, we encourage you to try alternative approaches for achieving the similar results using base R, the `data.table` R package or other languages such as [Python](https://www.python.org/) or [Julia](https://julialang.org/).
 If you just want to get going with processing data, the `tidyverse` is a solid and popular starting point.
 
-<!-- Todo: add new part here? -->
-
 Before diving into the `tidyverse`, it is worth re-capping where we have got to so far as we have covered a lot of ground.
-Section \@ref(basics) introduced R's basic syntax; Section \@ref(rstudio) showed how to use the Source Editor and other features of RStudio to support data science; and Section \@ref(pkgs) introduced the concept and practicalities of R packages, with reference to `stats19`, `ggplot2` and `dplyr`.
+Section 2 introduced R's basic syntax; Section 3 showed how to use the Source Editor and other features of RStudio to support data science; and Section 4 introduced the concept and practicalities of R packages, with reference to `stats19`, `ggplot2` and `dplyr`.
 
 In this section, we will start with a blank slate.
-In Section \@ref(basics) we learned that in R having a 'clear desk' means an *empty global environment*.
+In Section 2 we learned that in R having a 'clear desk' means an *empty global environment*.
 This can be achieved by running the following command, which removes the `list()` of all objects returned by the function `ls()`:
 
 ```{r}
@@ -25,11 +20,12 @@ rm(list = ls())
 
 ## tibbles
 
-Although the data processing techniques in R are capable of handling large datasets, such as the `crashes_2019` object that we created in the previous section, representing 100k+ casualties, it makes sense to start small.
-Let's start by re-creating the `crashes` dataset from Section \@ref(basics), but this time using the `tidyverse` `tibble()` function. This is the `tidyverse` equivalent of base R's `data.frame`.
+Although the data processing techniques in R are capable of handling large datasets, such as the `crashes_2023` object that we created in the previous section, representing 100k+ casualties, it makes sense to start small.
+Let's start by re-creating the `crashes` dataset from Section 2, but this time using the `tidyverse` `tibble()` function. This is the `tidyverse` equivalent of base R's `data.frame`.
 `tibble` objects can be created, after loading the `tidyverse`, as follows:
 
-```{r, message=FALSE}
+```{r}
+#| message: false
 library(tidyverse)
 crashes = tibble(
   casualty_type = c("pedestrian", "cyclist", "cat"),
@@ -74,12 +70,10 @@ crashes_darkness_a = crashes %>%
 ```
 
 Can you guess what the dimensions of the resulting objects will be?
-Write down your guesses for the number of rows and number of columns that the new objects, `crashes_darkness` to `crashes_darkness_a`, have before running the following commands to find out. This also demonstrates the handy function `dim()`, short for dimension (results not shown):^[
-Note that the number of rows is reported before the number of columns.
-This is a feature of R: rows are also specificiefied first when subsetting using the square brackets in commands such as `crashes[1, 2:3]`.
-]
+Write down your guesses for the number of rows and number of columns that the new objects, `crashes_darkness` to `crashes_darkness_a`, have before running the following commands to find out. This also demonstrates the handy function `dim()`, short for dimension (results not shown):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 dim(crashes)
 dim(crashes_darkness)
 ?contains # get help on contains() to help guess the output of the next line
@@ -89,7 +83,8 @@ dim(crashes_darkness_a)
 
 Look at the help pages associated with `filter()`, `select()` and the related function `slice()` as follows and try running the examples that you will find at the bottom of the help pages for each to gain a greater understanding (note you can use the `package::function` notation to get help on functions also):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 ?dplyr::filter
 ?dplyr::select
 ?dplyr::slice
@@ -108,9 +103,6 @@ crashes %>%
   top_n(n = 1, wt = casualty_age)
 ```
 
-<!-- ## Long and wide data -->
-
-
 ## Summarise
 
 A powerful two-function combination is `group_by()` and `summarise()`.
@@ -127,7 +119,8 @@ The example above shows a powerful feature of these pipelines. Many operations c
 Another useful feature of the `tidyverse` from a user perspective is the autocompletion of column names mid pipe.
 If you have not noticed this already, you can test it by typing the following, putting your cursor just before the `)` and pressing `Tab`:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 crashes %>% select(ca) # press Tab when your cursor is just after the a
 ```
 
@@ -135,7 +128,7 @@ You should see `casualty_age` and `casualty_type` pop up as options that can be 
 This may not seem like much, but when analysing large datasets with dozens of variables, it can be a godsend.
 
 Rather than providing a comprehensive introduction to the `tidyverse` suite of packages, this section should have offered enough to get started with using it for road safety data analysis.
-For further information, check out up-to-date online courses from respected organisations like [Data Carpentry](https://datacarpentry.org/R-ecology-lesson/index.html) and the free online [books](https://bookdown.org/) such as [R for Data Science]((https://r4ds.had.co.nz/)) [@grolemund_data_2016].
+For further information, check out up-to-date online courses from respected organisations like [Data Carpentry](https://datacarpentry.org/R-ecology-lesson/index.html) and the free online [books](https://bookdown.org/) such as [R for Data Science](https://r4ds.had.co.nz/).
 
 ## Tidyverse exercises
 
@@ -144,13 +137,3 @@ For further information, check out up-to-date online courses from respected orga
 3. Read the help page of `dplyr::mutate()`. What does the function do?
 4. Use the mutate function to create a new variable, `birth_year`, in the `crashes` data.frame which is defined as the current year minus their age.
 5. **Bonus:** Use the ` %>% ` operator to filter the output from the previous exercise so that only observations with `birth_year` after 1969 are returned.
-
-```{r dplyr, eval=FALSE, echo=FALSE}
-# answers
-crashes %>% 
-  arrange(desc(casualty_age))
-crashes %>% filter(casualty_age > 21)
-crashes %>% 
-  mutate(birth_year = 2019 - casualty_age) %>% 
-  filter(birth_year > 1969)
-```
