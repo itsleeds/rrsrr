@@ -9,6 +9,8 @@ execute:
 book:
   title: "Reproducible Road Safety Research with R"
   author: "Robin Lovelace"
+  repo-url: https://github.com/itsleeds/rrsrr
+  repo-actions: [edit, source, issue]
   chapters:
     - index.qmd
     - 01-intro.qmd
