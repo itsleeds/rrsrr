@@ -2,6 +2,9 @@
 project:
   type: book
 
+execute:
+  cache: true
+
 book:
   title: "Reproducible Road Safety Research with R"
   author: "Robin Lovelace"

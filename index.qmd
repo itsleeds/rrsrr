@@ -6,9 +6,9 @@ title: "Reproducible Road Safety Research with R"
 
 ## About the Author {-}
 
-[Robin Lovelace](https://www.robinlovelace.net/) is Associate Professor of Transport Data Science at the Leeds Institute
+[Robin Lovelace](https://www.robinlovelace.net/) is Professor of Transport Data Science at the Leeds Institute
 for Transport Studies [(ITS)](https://environment.leeds.ac.uk/transport) specialising in the analysis of regional transport systems and
-modelling scenarios of change. Robin is Lead Developer of the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)), Principal Investigator of the Department for Transport funded SaferActive project and author of popular open source software packages (such as stplanr) and books
+modelling scenarios of change. Robin is Lead Developer of the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)) and follow-on projects such as the Network Planning Tool for Scotland ([NPT](https://npt.scot/)), Principal Investigator of the Department for Transport funded SaferActive project and author of popular open source software packages (such as stplanr) and books
 (such as Geocomputation with R).
 
 ## Disclaimer {-}

@@ -174,6 +174,7 @@ Placing this plot next to a map of London provides context:
 
 ```{r}
 #| layout-ncol: 2
+cj$speed_limit = as.numeric(cj$speed_limit)
 plot(
   cj[cj$cycling > 0, "speed_limit", ],
   cex = cj$Total[cj$cycling > 0] / 3,
@@ -210,6 +211,7 @@ ac_types = cj %>%
     passenger > 0 ~ "Passenger",
     TRUE ~ "Other"
   ))
+ac_types$speed_limit = as.numeric(ac_types$speed_limit)
 ggplot(ac_types, aes(size = Total, colour = speed_limit)) +
   geom_sf(show.legend = "point", alpha = 0.3) +
   facet_grid(vars(type), vars(accident_severity)) +
