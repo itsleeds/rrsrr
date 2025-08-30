@@ -45,3 +45,5 @@ _main.Rmd
 *.log
 *.tex
 docs/
+
+/.quarto/
