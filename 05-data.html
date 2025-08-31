@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="data" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating data</span></span></h1>
+<h1 class="title"><span id="sec-data" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating data</span></span></h1>
 </div>
 
 
@@ -247,8 +247,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>This section is an introduction to manipulating datasets using the <code>dplyr</code> package. As outlined in the previous section, <code>dplyr</code> and <code>ggplot2</code> are part of the <code>tidyverse</code>, which aims to provide a user-friendly framework for data science.</p>
 <p>Experience of teaching R over the past few years suggests that many people find it easier to get going with data driven research if they learn the ‘tidy’ workflow presented in this section. However, if you do not like this style of R code or you are simply curious, we encourage you to try alternative approaches for achieving the similar results using base R, the <code>data.table</code> R package or other languages such as <a href="https://www.python.org/">Python</a> or <a href="https://julialang.org/">Julia</a>. If you just want to get going with processing data, the <code>tidyverse</code> is a solid and popular starting point.</p>
-<p>Before diving into the <code>tidyverse</code>, it is worth re-capping where we have got to so far as we have covered a lot of ground. Section 2 introduced R’s basic syntax; Section 3 showed how to use the Source Editor and other features of RStudio to support data science; and Section 4 introduced the concept and practicalities of R packages, with reference to <code>stats19</code>, <code>ggplot2</code> and <code>dplyr</code>.</p>
-<p>In this section, we will start with a blank slate. In Section 2 we learned that in R having a ‘clear desk’ means an <em>empty global environment</em>. This can be achieved by running the following command, which removes the <code>list()</code> of all objects returned by the function <code>ls()</code>:</p>
+<p>Before diving into the <code>tidyverse</code>, it is worth re-capping where we have got to so far as we have covered a lot of ground. <a href="02-basics.html" class="quarto-xref"><span>Chapter 2</span></a> introduced R’s basic syntax; <a href="03-rstudio.html" class="quarto-xref"><span>Chapter 3</span></a> showed how to use the Source Editor and other features of RStudio to support data science; and <a href="04-pkgs.html" class="quarto-xref"><span>Chapter 4</span></a> introduced the concept and practicalities of R packages, with reference to <code>stats19</code>, <code>ggplot2</code> and <code>dplyr</code>.</p>
+<p>In this section, we will start with a blank slate. In <a href="02-basics.html" class="quarto-xref"><span>Chapter 2</span></a> we learned that in R having a ‘clear desk’ means an <em>empty global environment</em>. This can be achieved by running the following command, which removes the <code>list()</code> of all objects returned by the function <code>ls()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

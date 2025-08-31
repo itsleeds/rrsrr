@@ -232,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="basics" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span></h1>
+<h1 class="title"><span id="sec-basics" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span></h1>
 </div>
 
 
@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Learning a programming language is like learning any language. If you’re learning French, for example, you could just dive in and start gesticulating to people in central Paris. However, it’s worth taking the time to understand the structure and key words of the language first. The same applies to data science: it will help if you first understand a little about the syntax and grammar of the language that we will use to in relation to the ‘data’ (the statistical programming language R) before diving into using it for road safety research. This section, parts of which were originally developed for a <a href="https://github.com/ITSLeeds/TDS/releases/download/0.2/2day.pdf">2 day course</a> on data science, may seem tedious for people who just want to crack on and load-in data. However, working through the examples below is recommended for most people unless you’re already an experienced R user, although even experienced R users may learn something about the language’s syntax and fundamental features.</p>
-<p>The first step is to <strong>start RStudio</strong>, e.g.&nbsp;if you are on Windows, this can be achieved by tapping <strong>Start</strong> and searching for RStudio. You should see an <strong>R console</strong> pane like that which is displayed in Figure 2.1.</p>
+<p>The first step is to <strong>start RStudio</strong>, e.g.&nbsp;if you are on Windows, this can be achieved by tapping <strong>Start</strong> and searching for RStudio. You should see an <strong>R console</strong> pane like that which is displayed in <a href="#fig-console" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/console.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -266,7 +266,7 @@ Figure&nbsp;2.1: The R console pane in RStudio that appears when you first open 
 </div>
 </div>
 </div>
-<p>If you saw something like that which is shown in Figure 2.1 congratulations! You are ready to start running R code by entering commands into the console.</p>
+<p>If you saw something like that which is shown in <a href="#fig-console" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> congratulations! You are ready to start running R code by entering commands into the console.</p>
 <section id="creating-and-removing-r-objects" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="creating-and-removing-r-objects"><span class="header-section-number">2.1</span> Creating and removing R objects</h2>
 <p>R can be understood as a giant calculator. If you feed the console arithmetic tasks, it will solve them precisely and instantly. Try typing the following examples (note that <code>pi</code> is an inbuilt object) into the R console in RStudio and pressing <code>Enter</code> to make R run the code. (<code>Note:</code> The output of the code, when shown in this manual, is preceeded by ‘##’.)</p>
@@ -403,7 +403,7 @@ Figure&nbsp;2.1: The R console pane in RStudio that appears when you first open 
 3           cat           60         tank</code></pre>
 </div>
 </div>
-<p>In Section 5 we will use <code>filter()</code> and <code>select()</code> functions to subset rows and columns. Before we get there, it is worth practicing subsetting using the square brackets to consolidate your understanding of how base R works with vector objects such as <code>vehicle_type</code> and data frames such as <code>crashes</code>. If you can answer the following questions, congratulations, you are ready to move on. If not, it’s worth doing some extra reading and practice on the topic of subsetting in base R.</p>
+<p>In <a href="05-data.html" class="quarto-xref"><span>Chapter 5</span></a> we will use <code>filter()</code> and <code>select()</code> functions to subset rows and columns. Before we get there, it is worth practicing subsetting using the square brackets to consolidate your understanding of how base R works with vector objects such as <code>vehicle_type</code> and data frames such as <code>crashes</code>. If you can answer the following questions, congratulations, you are ready to move on. If not, it’s worth doing some extra reading and practice on the topic of subsetting in base R.</p>
 <p><strong>Exercises</strong></p>
 <ol type="1">
 <li>Use the <code>$</code> operator to print the <code>vehicle_type</code> column of <code>crashes</code>.</li>

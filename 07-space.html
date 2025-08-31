@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="space" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spatial data</span></span></h1>
+<h1 class="title"><span id="sec-space" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spatial data</span></span></h1>
 </div>
 
 
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="sf-objects" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sf-objects"><span class="header-section-number">7.1</span> sf objects</h2>
-<p>All road crashes happen somewhere and, in the UK at least, all collisions recorded by the police are given geographic coordinates. These can help in prioritising interventions to save lives by focusing on ‘crash hotspots.’ R has strong geographic data capabilities with the <code>sf</code> package, providing a generic class for spatial vector data. Points, lines and polygons are represented in <code>sf</code> as objects in a special ‘geometry column’, typically called ‘geom’ or ‘geometry’, extending the data frame class we’ve already seen in <code>crashes</code>, created in Section 5 (repeated here to consolidate data frame creation):</p>
+<p>All road crashes happen somewhere and, in the UK at least, all collisions recorded by the police are given geographic coordinates. These can help in prioritising interventions to save lives by focusing on ‘crash hotspots.’ R has strong geographic data capabilities with the <code>sf</code> package, providing a generic class for spatial vector data. Points, lines and polygons are represented in <code>sf</code> as objects in a special ‘geometry column’, typically called ‘geom’ or ‘geometry’, extending the data frame class we’ve already seen in <code>crashes</code>, created in <a href="05-data.html" class="quarto-xref"><span>Chapter 5</span></a> (repeated here to consolidate data frame creation):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>crashes <span class="ot">=</span> <span class="fu">tibble</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">casualty_type =</span> <span class="fu">c</span>(<span class="st">"pedestrian"</span>, <span class="st">"cyclist"</span>, <span class="st">"cat"</span>),</span>
