@@ -1,4 +1,4 @@
-# R basics {#basics}
+# R basics {#sec-basics}
 
 Learning a programming language is like learning any language. 
 If you’re learning French, for example, you could just dive in and start gesticulating to people in central Paris. 

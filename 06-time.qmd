@@ -1,4 +1,4 @@
-# Temporal data {#time}
+# Temporal data {#sec-time}
 
 Time is ubiquitous in road safety data, since collisions and road safety implementations always happen at some point in time.
 This section will show how you can analyse the temporal dimensions of the real world `crashes_2021` object we created in Section 4, and then demonstrate how to handle time series data in base R, as well as with `hms` and `lubridate` packages.

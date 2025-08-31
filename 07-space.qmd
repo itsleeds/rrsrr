@@ -1,4 +1,4 @@
-# Spatial data {#space}
+# Spatial data {#sec-space}
 
 From displaying simple point data to examining collision density along routes or between areas, the geographic property of STATS19 data is one of its most useful attributes.
 Mapping is a hugely useful and powerful aspect of R and has many applications in road safety, both in understanding geographic trends and presenting insight to colleagues.
@@ -16,7 +16,7 @@ library(tidyverse) # load the tidyverse as before
 ## sf objects
 
 All road crashes happen somewhere and, in the UK at least, all collisions recorded by the police are given geographic coordinates. These can help in prioritising interventions to save lives by focusing on ‘crash hotspots.’
-R has strong geographic data capabilities with the `sf` package, providing a generic class for spatial vector data. Points, lines and polygons are represented in `sf` as objects in a special 'geometry column', typically called 'geom' or 'geometry', extending the data frame class we've already seen in `crashes`, created in Section 5 (repeated here to consolidate data frame creation):
+R has strong geographic data capabilities with the `sf` package, providing a generic class for spatial vector data. Points, lines and polygons are represented in `sf` as objects in a special 'geometry column', typically called 'geom' or 'geometry', extending the data frame class we've already seen in `crashes`, created in @sec-data (repeated here to consolidate data frame creation):
 
 ```{r}
 crashes = tibble(

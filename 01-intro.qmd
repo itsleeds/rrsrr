@@ -1,6 +1,4 @@
----
-title: "Introduction"
----
+# Introduction {#sec-intro}
 
 ```{r}
 #| include: false
@@ -46,7 +44,7 @@ knitr::include_graphics("figures/road-casualties.png")
 The guide is practical, meaning that you should reproduce the examples that are provided throughout. 
 As with many practical skills, you learn data science by doing data science.
 
-Before getting stuck in with the practical content, which begins in Section 2, the remainder of this chapter:
+Before getting stuck in with the practical content, which begins in @sec-basics, the remainder of this chapter:
 
 - introduces the concept reproducibility and its importance for evidence-based policies;
 - explains the choice of R as a 'tool of the trade' for road safety research;
@@ -124,7 +122,7 @@ To complete the exercises in this guide, you will need to install:
 
 - R from [cran.r-project.org](https://cran.r-project.org/)
 - RStudio from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
-- R packages, by opening RStudio and typing `install.packages("stats19")` in the console to install the `stats19` package, for example (see Section 4 for details)
+- R packages, by opening RStudio and typing `install.packages("stats19")` in the console to install the `stats19` package, for example (see @sec-pkgs for details)
 
 We recommend using at least the latest stable release of R (4.0.3 at the time of writing in 2020). 
 If you're running on macOS or Linux, you may need to install additional dependencies, as documented in blog posts and documentation pages such as [Installation of R 4.0 on Ubuntu 20.04 LTS and tips for spatial packages](https://rtask.thinkr.fr/installation-of-r-4-0-on-ubuntu-20-04-lts-and-tips-for-spatial-packages/) and the [Installing](https://github.com/r-spatial/sf#installing) section of the [github.com/r-spatial/sf](https://github.com/r-spatial/sf) package README page.
@@ -141,8 +139,8 @@ To run R in the cloud, sign-up to cloud.rstudio.com (or cloud instance of your c
 ## Recommended packages
 
 Of the thousands of available packages that are available for road safety research, we will use a handful that are mature, well-tested and well-suited to statistical analysis and visualisation of road casualty data.
-For the first practical steps, in Section 2, all you need is a working version of R and RStudio.
-In Section 4 we will see how to install and use add-on packages such as `stats19`.
+For the first practical steps, in @sec-basics, all you need is a working version of R and RStudio.
+In @sec-pkgs we will see how to install and use add-on packages such as `stats19`.
 If you want to be ahead of the game, you can check that you have the necessary packages installed by running the following commands, which **install and load the packages that we will use for the course**:
 
 ```{r}
@@ -165,13 +163,13 @@ lapply(pkgs, library, character.only = TRUE)
 
 The rest of the manual is structured as follows.
 
-- Section 2 introduces the basics of the R language. While not essential reading for people who already have experience with R or who just want to get stuck-in to importing datasets, as per Section 5, it is recommended reading even if you already use R. 
-This section introduces key aspects of the R language that may not be needed for basic data analysis tasks, but which will be vital when ‘debugging’ your code (the process you go through to remove bugs/mistakes). 
+- @sec-basics introduces the basics of the R language. While not essential reading for people who already have experience with R or who just want to get stuck-in to importing datasets, as per @sec-data, it is recommended reading even if you already use R.
+This section introduces key aspects of the R language that may not be needed for basic data analysis tasks, but which will be vital when ‘debugging’ your code (the process you go through to remove bugs/mistakes).
 It provides a strong foundation for subsequent sections.
-- Section 3 provides a brief introduction to productive research workflows using RStudio, an advanced integrated development environment for not only writing R code, but also for project management and boosting your productivity with a suite of features that puts Excel to shame.
-- Section 4 introduces the `stats19` package and other R packages we will be using in subsequent chapters.
-- Section 5 demonstrates key data processing techniques using `tidyverse`.
-- Section 6 teaches key functions for working with timestamps.
-- Section 7 shows how you can create maps and perform geographic data analysis with road crash data in R.
-- Section 8 provides an introduction to joining road crash data, with a focus on casualty and accident tables in STATS19 data (introduced in Section 4).
-- Section 9 suggests next steps for road safety researchers looking to take their skills to the next levels and provide the strong evidence needed to save lives.
+- @sec-rstudio provides a brief introduction to productive research workflows using RStudio, an advanced integrated development environment for not only writing R code, but also for project management and boosting your productivity with a suite of features that puts Excel to shame.
+- @sec-pkgs introduces the `stats19` package and other R packages we will be using in subsequent chapters.
+- @sec-data demonstrates key data processing techniques using `tidyverse`.
+- @sec-time teaches key functions for working with timestamps.
+- @sec-space shows how you can create maps and perform geographic data analysis with road crash data in R.
+- @sec-join provides an introduction to joining road crash data, with a focus on casualty and accident tables in STATS19 data (introduced in @sec-pkgs).
+- @sec-next suggests next steps for road safety researchers looking to take their skills to the next levels and provide the strong evidence needed to save lives.

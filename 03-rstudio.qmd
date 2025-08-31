@@ -1,4 +1,4 @@
-# Using RStudio {#rstudio}
+# Using RStudio {#sec-rstudio}
 
 The previous section taught the basics of the R language. 
 We entered and ran commands directly in the console. 
@@ -27,7 +27,7 @@ The name of the project will appear in the top right of RStudio.
 
 **'Scripts'** are files where R code are stored, and these can be edited in the **Source Editor** panel (the top left panel in @fig-rstudioui).
 **Keeping your code in sensibly named, well organised and reproducible scripts will make your life easier.**
-We could continue typing all our code into the console, as we did in Section 2.
+We could continue typing all our code into the console, as we did in @sec-basics.
 However, that approach is limited when working on anything more complicated than a few simple commands.
 Code that you want to keep and share should be saved script files, i.e. plain text files that have the `.R` extension.
 
@@ -74,7 +74,7 @@ Practice alternating between the console and the source editor by pressing `Ctl+
 
 ## Viewing Objects
 
-To practice typing code into scripts, rather than into the console, we will re-create the objects we created in Section 2.
+To practice typing code into scripts, rather than into the console, we will re-create the objects we created in @sec-basics.
 Create a new script called `objects.R` and type the following commands, character-for-character, including spaces in the right places. Typing rather than copy-pasting will help develop good coding style and speed:
 
 ```{r}
@@ -227,7 +227,7 @@ Rather than try to be comprehensive (an impossible task), this section provides 
   - `Ctl+Enter` to send a line of code from the code editor (called the Source Editor in RStudio) to be executed or 'run' in the console. Amazingly, some other prominent IDEs such as Microsoft's VSCode editor, lack this important feature by default.
   - `Ctl+1` and `Ctl+2` to switch between the console (for writing test code and 'run once' commands) and the code editor (for writing code to keep).
   - `Alt+Up/Down` and `Alt+Shift+Up/Down` to move and copy lines of code up and down, handy when you want to re-order your code or make small changes to a copy of a line of code.
-  - [`Ctl+Shift+M`](https://nhsrcommunity.com/blog/r-studio-shortcuts/) will create the pipe operator (` %>% `, this pipe was created using the shortcut!), saving time when creating `dplyr` pipelines, as discussed in Section 5.
+  - [`Ctl+Shift+M`](https://nhsrcommunity.com/blog/r-studio-shortcuts/) will create the pipe operator (` %>% `, this pipe was created using the shortcut!), saving time when creating `dplyr` pipelines, as discussed in @sec-data.
   - `Ctl+Shift+F10` when you want to restart R, leaving you with a 'blank slate' in which packages are not loaded and objects are removed from the global environment.
 
 - Git integration for collaboration: RStudio provides two mechanisms for sharing your code with others via sites such as GitHub and GitLab, with the 'Git' panel in the top right pane and via the Terminal panel described in the next section. 

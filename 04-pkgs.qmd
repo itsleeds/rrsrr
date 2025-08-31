@@ -1,4 +1,4 @@
-# R packages {#pkgs}
+# R packages {#sec-pkgs}
 
 ## What are packages?
 
@@ -209,4 +209,4 @@ class(crashes_2020)
 crashes_2020 %>% class()
 ```
 
-We will learn more about this package and its other functions in Section 5.
+We will learn more about this package and its other functions in @sec-data.
