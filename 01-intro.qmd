@@ -2,6 +2,14 @@
 title: "Introduction"
 ---
 
+```{r}
+#| include: false
+# # Idea: Read DESCRIPTION with read dcf function:
+# dcf = 
+# pkgs_from_dcf = 
+source("code/install.R")
+```
+
 This book teaches reproducible road safety analysis with R, a popular, free and open source statistical programming language.
 It was initially developed for a 2 day course, [Introduction to R for Road Safety](https://www.racfoundation.org/introduction-to-r-for-road-safety) course.
 Since then, interest in the topic has grown.
