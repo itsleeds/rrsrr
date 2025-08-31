@@ -10,26 +10,6 @@
     ]
   },
   {
-    "objectID": "index.html#about-the-author",
-    "href": "index.html#about-the-author",
-    "title": "Reproducible Road Safety Research with R",
-    "section": "About the Author",
-    "text": "About the Author\nRobin Lovelace is Professor of Transport Data Science at the Leeds Institute for Transport Studies (ITS) specialising in the analysis of regional transport systems and modelling scenarios of change. Robin is Lead Developer of the Propensity to Cycle Tool (see www.pct.bike) and follow-on projects such as the Network Planning Tool for Scotland (NPT), Principal Investigator of the Department for Transport funded SaferActive project and author of popular open source software packages (such as stplanr) and books (such as Geocomputation with R).",
-    "crumbs": [
-      "Preamble"
-    ]
-  },
-  {
-    "objectID": "index.html#disclaimer",
-    "href": "index.html#disclaimer",
-    "title": "Reproducible Road Safety Research with R",
-    "section": "Disclaimer",
-    "text": "Disclaimer\nThis report has been prepared for the RAC Foundation by Robin Lovelace at the Leeds Institute for Transport Studies. Any errors or omissions are the author’s sole responsibility. The report content reflects the views of the author and not necessarily those of the RAC Foundation.",
-    "crumbs": [
-      "Preamble"
-    ]
-  },
-  {
     "objectID": "index.html#foreword-road-safety-gb",
     "href": "index.html#foreword-road-safety-gb",
     "title": "Reproducible Road Safety Research with R",
@@ -55,6 +35,26 @@
     "title": "Reproducible Road Safety Research with R",
     "section": "Foreword: RAC Foundation",
     "text": "Foreword: RAC Foundation\nIf there is one thing to notice from the changes in the road safety sector over the past decade it is the rapid development of data and data science. Not too long ago road safety analysis involved mounds of paperwork, file sizes too large for transmission, and geo-coding using old A to Zs. We now have systems with handheld devices taking precise GPS co-ordinates at the scene, online-only systems and automated error checking. The volumes of data we possess are growing rapidly, our abilities to maintain and clean data have become more straightforward and what it is possible to discover from data has become cheaper and easier to obtain. Our expectation is, understandably, that across the sector we should be able to access road safety data and to do more with it, more easily and more readily.\nThe types of analyses that we used to associate with sectors like pharmaceuticals and insurance, with high-end technology and well-funded research programmes, are increasingly within the grasp of people with normal laptops and pay-by-the-hour cloud-computing, and in sectors that don’t always have much money to throw at a problem. The good news is that there is scope for road safety analysis to pick up these methods and approaches adopted in other sectors and work hopefully to bring about the new insights we need to improve road safety.\nAt the RAC Foundation we want road transport to benefit from this new world of data analysis – where the tools available are getting cheaper and what is possible is growing rapidly. But this can only happen if the opportunities are given to the sector’s road safety analysts to learn new skills for the job.\nWhile Great Britain has a history of road crash data recording that is world-leading, our analysis of it is all-too-often locked in to a pattern of labour-intensive and repetitious reporting, with analysts lacking the support they need to improve skills and find the space to do the sorts of analyses that will help us achieve the next step-change decline in casualties on our roads. Which is why we commissioned this work from Robin Lovelace.\nWe hope that Robin’s manual will go some way towards meeting the current need: by giving road safety analysts a self-help training manual to develop their skills in R,, the open-source analytical tool. This manual covers everything one would need for doing the regular tasks of road safety analysis entirely in the R language, designed to be accessible to the newcomer. R allows you to code analysis for reproducible research; reproducible in the sense that others can check and verify it as well as borrow, share and adapt it to their own work. Analysts can also repeat their own work as fresh data becomes available – there’s no need to recreate the wheel. The openness, efficiency and power of working in R offers the opportunity, if taken, to improve how road safety analysis gets done. Let’s be honest: like learning any new skill, effort is needed upfront to reap the benefits of this new way of working. But we firmly believe the effort it is worth it, and we think this manual is great way to get you started.\nSteve Gooding, Director, RAC Foundation",
+    "crumbs": [
+      "Preamble"
+    ]
+  },
+  {
+    "objectID": "index.html#about-the-author",
+    "href": "index.html#about-the-author",
+    "title": "Reproducible Road Safety Research with R",
+    "section": "About the Author",
+    "text": "About the Author\nRobin Lovelace is a Professor of Transport Data Science at the Leeds Institute for Transport Studies (ITS) specialising in the analysis of regional transport systems and modelling scenarios of change.\nRobin is the lead developer of the {stats19} R package and author of several papers on road safety that use some of the data science techniques presented in this book. He is also the Lead Developer of the Propensity to Cycle Tool (see www.pct.bike) and follow-on projects such as the Network Planning Tool for Scotland (NPT), Principal Investigator of the Department for Transport funded SaferActive project and author of popular open source software packages (such as stplanr) and books (such as Geocomputation with R).",
+    "crumbs": [
+      "Preamble"
+    ]
+  },
+  {
+    "objectID": "index.html#disclaimer",
+    "href": "index.html#disclaimer",
+    "title": "Reproducible Road Safety Research with R",
+    "section": "Disclaimer",
+    "text": "Disclaimer\nThis report has been prepared for the RAC Foundation by Robin Lovelace at the Leeds Institute for Transport Studies. Any errors or omissions are the author’s sole responsibility. The report content reflects the views of the author and not necessarily those of the RAC Foundation.",
     "crumbs": [
       "Preamble"
     ]
