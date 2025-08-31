@@ -1,4 +1,4 @@
-# Manipulating data {#data}
+# Manipulating data {#sec-data}
 
 This section is an introduction to manipulating datasets using the `dplyr` package.
 As outlined in the previous section, `dplyr` and `ggplot2` are part of the `tidyverse`, which aims to provide a user-friendly framework for data science.
@@ -8,10 +8,10 @@ However, if you do not like this style of R code or you are simply curious, we e
 If you just want to get going with processing data, the `tidyverse` is a solid and popular starting point.
 
 Before diving into the `tidyverse`, it is worth re-capping where we have got to so far as we have covered a lot of ground.
-Section 2 introduced R's basic syntax; Section 3 showed how to use the Source Editor and other features of RStudio to support data science; and Section 4 introduced the concept and practicalities of R packages, with reference to `stats19`, `ggplot2` and `dplyr`.
+@sec-basics introduced R's basic syntax; @sec-rstudio showed how to use the Source Editor and other features of RStudio to support data science; and @sec-pkgs introduced the concept and practicalities of R packages, with reference to `stats19`, `ggplot2` and `dplyr`.
 
 In this section, we will start with a blank slate.
-In Section 2 we learned that in R having a 'clear desk' means an *empty global environment*.
+In @sec-basics we learned that in R having a 'clear desk' means an *empty global environment*.
 This can be achieved by running the following command, which removes the `list()` of all objects returned by the function `ls()`:
 
 ```{r}

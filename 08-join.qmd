@@ -1,4 +1,4 @@
-# Joining road crash tables {#join}
+# Joining road crash tables {#sec-join}
 
 ## STATS19 tables
 

@@ -1,4 +1,4 @@
-# R basics {#basics}
+# R basics {#sec-basics}
 
 Learning a programming language is like learning any language. 
 If you’re learning French, for example, you could just dive in and start gesticulating to people in central Paris. 
@@ -7,7 +7,7 @@ The same applies to data science: it will help if you first understand a little 
 This section, parts of which were originally developed for a [2 day course](https://github.com/ITSLeeds/TDS/releases/download/0.2/2day.pdf) on data science, may seem tedious for people who just want to crack on and load-in data.
 However, working through the examples below is recommended for most people unless you’re already an experienced R user, although even experienced R users may learn something about the language’s syntax and fundamental features.
 
-The first step is to **start RStudio**, e.g. if you are on Windows, this can be achieved by tapping **Start** and searching for RStudio. You should see an **R console** pane like that which is displayed in Figure 2.1.
+The first step is to **start RStudio**, e.g. if you are on Windows, this can be achieved by tapping **Start** and searching for RStudio. You should see an **R console** pane like that which is displayed in @fig-console.
 
 ```{r}
 #| label: fig-console
@@ -15,7 +15,7 @@ The first step is to **start RStudio**, e.g. if you are on Windows, this can be 
 knitr::include_graphics("figures/console.png")
 ```
 
-If you saw something like that which is shown in Figure 2.1 congratulations!
+If you saw something like that which is shown in @fig-console congratulations!
 You are ready to start running R code by entering commands into the console.
 
 ## Creating and removing R objects
@@ -178,7 +178,7 @@ To confirm that what we think has happened has indeed happened, print out the ob
 crashes
 ```
 
-In Section 5 we will use `filter()` and `select()` functions to subset rows and columns.
+In @sec-data we will use `filter()` and `select()` functions to subset rows and columns.
 Before we get there, it is worth practicing subsetting using the square brackets to consolidate your understanding of how base R works with vector objects such as `vehicle_type` and data frames such as `crashes`.
 If you can answer the following questions, congratulations,  you are ready to move on.
 If not, it's worth doing some extra reading and practice on the topic of subsetting in base R.
