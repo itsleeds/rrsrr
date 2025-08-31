@@ -161,7 +161,7 @@ For example:
 ```{r}
 # Create vector objects (a whole line comment)
 x = 1:5 # a sequence of consecutive integers (inline comment)
-y = c(0, 1, 3, 9, 18.1) 
+y = c(0, 1, 3, 9 18.1) 
 ```
 
 You can comment/uncomment a whole block of text by selecting it and using `Ctrl+Shift+C`.
@@ -196,7 +196,7 @@ To test them, write some code that fails, as shown in the code chunk and exercis
 ```{r}
 #| error: true
 x = 1:5
-y = c(0, 1, 3, 9, 18.1) # R code with a typo
+y = c(0, 1, 3, 9 18.1) # R code with a typo
 ```
 
 
