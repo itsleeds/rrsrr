@@ -6,7 +6,7 @@ In this section we will learn how to write R scripts in RStudio’s source edito
 We will also take a step back and considers how R code fits into the wider context of scripts, projects, and getting help in RStudio. 
 RStudio is an integrated development environment (IDE) for R that makes it easy to create and run scripts, explore R objects and functions, plot results and get help.
 
-The first exercise is to open RStudio, take a look around, identify and explore the main components, shown in Figure 3.1. 
+The first exercise is to open RStudio, take a look around, identify and explore the main components, shown in @fig-rstudioui. 
 Click on different buttons in RStudio’s GUI and try changing the Global Settings (in the Tools menu) and see RStudio’s shortcuts by pressing `Alt-Shift-K` (or `Option+Shift+K` on Mac).
 
 ```{r}
@@ -25,7 +25,7 @@ You create projects either in a new or existing directory (folder).
 **Make a new project called 'lrrsrr' (short for 'learning reproducible road safety research with R') or a name of your choice and save it in a sensible place on your computer.**
 The name of the project will appear in the top right of RStudio.
 
-**'Scripts'** are files where R code are stored, and these can be edited in the **Source Editor** panel (the top left panel in Figure 3.1).
+**'Scripts'** are files where R code are stored, and these can be edited in the **Source Editor** panel (the top left panel in @fig-rstudioui).
 **Keeping your code in sensibly named, well organised and reproducible scripts will make your life easier.**
 We could continue typing all our code into the console, as we did in Section 2.
 However, that approach is limited when working on anything more complicated than a few simple commands.
@@ -115,10 +115,11 @@ What does the output tell us about the object?
 
 ## Autocompletion
 
-RStudio can help you write code by autocompleting it. RStudio will look for similar objects and functions after typing the first three letters of a name.
+RStudio can help you write code by autocompleting it. RStudio (and other IDEs) will look for similar objects and functions after typing the first three letters of a name, as shown in @fig-autocomp.
 
 ```{r}
 #| label: fig-autocomp
+#| fig-cap: 'RStudio autocompletion suggestions'
 knitr::include_graphics("figures/autocomplete.jpg")
 ```
 
