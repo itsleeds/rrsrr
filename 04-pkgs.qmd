@@ -2,7 +2,7 @@
 
 ## What are packages?
 
-R has over 15,000 packages published on the official 'CRAN' site and many more published on code-sharing sites such as GitHub.
+R has over 20k+ packages published on the official 'CRAN' site and many more published on code-sharing sites such as GitHub, as outlined in @sec-intro.
 Packages are effectively plugins for R that extend it in many ways.
 Packages are useful because they enhance the range of things you can do with R, providing additional functions, data and documentation that build on the core (known as 'base') R packages.
 They range from general-purpose packages, such as `{tidyverse}` and `{sf}`, to domain-specific packages, such as `{stats19}`.
