@@ -178,7 +178,7 @@ To confirm that what we think has happened has indeed happened, print out the ob
 crashes
 ```
 
-In Section 5 we will use `filter()` and `select()` functions to subset rows and columns.
+In @sec-data we will use `filter()` and `select()` functions to subset rows and columns.
 Before we get there, it is worth practicing subsetting using the square brackets to consolidate your understanding of how base R works with vector objects such as `vehicle_type` and data frames such as `crashes`.
 If you can answer the following questions, congratulations,  you are ready to move on.
 If not, it's worth doing some extra reading and practice on the topic of subsetting in base R.
