@@ -1,16 +1,5 @@
 # Preamble {-}
 
-## About the Author {-}
-
-[Robin Lovelace](https://www.robinlovelace.net/) is Professor of Transport Data Science at the Leeds Institute
-for Transport Studies [(ITS)](https://environment.leeds.ac.uk/transport) specialising in the analysis of regional transport systems and
-modelling scenarios of change. Robin is Lead Developer of the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)) and follow-on projects such as the Network Planning Tool for Scotland ([NPT](https://npt.scot/)), Principal Investigator of the Department for Transport funded SaferActive project and author of popular open source software packages (such as stplanr) and books
-(such as Geocomputation with R).
-
-## Disclaimer {-}
-
-This report has been prepared for the RAC Foundation by Robin Lovelace at the Leeds Institute for Transport Studies. Any errors or omissions are the author’s sole responsibility. The report content reflects the views of the author and not necessarily those of the RAC Foundation.
-
 ## Foreword: Road Safety GB {-}
 
 Road Safety GB recognises the importance of high quality data analysis as a fundamental element in efforts to reduce road casualties at a local and national level by enabling evidence-based intervention. The use of open source software like R in this way is to be actively encouraged and tools such as this manual provide valuable support for analysts working across the industry in enhancing the analysis they are able to provide to decision-makers. This approach also supports the reproduction of high-quality analysis up and down the country using locally-held data, which I hope in turn will improve the consistency and quality of evidence used in day-to-day road safety activity.
@@ -42,6 +31,20 @@ R allows you to code analysis for reproducible research; reproducible in the sen
 Let’s be honest: like learning any new skill, effort is needed upfront to reap the benefits of this new way of working. But we firmly believe the effort it is worth it, and we think this manual is great way to get you started.
 
 *Steve Gooding, Director, [RAC Foundation](https://www.racfoundation.org/)*
+
+
+## About the Author {-}
+
+[Robin Lovelace](https://www.robinlovelace.net/) is a Professor of Transport Data Science at the Leeds Institute
+for Transport Studies [(ITS)](https://environment.leeds.ac.uk/transport) specialising in the analysis of regional transport systems and
+modelling scenarios of change.
+
+Robin is the lead developer of the [{stats19}](https://docs.ropensci.org/stats19/) R package and author of several papers on road safety that use some of the data science techniques presented in this book. He is also the Lead Developer of the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)) and follow-on projects such as the Network Planning Tool for Scotland ([NPT](https://npt.scot/)), Principal Investigator of the Department for Transport funded SaferActive project and author of popular open source software packages (such as stplanr) and books
+(such as Geocomputation with R).
+
+## Disclaimer {-}
+
+This report has been prepared for the RAC Foundation by Robin Lovelace at the Leeds Institute for Transport Studies. Any errors or omissions are the author’s sole responsibility. The report content reflects the views of the author and not necessarily those of the RAC Foundation.
 
 ## Preface {-}
 
