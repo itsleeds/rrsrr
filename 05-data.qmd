@@ -1,14 +1,14 @@
 # Manipulating data {#sec-data}
 
-This section is an introduction to manipulating datasets using the `dplyr` package.
-As outlined in the previous section, `dplyr` and `ggplot2` are part of the `tidyverse`, which aims to provide a user-friendly framework for data science.
+This section is an introduction to manipulating datasets using the `{dplyr}` package.
+As outlined in the previous section, `{dplyr}` and `{ggplot2}` are part of the `{tidyverse}`, which aims to provide a user-friendly framework for data science.
 
-Experience of teaching R over the past few years suggests that many people find it easier to get going with data driven research if they learn the 'tidy' workflow presented in this section.
-However, if you do not like this style of R code or you are simply curious, we encourage you to try alternative approaches for achieving the similar results using base R, the `data.table` R package or other languages such as [Python](https://www.python.org/) or [Julia](https://julialang.org/).
+Experience of teaching R over the past few years suggests that many people find it easier to get going with data-driven research if they learn the 'tidy' workflow presented in this section.
+However, if you do not like this style of R code or you are simply curious, we encourage you to try alternative approaches for achieving the similar results using base R, the `{data.table}` R package or other languages such as [Python](https://www.python.org/) or [Julia](https://julialang.org/).
 If you just want to get going with processing data, the `tidyverse` is a solid and popular starting point.
 
-Before diving into the `tidyverse`, it is worth re-capping where we have got to so far as we have covered a lot of ground.
-@sec-basics introduced R's basic syntax; @sec-rstudio showed how to use the Source Editor and other features of RStudio to support data science; and @sec-pkgs introduced the concept and practicalities of R packages, with reference to `stats19`, `ggplot2` and `dplyr`.
+Before diving into the `{tidyverse}`, it is worth re-capping where we have got to so far as we have covered a lot of ground.
+@sec-basics introduced R's basic syntax; @sec-rstudio showed how to use the Source Editor and other features of RStudio to support data science; and @sec-pkgs introduced the concept and practicalities of R packages, with reference to `{stats19}`, `{ggplot2}` and `{dplyr}`.
 
 In this section, we will start with a blank slate.
 In @sec-basics we learned that in R having a 'clear desk' means an *empty global environment*.
@@ -20,13 +20,13 @@ rm(list = ls())
 
 ## tibbles
 
-Although the data processing techniques in R are capable of handling large datasets, such as the `crashes_2023` object that we created in the previous section, representing 100k+ casualties, it makes sense to start small.
-Let's start by re-creating the `crashes` dataset from Section 2, but this time using the `tidyverse` `tibble()` function. This is the `tidyverse` equivalent of base R's `data.frame`.
-`tibble` objects can be created, after loading the `tidyverse`, as follows:
+Although the data processing techniques in R are capable of handling large datasets, such as the `crashes_2020` object that we created in the previous section, representing 100k+ casualties, it makes sense to start small.
+Let's start by re-creating the `crashes` dataset from Section 2, but this time using the `{tidyverse}` `tibble()` function. This is the `{tidyverse}` equivalent of base R's `data.frame`.
+`tibble` objects can be created, after loading the `{tidyverse}`, as follows:
 
 ```{r}
 #| message: false
-library(tidyverse)
+library({tidyverse})
 crashes = tibble(
   casualty_type = c("pedestrian", "cyclist", "cat"),
   casualty_age = seq(from = 20, to = 60, by = 20),
@@ -48,7 +48,7 @@ Note the `<chr>`, `<dbl>` or `<lgl>` text below each column, providing a quick i
 
 ## filter() and select() rows and columns
 
-In the previous section, we briefly introduced the package `dplyr`, which provides an alternative to base R for manipulating objects. `dplyr` provides different, and some would argue simpler, approaches for subsetting rows and columns than base R.  
+In the previous section, we briefly introduced the package `{dplyr}`, which provides an alternative to base R for manipulating objects. `{dplyr}` provides different, and some would argue simpler, approaches for subsetting rows and columns than base R.
 `dplyr` operations for subsetting rows (with the function `filter()`) and columns (with the function `select()`) are  demonstrated below. Here we can also see the use of the pipe operator `%>%` to take the dataset and apply the function to that dataset. 
 
 ```{r}
@@ -85,14 +85,14 @@ Look at the help pages associated with `filter()`, `select()` and the related fu
 
 ```{r}
 #| eval: false
-?dplyr::filter
-?dplyr::select
-?dplyr::slice
+?{dplyr}::filter
+?{dplyr}::select
+?{dplyr}::slice
 ```
 
 ## Ordering and selecting the 'top n'
 
-Other useful pipe-friendly functions are `arrange()` and `top_n()`. `arrange()` can be used to sort data. Within. the `arrage()` function, optional arguments can be used to define the order in which it is sorted. `top_n()`simply selects the top 'n' number of rows in your data frame.
+Other useful pipe-friendly functions are `arrange()` and `top_n()`. `arrange()` can be used to sort data. Within the `arrange()` function, optional arguments can be used to define the order in which it is sorted. `top_n()` simply selects the top 'n' number of rows in your data frame.
 We can use these functions to arrange datasets and take the top most ‘n’ values, as follows:
 
 
@@ -115,8 +115,8 @@ crashes %>%
   summarise(mean_age = mean(casualty_age))
 ```
 
-The example above shows a powerful feature of these pipelines. Many operations can be 'chained' together, whilst keeping readability with subsequent commands stacked below earlier operations. The combination of `group_by()` and `summarise()` can be very useful in preparing data for visualisation with a `ggplot2` function. 
-Another useful feature of the `tidyverse` from a user perspective is the autocompletion of column names mid pipe.
+The example above shows a powerful feature of these pipelines. Many operations can be 'chained' together, whilst keeping readability with subsequent commands stacked below earlier operations. The combination of `group_by()` and `summarise()` can be very useful in preparing data for visualisation with a `{ggplot2}` function.
+Another useful feature of the `{tidyverse}` from a user perspective is the autocompletion of column names mid pipe.
 If you have not noticed this already, you can test it by typing the following, putting your cursor just before the `)` and pressing `Tab`:
 
 ```{r}
@@ -127,13 +127,13 @@ crashes %>% select(ca) # press Tab when your cursor is just after the a
 You should see `casualty_age` and `casualty_type` pop up as options that can be selected by pressing `Up` and `Down`.
 This may not seem like much, but when analysing large datasets with dozens of variables, it can be a godsend.
 
-Rather than providing a comprehensive introduction to the `tidyverse` suite of packages, this section should have offered enough to get started with using it for road safety data analysis.
+Rather than providing a comprehensive introduction to the `{tidyverse}` suite of packages, this section should have offered enough to get started with using it for road safety data analysis.
 For further information, check out up-to-date online courses from respected organisations like [Data Carpentry](https://datacarpentry.org/R-ecology-lesson/index.html) and the free online [books](https://bookdown.org/) such as [R for Data Science](https://r4ds.had.co.nz/).
 
 ## Tidyverse exercises
 
-1. Use `dplyr` to filter rows in which `casualty_age` is less than 18, and then 28.
+1. Use `{dplyr}` to filter rows in which `casualty_age` is less than 18, and then 28.
 2. Use the `arrange` function to sort the `crashes` object in descending order of age (**Hint:** see the `?arrange` help page).
-3. Read the help page of `dplyr::mutate()`. What does the function do?
+3. Read the help page of `{dplyr}::mutate()`. What does the function do?
 4. Use the mutate function to create a new variable, `birth_year`, in the `crashes` data.frame which is defined as the current year minus their age.
 5. **Bonus:** Use the ` %>% ` operator to filter the output from the previous exercise so that only observations with `birth_year` after 1969 are returned.

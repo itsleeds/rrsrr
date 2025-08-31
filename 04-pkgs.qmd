@@ -2,13 +2,13 @@
 
 ## What are packages?
 
-R has over 15,000 packages published on the official 'CRAN' site and many more published on code sharing sites such as GitHub.
+R has over 15,000 packages published on the official 'CRAN' site and many more published on code-sharing sites such as GitHub.
 Packages are effectively plugins for R that extend it in many ways.
 Packages are useful because they enhance the range of things you can do with R, providing additional functions, data and documentation that build on the core (known as 'base') R packages.
-They range from general-purpose packages, such as `tidyverse` and `sf`, to domain-specific packages, such as `stats19`.
+They range from general-purpose packages, such as `{tidyverse}` and `{sf}`, to domain-specific packages, such as `{stats19}`.
 
-This chapter demonstrates the package lifecycle with reference `stats19` and provides a taster of R's visualisation capabilities for general purpose packages `ggplot2` and `dplyr`.
-The `stats19` package is particularly relevant for reproducible road safety research: its purpose is to download and clean road traffic collision data from the UK's Department for Transport.
+This chapter demonstrates the package lifecycle with reference to `{stats19}` and provides a taster of R's visualisation capabilities for general-purpose packages `{ggplot2}` and `{dplyr}`.
+The `{stats19}` package is particularly relevant for reproducible road safety research: its purpose is to download and clean road traffic collision data from the UK's Department for Transport.
 Domain-specific packages, such as `stats19`, are often written by subject-matter experts, providing tried and tested solutions within a particular specialism. Packages are reviewed by code experts prior to being made available via CRAN.
 
 Regardless of whichever packages you install and use, you will take the following steps:
@@ -20,35 +20,35 @@ Regardless of whichever packages you install and use, you will take the followin
 
 Of these, the third stage takes by far the most amount of time.
 Stages 1, 2 and 4 are equally important, however; you cannot use a package unless it has been properly installed, loaded and, to get the best performance out of the latest version, updated when new versions are released.
-We will learn each of these stages of the package lifecycle with the `stats19` package.
+We will learn each of these stages of the package lifecycle with the `{stats19}` package.
 
-## The stats19 R package
+## The {stats19} R package
 
-Like many packages, `stats19` was developed to meet a real world need.
-STATS19 data is provided as a free and open resource by the Department for Transport, encouraging evidence-based and accountable road safety research and policy interventions.
-However, researchers at the University of Leeds found that repeatedly downloading and formatting open STATS19 data was time-consuming, taking valuable resources away from more valuable (and fun) aspects of the research process.
+Like many packages, `{stats19}` was developed to meet a real-world need.
+{STATS19} data is provided as a free and open resource by the Department for Transport, encouraging evidence-based and accountable road safety research and policy interventions.
+However, researchers at the University of Leeds found that repeatedly downloading and formatting open {STATS19} data was time-consuming, taking valuable resources away from more valuable (and fun) aspects of the research process.
 Significantly, manually recoding the data was error prone.
 By packaging code, we found that we could solve the problem in a free, open and reproducible way for everyone.
 
-By abstracting the process to its fundamental steps (download, read, format), the `stats19` package makes it easy to get the data into appropriate formats (of classes `tbl`, `data.frame` and `sf`), ready for further processing and analysis.
-The package built upon previous work, with several important improvements, including the conversion of crash data into geographic data in a `sf` data frame for geographic research.
+By abstracting the process to its fundamental steps (download, read, format), the `{stats19}` package makes it easy to get the data into appropriate formats (of classes `tbl`, `data.frame` and `sf`), ready for further processing and analysis.
+The package built upon previous work, with several important improvements, including the conversion of crash data into geographic data in a `{sf}` data frame for geographic research.
 It enables creation of geographic representations of crash data, geo-referenced to the correct coordinate reference system, in a single function called `format_sf()`.
 Part-funded by the RAC Foundation, the package should be of use to academic researchers and professional road safety data analysts working at local authority and national levels in the UK.
 
-The following sections demonstrate how to install, load and use packages with reference to `stats19`. This information can be applied in relation to any package.
+The following sections demonstrate how to install, load and use packages with reference to `{stats19}`. This information can be applied in relation to any package.
 
 ## Installing packages
 
-The `stats19` package is available on CRAN.
+The `{stats19}` package is available on CRAN.
 This means that it has a web page on the CRAN website at [cran.r-project.org](https://cran.r-project.org) with useful information, including who developed the package, what the latest version is, and when it was last updated (see [cran.r-project.org/package=stats19](https://cran.r-project.org/package=stats19)).
 More importantly, being 'on CRAN' (which technically means 'available on the [Comprehensive R Archive Network](https://cran.r-project.org/)') means that it can be installed with the command `install.packages()` as follows:
 
 ```{r}
 #| eval: false
-install.packages("stats19")
+install.packages("{stats19}")
 ```
 
-You might think that now that the package has been installed we can start using it, but that is not true.  This is illustrated in the code below, which tries and fails to run the `find_file_name()` function from the `stats19` package to find the file containing STATS19 casualties data for the year 2020. Check that this function exists by running the following command `?find_file_name`:
+You might think that now that the package has been installed we can start using it, but that is not true.  This is illustrated in the code below, which tries and fails to run the `find_file_name()` function from the `{stats19}` package to find the file containing {STATS19} casualties data for the year 2020. Check that this function exists by running the following command `?find_file_name`:
 
 ```{r}
 #| error: true
@@ -58,10 +58,10 @@ find_file_name(years = 2020, type = "casualt")
 ## Loading packages
 
 After you have installed a package the next step is to 'load' it.
-Load the `stats19` package, that was installed in the previous section, using the following code:
+Load the `{stats19}` package, that was installed in the previous section, using the following code:
 
 ```{r}
-library(stats19)
+library({stats19})
 ```
 
 What happened? 
@@ -74,11 +74,11 @@ find_file_name(years = 2020, type = "casualt")
 
 This raises the question: how do you know which functions are available in a particular package?
 You can find out using the autocompletion, i.e. by pressing `Tab` after typing the package's name, followed by two colons.
-Try typing `stats19::` and then hitting `Tab`, for example.
+Try typing `{stats19}::` and then hitting `Tab`, for example.
 You should see a load of function names appear, which you view by pressing `Up` and `Down` on your keyboard.
 
-The final thing to say about packages is that they can be used without being loaded by typing `package::function()`.  We used this before in Section 2.8, where we imported csv data using the `readr` package via `readr::read_csv()`.   
-So `stats19::find_file_name(years = 2020, type = "casualt")` works even if the package isn't loaded.
+The final thing to say about packages is that they can be used without being loaded by typing `package::function()`.  We used this before in Section 2.8, where we imported csv data using the `{readr}` package via `{readr}::read_csv()`.
+So `{stats19}::find_file_name(years = 2020, type = "casualt")` works even if the package isn't loaded.
 
 You can test this by running the `sf_extSoftVersion()` command from the `sf` package. This command reports the versions of key geographic libraries installed on your system. In the first attempt below, the command fails and reports an error. In the second and third attempts, utilising `::` and `library`, you can see that the command succeeds:   
 
@@ -93,7 +93,7 @@ sf::sf_extSoftVersion()
 ```
 
 ```{r}
-# fun a function call after loading the package (the most common way)
+# run a function call after loading the package (the most common way)
 library(sf)
 sf_extSoftVersion()
 ```
@@ -104,7 +104,7 @@ What does that tell you about the package?
 ## Using packages
 
 After loading a package, as described in the previous section, you can start using its functions.
-In the `stats19` package that means the following command `get_stats19()` will now work:
+In the `{stats19}` package that means the following command `get_stats19()` will now work:
 
 ```{r}
 #| message: false
@@ -118,8 +118,8 @@ However, by using the package, the process has been achieved much faster and wit
 The result of the `nrow()` function call shows that we have downloaded a decent amount of data representing over 100k road traffic casualty incidents across Great Britain in 2020.
 
 We will use other functions from the package in subsequent sections of this guide.
-If you would like to learn more about `stats19` and how it can be used for road safety research, check out its vignettes.
-The `stats19` vignette, for example, should appear in the **Help** panel in the bottom right panel in RStudio after running the following command:
+If you would like to learn more about `{stats19}` and how it can be used for road safety research, check out its vignettes.
+The `{stats19}` vignette, for example, should appear in the **Help** panel in the bottom right panel in RStudio after running the following command:
 
 ```{r}
 #| eval: false
@@ -128,39 +128,39 @@ vignette("stats19")
 
 ## Updating packages
 
-Packages can be updated with the command `update.package()` or in 'Tools > Check for Package Updates' in RStudio.
+Packages can be updated with the command `update.packages()` or in 'Tools > Check for Package Updates' in RStudio.
 You only need to install a package once but packages can be updated many times. It is important to update packages regularly because updates will offer bug-fixes and other improvements.
 To update just one package, you can give the function a package name, e.g.:
 
 ```{r}
 #| eval: false
-update.packages(oldPkgs = "stats19")
+update.packages(oldPkgs = "{stats19}")
 ```
 
 Completing the following short exercises will ensure you've got a good understanding of packages and package versions.
 
 1. Take a look in the 'Packages' tab in the 'Files' pane in RStudio (bottom right by default).
-2. What version of the `stats19` package is installed on your computer?
+2. What version of the `{stats19}` package is installed on your computer?
 3. What happens the second time you run `update.packages()`. Why?
 
-## ggplot2
+## {ggplot2}
 
-`ggplot2` is a generic plotting package that is part of the ['tidyverse'](https://www.tidyverse.org/) meta-package. The `tidyverse` is  an 'Opinionated collection of R packages designed for data science'. 
-`ggplot2` is flexible, popular and has dozens of add-on packages which build on it, such as `gganimate`.
+`{ggplot2}` is a generic plotting package that is part of the ['tidyverse'](https://www.tidyverse.org/) meta-package. The `{tidyverse}` is  an 'Opinionated collection of R packages designed for data science'.
+`{ggplot2}` is flexible, popular and has dozens of add-on packages which build on it, such as `{gganimate}`.
 To plot non-spatial data, it works as follows (the command should generate the image shown in Figure 4.1, showing a bar chart of the number of crashes over time):
 
 ```{r}
 #| label: fig-crashes2020time
 #| fig-cap: "A simple ggplot2 graph."
 #| message: false
-library(ggplot2)
+library({ggplot2})
 ggplot(crashes_2020) + geom_bar(aes(date), width = 1)
 ```
 
-A key feature of the `ggplot2` package is the function `ggplot2()`. This function initiates the creation of a plot by taking a data object as its main argument followed by one or more ‘geoms’ that represent layers (in this case a bar chart represented by the function `geom_bar()`).
+A key feature of the `{ggplot2}` package is the function `ggplot2()`. This function initiates the creation of a plot by taking a data object as its main argument followed by one or more 'geoms' that represent layers (in this case a bar chart represented by the function `geom_bar()`).
 Another distinctive feature of `ggplot2()` is the use of `+` operator to add layers.
 
-The package is excellent for generating publication quality figures.
+The package is excellent for generating publication-quality figures.
 Starting from a basic idea, you can make incremental tweaks to a plot to get the output you want.
 Building on the figure above, we could make the bin width (width of the bars) wider, add colour depending on the crash severity and use count (Figure 4.2) or proportion (Figure 4.3) as our y axis, for example, as follows:
 
@@ -175,14 +175,14 @@ ggplot(crashes_2020) +
 ```
 
 The package is huge and powerful, with support for a very wide range of plot types and themes, so it is worth taking time to read the documentation associated with the package, starting with the online [reference manual](https://ggplot2.tidyverse.org/reference/index.html) and heading towards the online version of the package's official [book](https://ggplot2-book.org/).
-As a final taught bit of `ggplot2` code in this section, create a facetted plot showing how the number of crashes per hour varies across the days of the week by typing the following into the Source Editor and running the chunk line-by-line (the meaning of the commands should become clear by the end of the next section):
+As a final taught bit of `{ggplot2}` code in this section, create a facetted plot showing how the number of crashes per hour varies across the days of the week by typing the following into the Source Editor and running the chunk line-by-line (the meaning of the commands should become clear by the end of the next section):
 
 ```{r}
 #| label: fig-ggfacetr
 #| fig-cap: "A plot showing a facetted time series plot made with ggplot2."
 #| warning: false
 #| message: false
-library(tidyverse)
+library({tidyverse})
 crashes_2020 %>% 
   mutate(hour = lubridate::hour(datetime)) %>% 
   mutate(day = lubridate::wday(date)) %>% 
@@ -192,19 +192,19 @@ crashes_2020 %>%
   facet_wrap(~day)
 ```
 **Exercises:**
-1. Install a package that build on `ggplot2` that begins with with `gg`. Hint: enter `install.packages(gg)` and hit `Tab` when your cursor is between the `g` and the `)`.
+1. Install a package that builds on `{ggplot2}` that begins with `gg`. Hint: enter `install.packages(gg)` and hit `Tab` when your cursor is between the `g` and the `)`.
 2. Open a help page in the newly installed package with the `?package_name::function()` syntax.
 3. Load the package.
-4. **Bonus:** try using functionality from the new 'gg' package building on the example above to create plots like those shown below (**Hint:** the right plot below uses the economist theme from the `ggthemes` package; try other themes).
+4. **Bonus:** try using functionality from the new 'gg' package building on the example above to create plots like those shown below (**Hint:** the right plot below uses the economist theme from the `{ggthemes}` package; try other themes).
 
-## dplyr
+## {dplyr}
 
-Another useful package in the tidyverse is `dplyr`, which stands for 'data pliers', which provides a handy syntax for data manipulation.
-`dplyr` has many functions for manipulating data frames and using the pipe operator ` %>% `. 
+Another useful package in the tidyverse is `{dplyr}`, which stands for 'data pliers', which provides a handy syntax for data manipulation.
+`{dplyr}` has many functions for manipulating data frames and using the pipe operator ` %>% `.
 The pipe operator puts the output of one command into the first argument of the next, as shown below (**Note:** the results are the same):
 
 ```{r}
-library(dplyr)
+library({dplyr})
 class(crashes_2020)       
 crashes_2020 %>% class()
 ```
