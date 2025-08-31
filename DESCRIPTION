@@ -18,4 +18,5 @@ Imports:
     pct,
     kableExtra,
     tmap,
-    osmdata
+    osmdata,
+    quarto
