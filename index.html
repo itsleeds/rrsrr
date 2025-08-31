@@ -182,12 +182,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#preamble" id="toc-preamble" class="nav-link active" data-scroll-target="#preamble">Preamble</a>
   <ul class="collapse">
+  <li><a href="#preface" id="toc-preface" class="nav-link" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#preface-2025" id="toc-preface-2025" class="nav-link" data-scroll-target="#preface-2025">Preface (2025)</a></li>
   <li><a href="#foreword-road-safety-gb" id="toc-foreword-road-safety-gb" class="nav-link" data-scroll-target="#foreword-road-safety-gb">Foreword: Road Safety GB</a></li>
   <li><a href="#foreword-department-for-transport" id="toc-foreword-department-for-transport" class="nav-link" data-scroll-target="#foreword-department-for-transport">Foreword: Department for Transport</a></li>
   <li><a href="#foreword-rac-foundation" id="toc-foreword-rac-foundation" class="nav-link" data-scroll-target="#foreword-rac-foundation">Foreword: RAC Foundation</a></li>
   <li><a href="#about-the-author" id="toc-about-the-author" class="nav-link" data-scroll-target="#about-the-author">About the Author</a></li>
   <li><a href="#disclaimer" id="toc-disclaimer" class="nav-link" data-scroll-target="#disclaimer">Disclaimer</a></li>
-  <li><a href="#preface" id="toc-preface" class="nav-link" data-scroll-target="#preface">Preface</a></li>
   <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks">Thanks</a></li>
   </ul></li>
   </ul>
@@ -223,6 +224,22 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preamble" class="level1 unnumbered">
 <h1 class="unnumbered">Preamble</h1>
+<section id="preface" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="preface">Preface</h2>
+<p>Many areas of research have real world implications, but few have the ability to <em>save lives</em> in the way that road safety research does. Road safety research is a data driven field, underpinned by attribute-rich spatio-temporal event-based datasets representing the grim reality of people who are tragically hurt or killed on the roads. Because of the incessant nature of road casualties, there is a danger that it becomes normalised, an implicitly accepted cost associated with the benefits of personal mobility.</p>
+<p>Data analysis in general and ‘data science’ in particular has great potential to support more evidence-based road safety policies. Data science can be defined as a particular type of data analysis process, in that it is script-based, reproducible and scalable. As such, it has the ability to represent what we know about road casualties in new ways, demonstrate the life-saving impacts of effective policies, and prioritise interventions that are most likely to work.</p>
+<p>This manual was not designed to be a static textbook that is read once and accumulates dust. It is meant to be a hand-book, taken out into the field of applied research and referred to frequently in the course of an analysis project. As such, it is applied and exercise based.</p>
+<p>There are strong links between data science, open data, open source software and more collaborative ways of working. As such, this book is itself a collaborative and open source project that is designed to be a living document. We encourage any comments, questions or contributions related to its contents, the source code of which can be found at the Reproducible Road Safety Research with R (<a href="https://github.com/ITSLeeds/rrsrr">rrsrr</a>) repo on the <a href="https://github.com/ITSLeeds/">ITSLeeds GitHub organisation</a>, via the <a href="https://github.com/ITSLeeds/rrsrr/issues">issue tracker</a>. More broadly, we hope you enjoy the contents of the book and find the process of converting data science into data driven policy changes and investment rewarding. Get ready for the brave new reproducible world and enjoy the ride!</p>
+<p><em>Robin Lovelace, Leeds, Autumn 2020</em></p>
+</section>
+<section id="preface-2025" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="preface-2025">Preface (2025)</h2>
+<p>This updated 2025 edition of <em>Reproducible Road Safety Research with R</em> incorporates several key improvements to enhance usability and reproducibility.</p>
+<p>A major change is the migration from bookdown to Quarto for publishing, enabling better cross-referencing, improved rendering, and more flexible output formats. This transition involved updating all chapter files, implementing dynamic cross-references for figures and sections, and establishing a new GitHub Actions workflow for automated publishing to GitHub Pages.</p>
+<p>Additional updates include removing dependencies on the github package trafficalmr, adding a development container for consistent environments, and refining figure labels and chapter references for better navigation. The book now includes an install script for easier setup and has been updated to align with current best practices in reproducible research.</p>
+<p>This edition was developed in preparation for presentations at the <a href="https://www.vti.se/en/rs5c">RS5C 2025 conference</a>, focusing on road safety advancements. Workshop materials using this book are available at <a href="https://itsleeds.github.io/tds/reproducible-road-safety-workshop">itsleeds.github.io/tds/reproducible-road-safety-workshop</a>.</p>
+<p><em>Robin Lovelace, Leeds, 2025</em></p>
+</section>
 <section id="foreword-road-safety-gb" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="foreword-road-safety-gb">Foreword: Road Safety GB</h2>
 <p>Road Safety GB recognises the importance of high quality data analysis as a fundamental element in efforts to reduce road casualties at a local and national level by enabling evidence-based intervention. The use of open source software like R in this way is to be actively encouraged and tools such as this manual provide valuable support for analysts working across the industry in enhancing the analysis they are able to provide to decision-makers. This approach also supports the reproduction of high-quality analysis up and down the country using locally-held data, which I hope in turn will improve the consistency and quality of evidence used in day-to-day road safety activity.</p>
@@ -252,14 +269,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="disclaimer" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="disclaimer">Disclaimer</h2>
 <p>This report has been prepared for the RAC Foundation by Robin Lovelace at the Leeds Institute for Transport Studies. Any errors or omissions are the author’s sole responsibility. The report content reflects the views of the author and not necessarily those of the RAC Foundation.</p>
-</section>
-<section id="preface" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="preface">Preface</h2>
-<p>Many areas of research have real world implications, but few have the ability to <em>save lives</em> in the way that road safety research does. Road safety research is a data driven field, underpinned by attribute-rich spatio-temporal event-based datasets representing the grim reality of people who are tragically hurt or killed on the roads. Because of the incessant nature of road casualties, there is a danger that it becomes normalised, an implicitly accepted cost associated with the benefits of personal mobility.</p>
-<p>Data analysis in general and ‘data science’ in particular has great potential to support more evidence-based road safety policies. Data science can be defined as a particular type of data analysis process, in that it is script-based, reproducible and scalable. As such, it has the ability to represent what we know about road casualties in new ways, demonstrate the life-saving impacts of effective policies, and prioritise interventions that are most likely to work.</p>
-<p>This manual was not designed to be a static textbook that is read once and accumulates dust. It is meant to be a hand-book, taken out into the field of applied research and referred to frequently in the course of an analysis project. As such, it is applied and exercise based.</p>
-<p>There are strong links between data science, open data, open source software and more collaborative ways of working. As such, this book is itself a collaborative and open source project that is designed to be a living document. We encourage any comments, questions or contributions related to its contents, the source code of which can be found at the Reproducible Road Safety Research with R (<a href="https://github.com/ITSLeeds/rrsrr">rrsrr</a>) repo on the <a href="https://github.com/ITSLeeds/">ITSLeeds GitHub organisation</a>, via the <a href="https://github.com/ITSLeeds/rrsrr/issues">issue tracker</a>. More broadly, we hope you enjoy the contents of the book and find the process of converting data science into data driven policy changes and investment rewarding. Get ready for the brave new reproducible world and enjoy the ride!</p>
-<p><em>Robin Lovelace, Leeds, Autumn 2020</em></p>
 </section>
 <section id="thanks" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="thanks">Thanks</h2>
