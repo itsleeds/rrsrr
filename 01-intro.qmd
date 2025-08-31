@@ -8,11 +8,11 @@
 source("code/install.R")
 ```
 
-This book teaches reproducible road safety analysis with R, a popular, free and open source statistical programming language.
-It was initially developed for a 2 day course, [Introduction to R for Road Safety](https://www.racfoundation.org/introduction-to-r-for-road-safety) course.
+This book teaches reproducible road safety analysis with R, a popular, free and open-source statistical programming language.
+It was initially developed for a 2-day course, [Introduction to R for Road Safety](https://www.racfoundation.org/introduction-to-r-for-road-safety) course.
 Since then, interest in the topic has grown.
-The [RAC Foundation](https://www.racfoundation.org/) charity in the UK funded the development of this manual as a free and open resource to support their objective of making the roads safer for everyone.
-The content is based on open access road crash data from the UK, which is provided by the R package **stats19**.
+The [RAC Foundation](https://www.racfoundation.org/) charity in the UK funded the development of this manual as a free and open-source resource to support their objective of making the roads safer for everyone.
+The content is based on open-access road crash data from the UK, which is provided by the R package **{stats19}**.
 However, the content is designed to be general and should be of use to **anyone working with road crash data worldwide,** that has (at a minimum) the following variables (see @tbl-asample for an example crash dataset):
 
 - a timestamp;
@@ -46,7 +46,7 @@ As with many practical skills, you learn data science by doing data science.
 
 Before getting stuck in with the practical content, which begins in @sec-basics, the remainder of this chapter:
 
-- introduces the concept reproducibility and its importance for evidence-based policies;
+- introduces the concept of reproducibility and its importance for evidence-based policies;
 - explains the choice of R as a 'tool of the trade' for road safety research;
 - outlines how to install R on your computer or access it through remote servers in the 'cloud'; and
 - explains the structure of the manual, outlines the contents of each section and how they should be used for maximum benefit depending on your level of experience and aims (Section 1.5).
@@ -80,14 +80,14 @@ In the context of road safety research, this means that **reproducibility can sa
 
 ## What is R?
 
-R is an open source programming language first developed by award-winning academic statisticians Dr [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka) and Professor [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)).
+R is an open-source programming language first developed by award-winning academic statisticians Dr [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka) and Professor [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)).
 Since its first release in 1995 and the release of version 1.0.0 in 2000, R has seen rapid uptake.
-As of September 2020, R was ranked as the 9th most used programming language on the [TIOBE Index](https://www.tiobe.com/tiobe-index/), ahead of other languages for data processing, such as SQL and MATLAB, and behind *general purpose* languages such as C, Java and Python.
+As of September 2020, R was ranked as the 9th most used programming language on the [TIOBE Index](https://www.tiobe.com/tiobe-index/), ahead of other languages for data processing, such as SQL and MATLAB, and behind *general-purpose* languages such as C, Java and Python.
 
 An important feature of R is that it was *designed* for data processing and statistical analysis.
 This means that you can undertake many aspects of road safety research using the core language.
 R is widely acknowledged to outperform other open languages for data science, such as Julia, Python and Scala, in terms of data visualisation and deployment of web applications for presenting data via the R package `shiny`.
-Furthermore, recently developed packages `tidyverse` and `sf`, provide a unified and user friendly system for working with attribute-rich and geographic datasets.
+Furthermore, recently developed packages `{tidyverse}` and `{sf}`, provide a unified and user-friendly system for working with attribute-rich and geographic datasets.
 Because road crash data is commonly attribute-rich and geographic, we will be using these packages in subsequent sections.
 
 ## Why R for road safety research?
@@ -96,7 +96,7 @@ R is an outstanding language for reproducible research.
 It is accessible with no licensing restrictions and easy installation procedures on a wide range of computers, including most versions of Windows, Mac and Linux operating systems.
 Furthermore, R is highly extensible.
 With 15,000+ packages available, many of which are developed by professional statisticians and domain experts, R provides access to a wide array of statistical, computational and visualisation techniques.
-Many packages, such as `markdown` and `reprex`, were designed to support more reproducible research.
+Many packages, such as `{markdown}` and `{reprex}`, were designed to support more reproducible research.
 
 From a road safety perspective, R is well suited to handling data structures used in road safety research. 
 R excels at the processing, analysis, modelling and visualisation of large spatio-temporal and attribute-rich datasets of the type key to road safety research. 
@@ -111,7 +111,7 @@ It takes time to adapt to new ways of working, and R has a steep learning curve 
 However, persevering can be very rewarding: proficiency with R’s CLI is a future-proof and transferable skill that can yield huge productivity gains. 
 Perhaps the most important prerequisite, therefore, is time and a willingness to try new ways of working.
 
-The good news is that it has never been easier to learn and install R, as highlighted in the [`stats19-training-setup`](https://docs.ropensci.org/stats19/articles/stats19-training-setup.html) that can be found on the **stats19** package website at [docs.ropensci.org/stats19](https://docs.ropensci.org/stats19/).
+The good news is that it has never been easier to learn and install R, as highlighted in the [`{stats19-training-setup}`](https://docs.ropensci.org/stats19/articles/stats19-training-setup.html) that can be found on the **{stats19}** package website at [docs.ropensci.org/stats19](https://docs.ropensci.org/stats19/).
 
 It is important to have an up-to-date version of R installed before proceeding to the practical sections of this manual. 
 Note that, like any actively developed software, R is evolving so it is worth updating or re-installing R/RStudio every year or so and updating your R packages every month or so to ensure you have the latest software.
@@ -122,12 +122,12 @@ To complete the exercises in this guide, you will need to install:
 
 - R from [cran.r-project.org](https://cran.r-project.org/)
 - RStudio from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
-- R packages, by opening RStudio and typing `install.packages("stats19")` in the console to install the `stats19` package, for example (see @sec-pkgs for details)
+- R packages, by opening RStudio and typing `install.packages("{stats19}")` in the console to install the `{stats19}` package, for example (see @sec-pkgs for details)
 
 We recommend using at least the latest stable release of R (4.0.3 at the time of writing in 2020). 
 If you're running on macOS or Linux, you may need to install additional dependencies, as documented in blog posts and documentation pages such as [Installation of R 4.0 on Ubuntu 20.04 LTS and tips for spatial packages](https://rtask.thinkr.fr/installation-of-r-4-0-on-ubuntu-20-04-lts-and-tips-for-spatial-packages/) and the [Installing](https://github.com/r-spatial/sf#installing) section of the [github.com/r-spatial/sf](https://github.com/r-spatial/sf) package README page.
 We recommend running R on a decent computer, with at least 4 GB RAM and ideally 8 GB or more RAM. 
-R is computationally efficient and therefore fast language for data science but, because of the size of some road safety datasets, we recommend using it on a high spec laptop or desktop.
+R is computationally efficient and therefore a fast language for data science but, because of the size of some road safety datasets, we recommend using it on a high-spec laptop or desktop.
 
 ## R in the cloud
 
@@ -140,14 +140,14 @@ To run R in the cloud, sign-up to cloud.rstudio.com (or cloud instance of your c
 
 Of the thousands of available packages that are available for road safety research, we will use a handful that are mature, well-tested and well-suited to statistical analysis and visualisation of road casualty data.
 For the first practical steps, in @sec-basics, all you need is a working version of R and RStudio.
-In @sec-pkgs we will see how to install and use add-on packages such as `stats19`.
+In @sec-pkgs we will see how to install and use add-on packages such as `{stats19}`.
 If you want to be ahead of the game, you can check that you have the necessary packages installed by running the following commands, which **install and load the packages that we will use for the course**:
 
 ```{r}
 #| eval: false
 install.packages("remotes") # installs the remotes package
 pkgs = c(
-  "stats19",     # downloads and formats open stats19 crash data
+  "{stats19}",     # downloads and formats open stats19 crash data
   "sf",          # spatial data package
   "tidyverse",   # a 'metapackage' with many functions for data processing
   "tmap",        # for making maps
@@ -163,13 +163,13 @@ lapply(pkgs, library, character.only = TRUE)
 
 The rest of the manual is structured as follows.
 
-- @sec-basics introduces the basics of the R language. While not essential reading for people who already have experience with R or who just want to get stuck-in to importing datasets, as per @sec-data, it is recommended reading even if you already use R.
+- @sec-basics introduces the basics of the R language. While not essential reading for people who already have experience with R or who just want to get stuck in to importing datasets, as per @sec-data, it is recommended reading even if you already use R.
 This section introduces key aspects of the R language that may not be needed for basic data analysis tasks, but which will be vital when ‘debugging’ your code (the process you go through to remove bugs/mistakes).
 It provides a strong foundation for subsequent sections.
 - @sec-rstudio provides a brief introduction to productive research workflows using RStudio, an advanced integrated development environment for not only writing R code, but also for project management and boosting your productivity with a suite of features that puts Excel to shame.
-- @sec-pkgs introduces the `stats19` package and other R packages we will be using in subsequent chapters.
+- @sec-pkgs introduces the `{stats19}` package and other R packages we will be using in subsequent chapters.
 - @sec-data demonstrates key data processing techniques using `tidyverse`.
 - @sec-time teaches key functions for working with timestamps.
 - @sec-space shows how you can create maps and perform geographic data analysis with road crash data in R.
 - @sec-join provides an introduction to joining road crash data, with a focus on casualty and accident tables in STATS19 data (introduced in @sec-pkgs).
-- @sec-next suggests next steps for road safety researchers looking to take their skills to the next levels and provide the strong evidence needed to save lives.
+- @sec-next suggests next steps for road safety researchers looking to take their skills to the next level and provide the strong evidence needed to save lives.

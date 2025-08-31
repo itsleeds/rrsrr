@@ -4,7 +4,7 @@ Learning a programming language is like learning any language.
 If you’re learning French, for example, you could just dive in and start gesticulating to people in central Paris. 
 However, it’s worth taking the time to understand the structure and key words of the language first. 
 The same applies to data science: it will help if you first understand a little about the syntax and grammar of the language that we will use to in relation to the ‘data’ (the statistical programming language R) before diving into using it for road safety research. 
-This section, parts of which were originally developed for a [2 day course](https://github.com/ITSLeeds/TDS/releases/download/0.2/2day.pdf) on data science, may seem tedious for people who just want to crack on and load-in data.
+This section, parts of which were originally developed for a [2-day course](https://github.com/ITSLeeds/TDS/releases/download/0.2/2day.pdf) on data science, may seem tedious for people who just want to crack on and load-in data.
 However, working through the examples below is recommended for most people unless you’re already an experienced R user, although even experienced R users may learn something about the language’s syntax and fundamental features.
 
 The first step is to **start RStudio**, e.g. if you are on Windows, this can be achieved by tapping **Start** and searching for RStudio. You should see an **R console** pane like that which is displayed in @fig-console.
@@ -22,7 +22,7 @@ You are ready to start running R code by entering commands into the console.
 
 R can be understood as a giant calculator.
 If you feed the console arithmetic tasks, it will solve them precisely and instantly.
-Try typing the following examples (note that `pi` is an inbuilt object) into the R console in RStudio and pressing `Enter` to make R run the code. (`Note:` The output of the code, when shown in this manual, is preceeded by '##'.)
+Try typing the following examples (note that `pi` is an inbuilt object) into the R console in RStudio and pressing `Enter` to make R run the code. (`Note:` The output of the code, when shown in this manual, is preceded by '##'.)
 
 ```{r}
 2 + 19
@@ -37,7 +37,7 @@ sqrt(361)
 ```
 
 This is all well and good, providing a chance to see how R works with numbers and to get some practice with typing commands into the console. 
-However, the code chunks above do not make use of a key benefit of R: it is *object oriented*, meaning it stores values and complex objects, such as data frames representing road casualties, and processes them *in memory* (meaning that R is both fast and memory hungry when working with large datasets). If you are more familiar with Excel, a data frame may be thought of as fulfilling the purpose of a single worksheet containing a set of data.
+However, the code chunks above do not make use of a key benefit of R: it is *object-oriented*, meaning it stores values and complex objects, such as data frames representing road casualties, and processes them *in memory* (meaning that R is both fast and memory hungry when working with large datasets). If you are more familiar with Excel, a data frame may be thought of as fulfilling the purpose of a single worksheet containing a set of data.
 
 The two most common ways of creating objects are using `<-` 'arrow' or `=` 'equals' assignment.
 These symbols are *assignment operators* because they assign contents, such as numbers, to named objects.
@@ -98,7 +98,7 @@ class(casualty_type)
 class(casualty_age)
 ```
 
-The class of the `casualty_type` and `casualty_type` objects are `character` (meaning text) and `numeric` (meaning numbers), respectively.
+The class of the `casualty_type` and `casualty_age` objects are `character` (meaning text) and `numeric` (meaning numbers), respectively.
 The objects are *vectors*, a sequence of values of the same type.
 Next challenge: guess their length and check your guess was correct by running the following commands (results not shown):
 
@@ -180,7 +180,7 @@ crashes
 
 In @sec-data we will use `filter()` and `select()` functions to subset rows and columns.
 Before we get there, it is worth practicing subsetting using the square brackets to consolidate your understanding of how base R works with vector objects such as `vehicle_type` and data frames such as `crashes`.
-If you can answer the following questions, congratulations,  you are ready to move on.
+If you can answer the following questions, congratulations, you are ready to move on.
 If not, it's worth doing some extra reading and practice on the topic of subsetting in base R.
 
 
@@ -204,7 +204,7 @@ x[x == 5] # only when x == 5 (notice the use of double equals)
 x[x < 3] # less than 3
 x[x < 3] = 0 # assign specific elements
 casualty_age[casualty_age %% 6 == 0] # just the ages that are a multiple of 6
-crashes[crashes$dark == FALSE, ] # just crashes that occured when it wasnt dark
+crashes[crashes$dark == FALSE, ] # just crashes that occurred when it wasn't dark
 ```
 
 **Exercises**
@@ -261,7 +261,7 @@ This is called class coercion, and can be done with functions such as `as.logica
 ## Recoding values
 
 Often it is useful to 'recode' values.
-In the raw STATS19 files, for example, -1 means NA.
+In the raw {STATS19} files, for example, -1 means NA.
 There are many ways to recode values in R, the simplest and most mature of which is the use of 'factors', which are whole numbers representing characters.  Factors are commonly used to manage categorical variables such as sex, ethnicity or, in road traffic research, vehicle type or casualty injury severity.   
 
 ```{r}
@@ -294,16 +294,16 @@ crashes2 = readRDS("crashes.Rds")
 identical(crashes, crashes2)
 ```
 
-R also supports many other formats, including CSV files, which can be created and imported with the functions `readr::read_csv()` and `readr::write_csv()` (see also the [readr](https://readr.tidyverse.org/) package).
+R also supports many other formats, including CSV files, which can be created and imported with the functions `{readr}::read_csv()` and `{readr}::write_csv()` (see also the [{readr}](https://readr.tidyverse.org/) package).
 
 ```{r}
 #| eval: false
-readr::write_csv(crashes, "crashes.csv") # uses the write_csv function from the readr package
-crashes3 = readr::read_csv("crashes.csv")
+{readr}::write_csv(crashes, "crashes.csv") # uses the write_csv function from the readr package
+crashes3 = {readr}::read_csv("crashes.csv")
 identical(crashes3, crashes) 
 ```
 
-Notice that `crashes3` and `crashes` are not identical. What has changed? Hint: read the help page associated with `?readr::write_csv`.
+Notice that `crashes3` and `crashes` are not identical. What has changed? Hint: read the help page associated with `?{readr}::write_csv`.
 
 ## Now you are ready to use RStudio
 
