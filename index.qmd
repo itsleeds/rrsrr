@@ -1,4 +1,4 @@
-# Preamble {#sec-preamble}
+# Preamble {-}
 
 ## About the Author {-}
 
