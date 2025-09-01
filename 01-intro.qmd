@@ -1,3 +1,8 @@
+---
+execute:
+  include: false
+---
+
 # Introduction {#sec-intro}
 
 ```{r}
@@ -22,6 +27,7 @@ However, the content is designed to be general and should be of use to **anyone 
 ```{r}
 #| label: tbl-asample
 #| tbl-cap: "Sample crash dataset. These are real records taken from the open STATS19 database, provided by the UK's Department for Transport, under the terms of the Open Government Licence (OGL)."
+#| include: true
 a = stats19::get_stats19(2020)
 v = c("date", "longitude", "latitude", "accident_severity")
 a_sample = a[3:5, v]
@@ -38,6 +44,8 @@ Although Britain has relatively safe roads by international standards (with arou
 ```{r}
 #| label: fig-world
 #| fig-cap: "Road danger levels worldwide in 2016. Data source: World Bank. Reproducible source code: [github.com/itsleeds/rrsrr](https://github.com/ITSLeeds/rrsrr/blob/master/code/world-casualties.R)."
+#| include: true
+#| echo: false
 knitr::include_graphics("figures/road-casualties.png")
 ```
 
@@ -64,6 +72,7 @@ Reproducibility can be built into every stage of quantitative research, as shown
 ```{r}
 #| label: tbl-reproducibility
 #| tbl-cap: "Four elements of reproducibility adapted from Peng, Dominici, and Zeger (2006)."
+#| include: true
 re = readr::read_csv("reproducibility.csv")
 knitr::kable(re)
 rm(re)
@@ -95,6 +104,7 @@ Because road crash data is commonly attribute-rich and geographic, we will be us
 ```{r}
 # calculate number of available packages
 npkgs = length(available.packages()[,1])
+npkgs = 22607
 date_now = Sys.Date()
 ```
 
@@ -151,6 +161,7 @@ If you want to be ahead of the game, you can check that you have the necessary p
 
 ```{r}
 #| eval: false
+#| echo: true
 install.packages("remotes") # installs the remotes package
 pkgs = c(
   "stats19",     # downloads and formats open stats19 crash data
