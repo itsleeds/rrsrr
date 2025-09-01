@@ -263,13 +263,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>   https://data.dft.gov.uk/road-accidents-safety-data/dft-road-casualty-statistics-collision-2020.csv</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Data saved at /tmp/Rtmp8jt9TT/dft-road-casualty-statistics-collision-2020.csv</code></pre>
+<pre><code>Data saved at /tmp/RtmpTYaV8e/dft-road-casualty-statistics-collision-2020.csv</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Reading in: </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/Rtmp8jt9TT/dft-road-casualty-statistics-collision-2020.csv</code></pre>
+<pre><code>/tmp/RtmpTYaV8e/dft-road-casualty-statistics-collision-2020.csv</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>date and time columns present, creating formatted datetime column</code></pre>
@@ -412,7 +412,12 @@ Table&nbsp;1.2: Four elements of reproducibility adapted from Peng, Dominici, an
 </section>
 <section id="why-r-for-road-safety-research" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="why-r-for-road-safety-research"><span class="header-section-number">1.3</span> Why R for road safety research?</h2>
-<p>R is an outstanding language for reproducible research. It is accessible with no licensing restrictions and easy installation procedures on a wide range of computers, including most versions of Windows, Mac and Linux operating systems. Furthermore, R is highly extensible. With 15,000+ packages available, many of which are developed by professional statisticians and domain experts, R provides access to a wide array of statistical, computational and visualisation techniques. Many packages, such as <code>{markdown}</code> and <code>{reprex}</code>, were designed to support more reproducible research.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate number of available packages</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>npkgs <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">available.packages</span>()[,<span class="dv">1</span>])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>date_now <span class="ot">=</span> <span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>R is an outstanding language for reproducible research. It is accessible with no licensing restrictions and easy installation procedures on a wide range of computers, including most versions of Windows, Mac and Linux operating systems. Furthermore, R is highly extensible. With 22460 packages available as of 2025-09-01, many of which are developed by professional statisticians and domain experts, R provides access to a wide array of statistical, computational and visualisation techniques. Many packages, such as <code>{markdown}</code> and <code>{reprex}</code>, were designed to support more reproducible research.</p>
 <p>From a road safety perspective, R is well suited to handling data structures used in road safety research. R excels at the processing, analysis, modelling and visualisation of large spatio-temporal and attribute-rich datasets of the type key to road safety research. R is a mature and growing tool for data science, popular in industry, academia and government, so it creates multiple opportunities for collaboration within and between organisations and internationally.</p>
 </section>
 <section id="prerequisites" class="level2" data-number="1.4">
@@ -427,7 +432,7 @@ Table&nbsp;1.2: Four elements of reproducibility adapted from Peng, Dominici, an
 <ul>
 <li>R from <a href="https://cran.r-project.org/">cran.r-project.org</a></li>
 <li>RStudio from <a href="https://rstudio.com/products/rstudio/download/#download">rstudio.com</a></li>
-<li>R packages, by opening RStudio and typing <code>install.packages("{stats19}")</code> in the console to install the <code>{stats19}</code> package, for example (see <a href="04-pkgs.html" class="quarto-xref"><span>Chapter 4</span></a> for details)</li>
+<li>R packages, by opening RStudio and typing <code>install.packages("stats19")</code> in the console to install the <code>stats19</code> package, for example (see <a href="04-pkgs.html" class="quarto-xref"><span>Chapter 4</span></a> for details)</li>
 </ul>
 <p>We recommend using at least the latest stable release of R (4.0.3 at the time of writing in 2020). If you’re running on macOS or Linux, you may need to install additional dependencies, as documented in blog posts and documentation pages such as <a href="https://rtask.thinkr.fr/installation-of-r-4-0-on-ubuntu-20-04-lts-and-tips-for-spatial-packages/">Installation of R 4.0 on Ubuntu 20.04 LTS and tips for spatial packages</a> and the <a href="https://github.com/r-spatial/sf#installing">Installing</a> section of the <a href="https://github.com/r-spatial/sf">github.com/r-spatial/sf</a> package README page. We recommend running R on a decent computer, with at least 4 GB RAM and ideally 8 GB or more RAM. R is computationally efficient and therefore a fast language for data science but, because of the size of some road safety datasets, we recommend using it on a high-spec laptop or desktop.</p>
 </section>
@@ -440,18 +445,18 @@ Table&nbsp;1.2: Four elements of reproducibility adapted from Peng, Dominici, an
 <h2 data-number="1.7" class="anchored" data-anchor-id="recommended-packages"><span class="header-section-number">1.7</span> Recommended packages</h2>
 <p>Of the thousands of available packages that are available for road safety research, we will use a handful that are mature, well-tested and well-suited to statistical analysis and visualisation of road casualty data. For the first practical steps, in <a href="02-basics.html" class="quarto-xref"><span>Chapter 2</span></a>, all you need is a working version of R and RStudio. In <a href="04-pkgs.html" class="quarto-xref"><span>Chapter 4</span></a> we will see how to install and use add-on packages such as <code>{stats19}</code>. If you want to be ahead of the game, you can check that you have the necessary packages installed by running the following commands, which <strong>install and load the packages that we will use for the course</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>) <span class="co"># installs the remotes package</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"{stats19}"</span>,     <span class="co"># downloads and formats open stats19 crash data</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sf"</span>,          <span class="co"># spatial data package</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,   <span class="co"># a 'metapackage' with many functions for data processing</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tmap"</span>,        <span class="co"># for making maps</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pct"</span>,         <span class="co"># access travel data from DfT-funded PCT project </span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"stplanr"</span>      <span class="co"># transport planning tools</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_cran</span>(pkgs)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(pkgs, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>) <span class="co"># installs the remotes package</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"stats19"</span>,     <span class="co"># downloads and formats open stats19 crash data</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sf"</span>,          <span class="co"># spatial data package</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,   <span class="co"># a 'metapackage' with many functions for data processing</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tmap"</span>,        <span class="co"># for making maps</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pct"</span>,         <span class="co"># access travel data from DfT-funded PCT project </span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"stplanr"</span>      <span class="co"># transport planning tools</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_cran</span>(pkgs)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(pkgs, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="overview" class="level2" data-number="1.8">

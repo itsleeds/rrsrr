@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The previous section taught the basics of the R language. We entered and ran commands directly in the console. In this section we will learn how to write R scripts in RStudio’s source editor. We will also take a step back and considers how R code fits into the wider context of scripts, projects, and getting help in RStudio. RStudio is an integrated development environment (IDE) for R that makes it easy to create and run scripts, explore R objects and functions, plot results and get help.</p>
+<p>The previous section taught the basics of the R language. We entered and ran commands directly in the console. In this section we will learn how to write R scripts in RStudio’s source editor. We will also take a step back and consider how R code fits into the wider context of scripts, projects, and getting help in RStudio. RStudio is an integrated development environment (IDE) for R that makes it easy to create and run scripts, explore R objects and functions, plot results and get help.</p>
 <p>The first exercise is to open RStudio, take a look around, identify and explore the main components, shown in <a href="#fig-rstudioui" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>. Click on different buttons in RStudio’s GUI and try changing the Global Settings (in the Tools menu) and see RStudio’s shortcuts by pressing <code>Alt-Shift-K</code> (or <code>Option+Shift+K</code> on Mac).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/rstudio-ui.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -268,13 +268,13 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 </div>
 <section id="projects-and-scripts" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="projects-and-scripts"><span class="header-section-number">3.1</span> Projects and scripts</h2>
-<p>Projects organise files and settings in RStudio into folders. Each project has its own folder and Rproj file. <strong>When using RStudio, always ensure you are working in a named project to organise your work.</strong> Start a new project with by clicking on <code>File &gt; New Project</code> in RStudio’s top menu. You create projects either in a new or existing directory (folder). <strong>Make a new project called ‘lrrsrr’ (short for ‘learning reproducible road safety research with R’) or a name of your choice and save it in a sensible place on your computer.</strong> The name of the project will appear in the top right of RStudio.</p>
+<p>Projects organise files and settings in RStudio into folders. Each project has its own folder and Rproj file. <strong>When using RStudio, always ensure you are working in a named project to organise your work.</strong> Start a new project by clicking on <code>File &gt; New Project</code> in RStudio’s top menu. You create projects either in a new or existing directory (folder). <strong>Make a new project called ‘lrrsrr’ (short for ‘learning reproducible road safety research with R’) or a name of your choice and save it in a sensible place on your computer.</strong> The name of the project will appear in the top right of RStudio.</p>
 <p><strong>‘Scripts’</strong> are files where R code are stored, and these can be edited in the <strong>Source Editor</strong> panel (the top left panel in <a href="#fig-rstudioui" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>). <strong>Keeping your code in sensibly named, well organised and reproducible scripts will make your life easier.</strong> We could continue typing all our code into the console, as we did in <a href="02-basics.html" class="quarto-xref"><span>Chapter 2</span></a>. However, that approach is limited when working on anything more complicated than a few simple commands. Code that you want to keep and share should be saved script files, i.e.&nbsp;plain text files that have the <code>.R</code> extension.</p>
 <p>Make a new script by typing and running this command in the R console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="st">"section3.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will open the Source Editor and place your cursor there. Try jumping between the Source Editor and the Console by pressing <code>Ctl+1</code> and <code>Ctl+2</code>.</p>
+<p>This will open the Source Editor and place your cursor there. Try jumping between the Source Editor and the Console by pressing <code>Ctrl+1</code> and <code>Ctrl+2</code>.</p>
 <p>Keeping scripts and other files associated with a project in a single folder per project (in an RStudio project) will help you to locate things you need and develop an efficient workflow. Next, to check that your project is saved, close RStudio.</p>
 </section>
 <section id="writing-and-running-code" class="level2" data-number="3.2">
@@ -294,7 +294,7 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 <li>Select <code>Run</code> on the toolbar to run all the code in a script.</li>
 <li>Bonus: Use the function <code>source()</code> to run all the code in a script e.g.&nbsp;<code>source("section3.R")</code></li>
 </ol>
-<p>Practice alternating between the console and the source editor by pressing <code>Ctl+1</code> and <code>Ctl+2</code>.</p>
+<p>Practice alternating between the console and the source editor by pressing <code>Ctrl+1</code> and <code>Ctrl+2</code>.</p>
 </section>
 <section id="viewing-objects" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="viewing-objects"><span class="header-section-number">3.3</span> Viewing Objects</h2>
@@ -308,7 +308,7 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>small_matrix <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="at">nrow =</span> <span class="dv">12</span>)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>crashes <span class="ot">=</span> <span class="fu">data.frame</span>(vehicle_type, casualty_type, casualty_age, dark)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Run the code line-by-line by pressing <code>Ctl+Enter</code> multiple times, as described in the previous section. Try viewing the objects in the following ways:</p>
+<p>Run the code line-by-line by pressing <code>Ctrl+Enter</code> multiple times, as described in the previous section. Try viewing the objects in the following ways:</p>
 <ol type="1">
 <li>Type the name of the object into the console, e.g.&nbsp;<code>crashes</code> and <code>small_matrix</code>, and run that code. Scroll up to see the numbers that didn’t fit on the screen.</li>
 <li>Use the <code>head()</code> function to view just the first 6 rows e.g.&nbsp;<code>head(small_matrix)</code></li>
@@ -374,9 +374,9 @@ Figure&nbsp;3.3
 <section id="getting-help" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">3.5</span> Getting help</h2>
 <p>Every function in R has a help page. You can view the help using <code>?</code>. For example, <code>?sum</code> and <code>?plot</code>. Many packages also contain ‘vignettes’, which are long form help documents containing examples and guides. <code>vignette()</code> will show a list of all the vignettes available, or you can also view a specific vignette. For example, <code>vignette(topic = "sf1", package = "sf")</code>.</p>
-<p>Try getting help on the <code>stats19</code> package by typing the following and pressing <code>Tab</code> when your cursor is just to the left of the closing bracket <code>)</code>. Autocompletion works for more than just R objects and files - try making RStudio autocomplete and run the command <code>vignette("stats19-vehicles")</code>. For example:</p>
+<p>Try getting help on the <code>{stats19}</code> package by typing the following and pressing <code>Tab</code> when your cursor is just to the left of the closing bracket <code>)</code>. Autocompletion works for more than just R objects and files - try making RStudio autocomplete and run the command <code>vignette("stats19-vehicles")</code>. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(stats19)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"stats19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can further search and explore R’s help files using the <strong>Help</strong> panel in the bottom right window in RStudio.</p>
 </section>
@@ -386,7 +386,7 @@ Figure&nbsp;3.3
 <p>For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vector objects (a whole line comment)</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># a seqence of consecutive integers (inline comment)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># a sequence of consecutive integers (inline comment)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="fl">18.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can comment/uncomment a whole block of text by selecting it and using <code>Ctrl+Shift+C</code>.</p>
@@ -409,17 +409,11 @@ Figure&nbsp;3.3
 <h2 data-number="3.8" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">3.8</span> Debugging Code</h2>
 <p>All the code shown so far is reproducible and, unless you introduced typos, is ‘bug free’, meaning that it runs without errors. Typos are common though and even experienced R users frequently see error messages as they undertake interactive data analysis. For that reason, learning to fix typos in R code is an important skill. RStudio comes to the rescue here with helpful debugging features. To test them, write some code that fails, as shown in the code chunk and exercises below, then answer the questions below by interacting with RStudio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x_<span class="sc">$</span> <span class="er">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># Non-standard character in object name</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span> <span class="fl">18.1</span>) <span class="co"># R code with a typo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in parse(text = input): &lt;text&gt;:2:18: unexpected numeric constant
-1: x = 1:5
-2: y = c(0, 1, 3, 9 18.1
-                    ^</code></pre>
-</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/rstudio-autocomplete.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/rstudio-autocomplete.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-debug" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -436,7 +430,7 @@ Figure&nbsp;3.4: Debugging code with RStudio: notice the wavy red line highlight
 <ol type="1">
 <li>Try running the faulty code. How can the error message help debug the code?</li>
 <li>What is the problem with the code shown in the figure?</li>
-<li>Create other types of error in the code you have run (e.g.&nbsp;no symetrical brackets and other typos).</li>
+<li>Create other types of error in the code you have run (e.g.&nbsp;no symmetrical brackets and other typos).</li>
 <li>Does RStudio pick up on the errors? And what happens when you try to run buggy code?</li>
 </ol>
 <p><strong>Always address debugging prompts to ensure your code is reproducible</strong></p>
@@ -445,20 +439,20 @@ Figure&nbsp;3.4: Debugging code with RStudio: notice the wavy red line highlight
 <h2 data-number="3.9" class="anchored" data-anchor-id="productivity-boosting-features"><span class="header-section-number">3.9</span> Productivity boosting features</h2>
 <p>Finally, we look at functionality in RStudio that goes beyond the features described above. RStudio is an advanced and powerful IDE and is highly customisable in myriad ways, especially since the launch of the RStudio Addins add-on system in <a href="https://cran.r-project.org/web/packages/addinslist/readme/README.html">2016</a>. Rather than try to be comprehensive (an impossible task), this section provides a list of additional RStudio features, starting simple, that have been tried and tested, with links to the relevant documentation rather than extended descriptions.</p>
 <ul>
-<li><p>Zoom levels and appearance settings: it is important for code and other text to be the right size. Too small and it’s hard to see, too big and you end up frequently scrolling up and down. The appropriate text size varies: if you’re doing a screen share, big text is appropriate; if you’re writing copious amounts of text (as I was when writing this prose in RStudio), smaller text will be handy. On Windows and Linux you can zoom with the shortcuts <code>Ctl+Shift++</code> and <code>Ctl+-</code> for zooming in and out respectively. See ‘Tools &gt; Global Options’ menu (which can be launched with the shortcut <code>Alt+T</code> and then <code>G</code>) for more advanced ‘Appearance’ settings.</p></li>
-<li><p>Global search (and replace): in addition to search and replace functionality for single files (accessed in the standard way, by pressing <code>Ctl+F</code>), RStudio has a powerful global search feature inbuilt. Launch this feature by pressing <code>Ctl+Shift+F</code> and you can search any file types (e.g.&nbsp;only files ending in <code>.R</code>) for any string within an entire project. This feature is very handy when working with large, multi-file projects.</p></li>
+<li><p>Zoom levels and appearance settings: it is important for code and other text to be the right size. Too small and it’s hard to see, too big and you end up frequently scrolling up and down. The appropriate text size varies: if you’re doing a screen share, big text is appropriate; if you’re writing copious amounts of text (as I was when writing this prose in RStudio), smaller text will be handy. On Windows and Linux you can zoom with the shortcuts <code>Ctrl+Shift++</code> and <code>Ctrl+-</code> for zooming in and out respectively. See ‘Tools &gt; Global Options’ menu (which can be launched with the shortcut <code>Alt+T</code> and then <code>G</code>) for more advanced ‘Appearance’ settings.</p></li>
+<li><p>Global search (and replace): in addition to search and replace functionality for single files (accessed in the standard way, by pressing <code>Ctrl+F</code>), RStudio has a powerful global search feature inbuilt. Launch this feature by pressing <code>Ctrl+Shift+F</code> and you can search any file types (e.g.&nbsp;only files ending in <code>.R</code>) for any string within an entire project. This feature is very handy when working with large, multi-file projects.</p></li>
 <li><p>Shortcuts: there are many, many shortcuts built into RStudio. In fact, there is even a shortcut to show the list of shortcuts. Try pressing <code>Alt+Shift+K</code> to get the complete list. Nobody I know can remember, let alone use, all of these. However, over time I expect that you will learn to love some of them. My top 5 RStudio-specific shortcuts are:</p>
 <ul>
-<li><code>Ctl+Enter</code> to send a line of code from the code editor (called the Source Editor in RStudio) to be executed or ‘run’ in the console. Amazingly, some other prominent IDEs such as Microsoft’s VSCode editor, lack this important feature by default.</li>
-<li><code>Ctl+1</code> and <code>Ctl+2</code> to switch between the console (for writing test code and ‘run once’ commands) and the code editor (for writing code to keep).</li>
+<li><code>Ctrl+Enter</code> to send a line of code from the code editor (called the Source Editor in RStudio) to be executed or ‘run’ in the console. Amazingly, some other prominent IDEs such as Microsoft’s VSCode editor, lack this important feature by default.</li>
+<li><code>Ctrl+1</code> and <code>Ctrl+2</code> to switch between the console (for writing test code and ‘run once’ commands) and the code editor (for writing code to keep).</li>
 <li><code>Alt+Up/Down</code> and <code>Alt+Shift+Up/Down</code> to move and copy lines of code up and down, handy when you want to re-order your code or make small changes to a copy of a line of code.</li>
-<li><a href="https://nhsrcommunity.com/blog/r-studio-shortcuts/"><code>Ctl+Shift+M</code></a> will create the pipe operator (<code>%&gt;%</code>, this pipe was created using the shortcut!), saving time when creating <code>dplyr</code> pipelines, as discussed in <a href="05-data.html" class="quarto-xref"><span>Chapter 5</span></a>.</li>
-<li><code>Ctl+Shift+F10</code> when you want to restart R, leaving you with a ‘blank slate’ in which packages are not loaded and objects are removed from the global environment.</li>
+<li><a href="https://nhsrcommunity.com/blog/r-studio-shortcuts/"><code>Ctrl+Shift+M</code></a> will create the pipe operator (<code>%&gt;%</code>, this pipe was created using the shortcut!), saving time when creating <code>dplyr</code> pipelines, as discussed in <a href="05-data.html" class="quarto-xref"><span>Chapter 5</span></a>.</li>
+<li><code>Ctrl+Shift+F10</code> when you want to restart R, leaving you with a ‘blank slate’ in which packages are not loaded and objects are removed from the global environment.</li>
 </ul></li>
 <li><p>Git integration for collaboration: RStudio provides two mechanisms for sharing your code with others via sites such as GitHub and GitLab, with the ‘Git’ panel in the top right pane and via the Terminal panel described in the next section.</p></li>
 <li><p>Support for Python, C++ and other languages: a joke on Twitter said “What’s the best Python editor? RStudio.” Although most Python programmers would probably disagree, the joke is true in the sense that R has good support for some other languages: Python and C++ in particular. If you open a Python script in RStudio on a computer that has Python and the <code>reticulate</code> R package installed, the R console will magically convert into a Python console when you press <code>Ctl+Enter</code> to execute a line of Python code, as described in the article “<a href="https://blog.rstudio.com/2018/10/09/rstudio-1-2-preview-reticulated-python/">Reticulated Python</a>” on the RStudio website.</p></li>
 </ul>
-<p>Like R package, an active community of developers is developing a range of extensions and RStudio itself is gradually evolving to meet the evolving needs of 21<sup>st</sup> Century data scientists. If there are any features that you would like to see, you can always ask others for pointers, e.g.&nbsp;on the <a href="https://community.rstudio.com/">RStudio Community forum</a>.</p>
+<p>Like R packages, an active community of developers is developing a range of extensions and RStudio itself is gradually evolving to meet the evolving needs of 21<sup>st</sup> Century data scientists. If there are any features that you would like to see, you can always ask others for pointers, e.g.&nbsp;on the <a href="https://community.rstudio.com/">RStudio Community forum</a>.</p>
 
 
 </section>

@@ -498,11 +498,11 @@ Figure&nbsp;2.1: The R console pane in RStudio that appears when you first open 
 </div>
 <p>R also supports many other formats, including CSV files, which can be created and imported with the functions <code>{readr}::read_csv()</code> and <code>{readr}::write_csv()</code> (see also the <a href="https://readr.tidyverse.org/">{readr}</a> package).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>{readr}<span class="sc">::</span><span class="fu">write_csv</span>(crashes, <span class="st">"crashes.csv"</span>) <span class="co"># uses the write_csv function from the readr package</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>crashes3 <span class="ot">=</span> {readr}<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"crashes.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(crashes, <span class="st">"crashes.csv"</span>) <span class="co"># uses the write_csv function from the readr package</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>crashes3 <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"crashes.csv"</span>)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(crashes3, crashes) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice that <code>crashes3</code> and <code>crashes</code> are not identical. What has changed? Hint: read the help page associated with <code>?{readr}::write_csv</code>.</p>
+<p>Notice that <code>crashes3</code> and <code>crashes</code> are not identical. What has changed? Hint: read the help page associated with <code>?readr::write_csv</code>.</p>
 </section>
 <section id="now-you-are-ready-to-use-rstudio" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="now-you-are-ready-to-use-rstudio"><span class="header-section-number">2.9</span> Now you are ready to use RStudio</h2>
