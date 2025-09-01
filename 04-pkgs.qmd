@@ -45,7 +45,7 @@ More importantly, being 'on CRAN' (which technically means 'available on the [Co
 
 ```{r}
 #| eval: false
-install.packages("{stats19}")
+install.packages("stats19")
 ```
 
 You might think that now that the package has been installed we can start using it, but that is not true.  This is illustrated in the code below, which tries and fails to run the `find_file_name()` function from the `{stats19}` package to find the file containing {STATS19} casualties data for the year 2020. Check that this function exists by running the following command `?find_file_name`:
@@ -61,7 +61,7 @@ After you have installed a package the next step is to 'load' it.
 Load the `{stats19}` package, that was installed in the previous section, using the following code:
 
 ```{r}
-library({stats19})
+library(stats19)
 ```
 
 What happened? 
@@ -74,11 +74,11 @@ find_file_name(years = 2020, type = "casualt")
 
 This raises the question: how do you know which functions are available in a particular package?
 You can find out using the autocompletion, i.e. by pressing `Tab` after typing the package's name, followed by two colons.
-Try typing `{stats19}::` and then hitting `Tab`, for example.
+Try typing `stats19::` and then hitting `Tab`, for example.
 You should see a load of function names appear, which you view by pressing `Up` and `Down` on your keyboard.
 
 The final thing to say about packages is that they can be used without being loaded by typing `package::function()`.  We used this before in Section 2.8, where we imported csv data using the `{readr}` package via `{readr}::read_csv()`.
-So `{stats19}::find_file_name(years = 2020, type = "casualt")` works even if the package isn't loaded.
+So `stats19::find_file_name(years = 2020, type = "casualt")` works even if the package isn't loaded.
 
 You can test this by running the `sf_extSoftVersion()` command from the `sf` package. This command reports the versions of key geographic libraries installed on your system. In the first attempt below, the command fails and reports an error. In the second and third attempts, utilising `::` and `library`, you can see that the command succeeds:   
 
@@ -134,7 +134,7 @@ To update just one package, you can give the function a package name, e.g.:
 
 ```{r}
 #| eval: false
-update.packages(oldPkgs = "{stats19}")
+update.packages(oldPkgs = "stats19")
 ```
 
 Completing the following short exercises will ensure you've got a good understanding of packages and package versions.
@@ -153,7 +153,7 @@ To plot non-spatial data, it works as follows (the command should generate the i
 #| label: fig-crashes2020time
 #| fig-cap: "A simple ggplot2 graph."
 #| message: false
-library({ggplot2})
+library(ggplot2)
 ggplot(crashes_2020) + geom_bar(aes(date), width = 1)
 ```
 
@@ -182,7 +182,7 @@ As a final taught bit of `{ggplot2}` code in this section, create a facetted plo
 #| fig-cap: "A plot showing a facetted time series plot made with ggplot2."
 #| warning: false
 #| message: false
-library({tidyverse})
+library(tidyverse)
 crashes_2020 %>% 
   mutate(hour = lubridate::hour(datetime)) %>% 
   mutate(day = lubridate::wday(date)) %>% 
@@ -204,7 +204,7 @@ Another useful package in the tidyverse is `{dplyr}`, which stands for 'data pli
 The pipe operator puts the output of one command into the first argument of the next, as shown below (**Note:** the results are the same):
 
 ```{r}
-library({dplyr})
+library(dplyr)
 class(crashes_2020)       
 crashes_2020 %>% class()
 ```

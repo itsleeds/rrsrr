@@ -128,7 +128,7 @@ To complete the exercises in this guide, you will need to install:
 
 - R from [cran.r-project.org](https://cran.r-project.org/)
 - RStudio from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
-- R packages, by opening RStudio and typing `install.packages("{stats19}")` in the console to install the `{stats19}` package, for example (see @sec-pkgs for details)
+- R packages, by opening RStudio and typing `install.packages("stats19")` in the console to install the `stats19` package, for example (see @sec-pkgs for details)
 
 We recommend using at least the latest stable release of R (4.0.3 at the time of writing in 2020). 
 If you're running on macOS or Linux, you may need to install additional dependencies, as documented in blog posts and documentation pages such as [Installation of R 4.0 on Ubuntu 20.04 LTS and tips for spatial packages](https://rtask.thinkr.fr/installation-of-r-4-0-on-ubuntu-20-04-lts-and-tips-for-spatial-packages/) and the [Installing](https://github.com/r-spatial/sf#installing) section of the [github.com/r-spatial/sf](https://github.com/r-spatial/sf) package README page.
@@ -153,7 +153,7 @@ If you want to be ahead of the game, you can check that you have the necessary p
 #| eval: false
 install.packages("remotes") # installs the remotes package
 pkgs = c(
-  "{stats19}",     # downloads and formats open stats19 crash data
+  "stats19",     # downloads and formats open stats19 crash data
   "sf",          # spatial data package
   "tidyverse",   # a 'metapackage' with many functions for data processing
   "tmap",        # for making maps

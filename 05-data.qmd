@@ -26,7 +26,7 @@ Let's start by re-creating the `crashes` dataset from Section 2, but this time u
 
 ```{r}
 #| message: false
-library({tidyverse})
+library(tidyverse)
 crashes = tibble(
   casualty_type = c("pedestrian", "cyclist", "cat"),
   casualty_age = seq(from = 20, to = 60, by = 20),
@@ -85,9 +85,9 @@ Look at the help pages associated with `filter()`, `select()` and the related fu
 
 ```{r}
 #| eval: false
-?{dplyr}::filter
-?{dplyr}::select
-?{dplyr}::slice
+?dplyr::filter
+?dplyr::select
+?dplyr::slice
 ```
 
 ## Ordering and selecting the 'top n'

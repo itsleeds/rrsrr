@@ -298,12 +298,12 @@ R also supports many other formats, including CSV files, which can be created an
 
 ```{r}
 #| eval: false
-{readr}::write_csv(crashes, "crashes.csv") # uses the write_csv function from the readr package
-crashes3 = {readr}::read_csv("crashes.csv")
+readr::write_csv(crashes, "crashes.csv") # uses the write_csv function from the readr package
+crashes3 = readr::read_csv("crashes.csv")
 identical(crashes3, crashes) 
 ```
 
-Notice that `crashes3` and `crashes` are not identical. What has changed? Hint: read the help page associated with `?{readr}::write_csv`.
+Notice that `crashes3` and `crashes` are not identical. What has changed? Hint: read the help page associated with `?readr::write_csv`.
 
 ## Now you are ready to use RStudio
 
