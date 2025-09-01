@@ -5,6 +5,8 @@ project:
 
 execute:
   cache: true
+  message: false
+  warning: false
 
 book:
   title: "Reproducible Road Safety Research with R"
