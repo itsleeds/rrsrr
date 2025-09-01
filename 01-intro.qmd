@@ -28,9 +28,19 @@ However, the content is designed to be general and should be of use to **anyone 
 #| label: tbl-asample
 #| tbl-cap: "Sample crash dataset. These are real records taken from the open STATS19 database, provided by the UK's Department for Transport, under the terms of the Open Government Licence (OGL)."
 #| include: true
+#| echo: false
+#| message: false
 a = stats19::get_stats19(2020)
-v = c("date", "longitude", "latitude", "accident_severity")
-a_sample = a[3:5, v]
+v = c("date", "location_easting", "location_northing", "accident_severity")
+set.seed(42)
+a_sample = a |>
+  dplyr::sample_n(3) |>
+  dplyr::select(matches(v)) |>
+  dplyr::rename(
+    Easting = location_easting_osgr,
+    Northing = location_northing_osgr,
+    Severity = accident_severity
+  )
 knitr::kable(a_sample)
 ```
 
