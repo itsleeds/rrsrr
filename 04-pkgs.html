@@ -286,14 +286,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>After you have installed a package the next step is to ‘load’ it. Load the <code>{stats19}</code> package, that was installed in the previous section, using the following code:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats19)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Data provided under OGL v3.0. Cite the source and link to:
-www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</code></pre>
-</div>
 </div>
 <p>What happened? Other than the message telling us about the package’s datasets (most packages load silently, so do not worry if nothing happens when you load a package), the command above made the functions and datasets in the package available to us. Now we can use functions from the package without an error message, as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_file_name</span>(<span class="at">years =</span> <span class="dv">2020</span>, <span class="at">type =</span> <span class="st">"casualt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_file_name</span>(<span class="at">years =</span> <span class="dv">2020</span>, <span class="at">type =</span> <span class="st">"casualt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "dft-road-casualty-statistics-casualty-2020.csv"</code></pre>
 </div>
@@ -302,15 +298,15 @@ www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</code></pre>
 <p>The final thing to say about packages is that they can be used without being loaded by typing <code>package::function()</code>. We used this before in Section 2.8, where we imported csv data using the <code>{readr}</code> package via <code>{readr}::read_csv()</code>. So <code>stats19::find_file_name(years = 2020, type = "casualt")</code> works even if the package isn’t loaded.</p>
 <p>You can test this by running the <code>sf_extSoftVersion()</code> command from the <code>sf</code> package. This command reports the versions of key geographic libraries installed on your system. In the first attempt below, the command fails and reports an error. In the second and third attempts, utilising <code>::</code> and <code>library</code>, you can see that the command succeeds:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try running a function without loading the sf package first</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_extSoftVersion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try running a function without loading the sf package first</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_extSoftVersion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in sf_extSoftVersion(): could not find function "sf_extSoftVersion"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run a function from a package's namespace without loading it but using ::</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_extSoftVersion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run a function from a package's namespace without loading it but using ::</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_extSoftVersion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
       "3.12.1"        "3.8.4"        "9.4.0"         "true"         "true" 
@@ -319,12 +315,9 @@ www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run a function call after loading the package (the most common way)</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_extSoftVersion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run a function call after loading the package (the most common way)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_extSoftVersion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
       "3.12.1"        "3.8.4"        "9.4.0"         "true"         "true" 
@@ -338,8 +331,8 @@ www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</code></pre>
 <h2 data-number="4.5" class="anchored" data-anchor-id="using-packages"><span class="header-section-number">4.5</span> Using packages</h2>
 <p>After loading a package, as described in the previous section, you can start using its functions. In the <code>{stats19}</code> package that means the following command <code>get_stats19()</code> will now work:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>crashes_2020 <span class="ot">=</span> <span class="fu">get_stats19</span>(<span class="at">year =</span> <span class="dv">2020</span>, <span class="at">type =</span> <span class="st">"accidents"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(crashes_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>crashes_2020 <span class="ot">=</span> <span class="fu">get_stats19</span>(<span class="at">year =</span> <span class="dv">2020</span>, <span class="at">type =</span> <span class="st">"accidents"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(crashes_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 91199</code></pre>
 </div>
@@ -347,14 +340,14 @@ www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</code></pre>
 <p>This command demonstrates the value of packages. It would have been possible to get the same dataset by manually downloading and cleaning the file from the <a href="https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data">STATS19 website on data.gov.uk</a>. However, by using the package, the process has been achieved much faster and with fewer lines of code than would have been possible using general-purpose base R functions. The result of the <code>nrow()</code> function call shows that we have downloaded a decent amount of data representing over 100k road traffic casualty incidents across Great Britain in 2020.</p>
 <p>We will use other functions from the package in subsequent sections of this guide. If you would like to learn more about <code>{stats19}</code> and how it can be used for road safety research, check out its vignettes. The <code>{stats19}</code> vignette, for example, should appear in the <strong>Help</strong> panel in the bottom right panel in RStudio after running the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"stats19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"stats19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="updating-packages" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="updating-packages"><span class="header-section-number">4.6</span> Updating packages</h2>
 <p>Packages can be updated with the command <code>update.packages()</code> or in ‘Tools &gt; Check for Package Updates’ in RStudio. You only need to install a package once but packages can be updated many times. It is important to update packages regularly because updates will offer bug-fixes and other improvements. To update just one package, you can give the function a package name, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">oldPkgs =</span> <span class="st">"stats19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">oldPkgs =</span> <span class="st">"stats19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Completing the following short exercises will ensure you’ve got a good understanding of packages and package versions.</p>
 <ol type="1">
@@ -367,8 +360,8 @@ www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</code></pre>
 <h2 data-number="4.7" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">4.7</span> {ggplot2}</h2>
 <p><code>{ggplot2}</code> is a generic plotting package that is part of the <a href="https://www.tidyverse.org/">‘tidyverse’</a> meta-package. The <code>{tidyverse}</code> is an ‘Opinionated collection of R packages designed for data science’. <code>{ggplot2}</code> is flexible, popular and has dozens of add-on packages which build on it, such as <code>{gganimate}</code>. To plot non-spatial data, it works as follows (the command should generate the image shown in Figure 4.1, showing a bar chart of the number of crashes over time):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2020) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(date), <span class="at">width =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2020) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(date), <span class="at">width =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-crashes2020time" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -384,10 +377,10 @@ Figure&nbsp;4.1: A simple ggplot2 graph.
 </div>
 <p>A key feature of the <code>{ggplot2}</code> package is the function <code>ggplot2()</code>. This function initiates the creation of a plot by taking a data object as its main argument followed by one or more ‘geoms’ that represent layers (in this case a bar chart represented by the function <code>geom_bar()</code>). Another distinctive feature of <code>ggplot2()</code> is the use of <code>+</code> operator to add layers.</p>
 <p>The package is excellent for generating publication-quality figures. Starting from a basic idea, you can make incremental tweaks to a plot to get the output you want. Building on the figure above, we could make the bin width (width of the bars) wider, add colour depending on the crash severity and use count (Figure 4.2) or proportion (Figure 4.3) as our y axis, for example, as follows:</p>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2020) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(date, <span class="at">fill =</span> accident_severity), <span class="at">width =</span> <span class="dv">1</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2020) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(date, <span class="at">fill =</span> accident_severity), <span class="at">width =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion of crashes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2020) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(date, <span class="at">fill =</span> accident_severity), <span class="at">width =</span> <span class="dv">1</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crashes_2020) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(date, <span class="at">fill =</span> accident_severity), <span class="at">width =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion of crashes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -418,14 +411,14 @@ Figure&nbsp;4.3: Demonstration of fill and position arguments in ggplot2.
 </div>
 <p>The package is huge and powerful, with support for a very wide range of plot types and themes, so it is worth taking time to read the documentation associated with the package, starting with the online <a href="https://ggplot2.tidyverse.org/reference/index.html">reference manual</a> and heading towards the online version of the package’s official <a href="https://ggplot2-book.org/">book</a>. As a final taught bit of <code>{ggplot2}</code> code in this section, create a facetted plot showing how the number of crashes per hour varies across the days of the week by typing the following into the Source Editor and running the chunk line-by-line (the meaning of the commands should become clear by the end of the next section):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>crashes_2020 <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hour =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(datetime)) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(date)) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hour)) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hour, <span class="at">fill =</span> accident_severity)) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="fl">1.01</span>) <span class="sc">+</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>day)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>crashes_2020 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hour =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(datetime)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hour)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hour, <span class="at">fill =</span> accident_severity)) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="fl">1.01</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>day)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-ggfacetr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -445,12 +438,12 @@ Figure&nbsp;4.4: A plot showing a facetted time series plot made with ggplot2.
 <h2 data-number="4.8" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">4.8</span> {dplyr}</h2>
 <p>Another useful package in the tidyverse is <code>{dplyr}</code>, which stands for ‘data pliers’, which provides a handy syntax for data manipulation. <code>{dplyr}</code> has many functions for manipulating data frames and using the pipe operator <code>%&gt;%</code>. The pipe operator puts the output of one command into the first argument of the next, as shown below (<strong>Note:</strong> the results are the same):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(crashes_2020)       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(crashes_2020)       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>crashes_2020 <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>crashes_2020 <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
 </div>

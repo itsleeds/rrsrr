@@ -532,9 +532,6 @@ Figure&nbsp;7.8: Illustration of geographic joins.
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>) <span class="co"># this sets the tmap mode to plotting as opposed to interactive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>ℹ tmap mode set to "plot".</code></pre>
-</div>
 </div>
 <p><strong>Exercises:</strong></p>
 <ol type="1">
@@ -543,9 +540,9 @@ Figure&nbsp;7.8: Illustration of geographic joins.
 <li>Add an additional layer to the interactive map showing the location of crashes, using marker and dot symbols.</li>
 <li><strong>Bonus:</strong> Change the default basemap (<strong>Hint:</strong> you may need to search in the package documentation or online for the solution).</li>
 </ol>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(zones[<span class="fu">c</span>(<span class="st">"all"</span>, <span class="st">"bicycle"</span>)])</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(zones) <span class="sc">+</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="fu">c</span>(<span class="st">"all"</span>, <span class="st">"bicycle"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(zones[<span class="fu">c</span>(<span class="st">"all"</span>, <span class="st">"bicycle"</span>)])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(zones) <span class="sc">+</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="fu">c</span>(<span class="st">"all"</span>, <span class="st">"bicycle"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -580,8 +577,8 @@ Figure&nbsp;7.10: Illustration of the plot and tmap approaches for creating maps
 <p>Based on the saying, “Don’t run before you can walk,” we’ve learned the vital foundations of R before tackling a real dataset. Temporal and spatial attributes are key to road crash data, hence the emphasis on <code>lubridate</code> and <code>sf</code>. Visualisation is central to understanding data and influencing policy, which is where <code>tmap</code> comes in. With these solid foundations, plus knowledge of how to ask for help (we recommend reading R’s internal help, asking colleagues, searching the internet and creating new questions or comments on online forums such as StackOverflow or GitHub and we suggest you follow this order of resources to get help), you are ready to test the methods on some real data.</p>
 <p>Before doing so, take a read of the <code>stats19</code> vignette, which can be launched as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">"stats19"</span>) <span class="co"># view all vignettes available on stats19</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"stats19"</span>) <span class="co"># view the introductory vignette</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">"stats19"</span>) <span class="co"># view all vignettes available on stats19</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"stats19"</span>) <span class="co"># view the introductory vignette</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This should now be sufficient to tackle the following exercises:</p>
 <ol type="1">
@@ -624,31 +621,21 @@ Figure&nbsp;7.12: Maps of the Isle of Wight.
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"itsleeds/osmextract"</span>) <span class="co"># install github package for osm data</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>region_name <span class="ot">=</span> <span class="st">"essex"</span> <span class="co"># "essex" can be changed to another area name as required</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>osm_data <span class="ot">=</span> <span class="fu">oe_get</span>(region_name, <span class="at">extra_tags =</span> <span class="fu">c</span>(<span class="st">"maxspeed"</span>, <span class="st">"ref"</span>))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(osm_data<span class="sc">$</span>highway)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#filter osm_data to show only major roads</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> osm_data <span class="sc">%&gt;%</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(highway, <span class="at">pattern =</span> <span class="st">"moto|prim|seco|tert|trunk"</span>))</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># transform geometry and save</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> <span class="fu">st_transform</span>(roads, <span class="dv">27700</span>) <span class="co">#converts to projected BNG system for later use</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(roads$geometry) # basic plot of roads</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(roads) <span class="sc">+</span> <span class="fu">tm_lines</span>(<span class="st">"maxspeed"</span>, <span class="at">showNA =</span> T, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(roads, <span class="at">file =</span> <span class="st">"roads.Rds"</span>) <span class="co"># Saves road dataset for future use</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"itsleeds/osmextract"</span>) <span class="co"># install github package for osm data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>region_name <span class="ot">=</span> <span class="st">"essex"</span> <span class="co"># "essex" can be changed to another area name as required</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>osm_data <span class="ot">=</span> <span class="fu">oe_get</span>(region_name, <span class="at">extra_tags =</span> <span class="fu">c</span>(<span class="st">"maxspeed"</span>, <span class="st">"ref"</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(osm_data<span class="sc">$</span>highway)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#filter osm_data to show only major roads</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> osm_data <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(highway, <span class="at">pattern =</span> <span class="st">"moto|prim|seco|tert|trunk"</span>))</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># transform geometry and save</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> <span class="fu">st_transform</span>(roads, <span class="dv">27700</span>) <span class="co">#converts to projected BNG system for later use</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(roads$geometry) # basic plot of roads</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(roads) <span class="sc">+</span> <span class="fu">tm_lines</span>(<span class="st">"maxspeed"</span>, <span class="at">showNA =</span> T, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(roads, <span class="at">file =</span> <span class="st">"roads.Rds"</span>) <span class="co"># Saves road dataset for future use</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── tmap v3 code detected ───────────────────────────────────────────────────────</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[v3-&gt;v4] `tm_lines()`: migrate the argument(s) related to the legend of the
-visual variable `col` namely 'showNA' to 'col.legend = tm_legend(&lt;HERE&gt;)'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
