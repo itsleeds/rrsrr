@@ -627,7 +627,7 @@ Figure&nbsp;7.12: Maps of the Isle of Wight.
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>osm_data <span class="ot">=</span> <span class="fu">oe_get</span>(region_name, <span class="at">extra_tags =</span> <span class="fu">c</span>(<span class="st">"maxspeed"</span>, <span class="st">"ref"</span>))</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(osm_data<span class="sc">$</span>highway)</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#filter osm_data to show only major roads</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> osm_data <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> osm_data <span class="sc">|&gt;</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(highway, <span class="at">pattern =</span> <span class="st">"moto|prim|seco|tert|trunk"</span>))</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># transform geometry and save</span></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> <span class="fu">st_transform</span>(roads, <span class="dv">27700</span>) <span class="co">#converts to projected BNG system for later use</span></span>

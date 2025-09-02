@@ -252,7 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The previous section taught the basics of the R language. We entered and ran commands directly in the console. In this section we will learn how to write R scripts in RStudio’s source editor. We will also take a step back and consider how R code fits into the wider context of scripts, projects, and getting help in RStudio. RStudio is an integrated development environment (IDE) for R that makes it easy to create and run scripts, explore R objects and functions, plot results and get help.</p>
 <p>The first exercise is to open RStudio, take a look around, identify and explore the main components, shown in <a href="#fig-rstudioui" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>. Click on different buttons in RStudio’s GUI and try changing the Global Settings (in the Tools menu) and see RStudio’s shortcuts by pressing <code>Alt-Shift-K</code> (or <code>Option+Shift+K</code> on Mac).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/rstudio-ui.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-rstudioui" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -272,7 +271,7 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 <p><strong>‘Scripts’</strong> are files where R code are stored, and these can be edited in the <strong>Source Editor</strong> panel (the top left panel in <a href="#fig-rstudioui" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>). <strong>Keeping your code in sensibly named, well organised and reproducible scripts will make your life easier.</strong> We could continue typing all our code into the console, as we did in <a href="02-basics.html" class="quarto-xref"><span>Chapter 2</span></a>. However, that approach is limited when working on anything more complicated than a few simple commands. Code that you want to keep and share should be saved script files, i.e.&nbsp;plain text files that have the <code>.R</code> extension.</p>
 <p>Make a new script by typing and running this command in the R console:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="st">"section3.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="st">"section3.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will open the Source Editor and place your cursor there. Try jumping between the Source Editor and the Console by pressing <code>Ctrl+1</code> and <code>Ctrl+2</code>.</p>
 <p>Keeping scripts and other files associated with a project in a single folder per project (in an RStudio project) will help you to locate things you need and develop an efficient workflow. Next, to check that your project is saved, close RStudio.</p>
@@ -281,9 +280,9 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 <h2 data-number="3.2" class="anchored" data-anchor-id="writing-and-running-code"><span class="header-section-number">3.2</span> Writing and running code</h2>
 <p>Re-open RStudio and ensure that you have an empty file open in the Source Editor. We will type some basic commands into this file. Type the following lines of code into your new <code>section3.R</code> R script and execute the result line-by-line by pressing <code>Ctrl+Enter</code> (<code>Command+Enter</code> on Mac):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">18</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">18</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When the code has been sent to the console, two objects are created, both of which are vectors of 5 elements (<strong>Bonus:</strong> check their length using the <code>length()</code> function). The third line of the code chunk plots them. Save the script by pressing <code>Ctrl+S</code>.</p>
 <p>There are several ways to run code within a script and it is worth becoming familiar with each. Try running the code you saved in the previous section using each of these methods:</p>
@@ -300,13 +299,13 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 <h2 data-number="3.3" class="anchored" data-anchor-id="viewing-objects"><span class="header-section-number">3.3</span> Viewing Objects</h2>
 <p>To practice typing code into scripts, rather than into the console, we will re-create the objects we created in <a href="02-basics.html" class="quarto-xref"><span>Chapter 2</span></a>. Create a new script called <code>objects.R</code> and type the following commands, character-for-character, including spaces in the right places. Typing rather than copy-pasting will help develop good coding style and speed:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vehicle_type <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"bus"</span>, <span class="st">"tank"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>casualty_type <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"pedestrian"</span>, <span class="st">"cyclist"</span>, <span class="st">"cat"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>casualty_age <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">20</span>, <span class="at">to =</span> <span class="dv">60</span>, <span class="at">by =</span> <span class="dv">20</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dark <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>small_matrix <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="at">nrow =</span> <span class="dv">12</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>crashes <span class="ot">=</span> <span class="fu">data.frame</span>(vehicle_type, casualty_type, casualty_age, dark)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vehicle_type <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"bus"</span>, <span class="st">"tank"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>casualty_type <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"pedestrian"</span>, <span class="st">"cyclist"</span>, <span class="st">"cat"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>casualty_age <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">20</span>, <span class="at">to =</span> <span class="dv">60</span>, <span class="at">by =</span> <span class="dv">20</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dark <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>small_matrix <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="at">nrow =</span> <span class="dv">12</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>crashes <span class="ot">=</span> <span class="fu">data.frame</span>(vehicle_type, casualty_type, casualty_age, dark)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Run the code line-by-line by pressing <code>Ctrl+Enter</code> multiple times, as described in the previous section. Try viewing the objects in the following ways:</p>
 <ol type="1">
@@ -326,7 +325,7 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 </ul>
 <p>View a summary of the <code>casualty_age</code> variable by running the following line of code (you should see the same output as shown below):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(casualty_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(casualty_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
      20      30      40      40      50      60 </code></pre>
@@ -338,7 +337,7 @@ Figure&nbsp;3.1: The RStudio user interface showing the four main ‘panes’.
 <h2 data-number="3.4" class="anchored" data-anchor-id="autocompletion"><span class="header-section-number">3.4</span> Autocompletion</h2>
 <p>RStudio can help you write code by autocompleting it. RStudio (and other IDEs) will look for similar objects and functions after typing the first three letters of a name, as shown in <a href="#fig-autocomp" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/autocomplete.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/autocomplete.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-autocomp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -354,7 +353,7 @@ Figure&nbsp;3.2: RStudio autocompletion suggestions
 </div>
 <p>When there is more than one option, you can select from the list using the mouse or arrow keys. Within a function, you can get a list of arguments by pressing <code>Tab</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/functionhelp.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/functionhelp.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-help" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -376,7 +375,7 @@ Figure&nbsp;3.3
 <p>Every function in R has a help page. You can view the help using <code>?</code>. For example, <code>?sum</code> and <code>?plot</code>. Many packages also contain ‘vignettes’, which are long form help documents containing examples and guides. <code>vignette()</code> will show a list of all the vignettes available, or you can also view a specific vignette. For example, <code>vignette(topic = "sf1", package = "sf")</code>.</p>
 <p>Try getting help on the <code>{stats19}</code> package by typing the following and pressing <code>Tab</code> when your cursor is just to the left of the closing bracket <code>)</code>. Autocompletion works for more than just R objects and files - try making RStudio autocomplete and run the command <code>vignette("stats19-vehicles")</code>. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"stats19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"stats19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can further search and explore R’s help files using the <strong>Help</strong> panel in the bottom right window in RStudio.</p>
 </section>
@@ -385,9 +384,9 @@ Figure&nbsp;3.3
 <p>It is good practice to use comments in your code to explain what it does. You can comment code using <code>#</code></p>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vector objects (a whole line comment)</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># a sequence of consecutive integers (inline comment)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="fl">18.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vector objects (a whole line comment)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># a sequence of consecutive integers (inline comment)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="fl">18.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can comment/uncomment a whole block of text by selecting it and using <code>Ctrl+Shift+C</code>.</p>
 <p><strong>Pro tip:</strong> You can add a comment section using <code>Ctrl+Shift+R</code>.</p>
@@ -409,11 +408,10 @@ Figure&nbsp;3.3
 <h2 data-number="3.8" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">3.8</span> Debugging Code</h2>
 <p>All the code shown so far is reproducible and, unless you introduced typos, is ‘bug free’, meaning that it runs without errors. Typos are common though and even experienced R users frequently see error messages as they undertake interactive data analysis. For that reason, learning to fix typos in R code is an important skill. RStudio comes to the rescue here with helpful debugging features. To test them, write some code that fails, as shown in the code chunk and exercises below, then answer the questions below by interacting with RStudio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x_<span class="sc">$</span> <span class="er">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># Non-standard character in object name</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span> <span class="fl">18.1</span>) <span class="co"># R code with a typo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x_<span class="sc">$</span> <span class="er">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># Non-standard character in object name</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span> <span class="fl">18.1</span>) <span class="co"># R code with a typo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/rstudio-autocomplete.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-debug" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -446,7 +444,7 @@ Figure&nbsp;3.4: Debugging code with RStudio: notice the wavy red line highlight
 <li><code>Ctrl+Enter</code> to send a line of code from the code editor (called the Source Editor in RStudio) to be executed or ‘run’ in the console. Amazingly, some other prominent IDEs such as Microsoft’s VSCode editor, lack this important feature by default.</li>
 <li><code>Ctrl+1</code> and <code>Ctrl+2</code> to switch between the console (for writing test code and ‘run once’ commands) and the code editor (for writing code to keep).</li>
 <li><code>Alt+Up/Down</code> and <code>Alt+Shift+Up/Down</code> to move and copy lines of code up and down, handy when you want to re-order your code or make small changes to a copy of a line of code.</li>
-<li><a href="https://nhsrcommunity.com/blog/r-studio-shortcuts/"><code>Ctrl+Shift+M</code></a> will create the pipe operator (<code>%&gt;%</code>, this pipe was created using the shortcut!), saving time when creating <code>dplyr</code> pipelines, as discussed in <a href="05-data.html" class="quarto-xref"><span>Chapter 5</span></a>.</li>
+<li><a href="https://nhsrcommunity.com/blog/r-studio-shortcuts/"><code>Ctrl+Shift+M</code></a> will create the pipe operator (<code>|&gt;</code>, this pipe was created using the shortcut!), saving time when creating <code>dplyr</code> pipelines, as discussed in <a href="05-data.html" class="quarto-xref"><span>Chapter 5</span></a>.</li>
 <li><code>Ctrl+Shift+F10</code> when you want to restart R, leaving you with a ‘blank slate’ in which packages are not loaded and objects are removed from the global environment.</li>
 </ul></li>
 <li><p>Git integration for collaboration: RStudio provides two mechanisms for sharing your code with others via sites such as GitHub and GitLab, with the ‘Git’ panel in the top right pane and via the Terminal panel described in the next section.</p></li>
