@@ -34,8 +34,8 @@ With that educational aside out of the way, we will now take a look at the time 
 
 ```{r}
 library(tidyverse)
-crashes_2021 %>% 
-  select(matches("time|date")) %>% 
+crashes_2021 |> 
+  select(matches("time|date")) |> 
   names()
 ```
 
@@ -86,12 +86,12 @@ We will do this first by *preprocessing* the data, creating a new object called 
 #| fig-height: 2
 # days of the week:
 dow = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-crashes_dow = crashes_2021 %>% 
-  mutate(hour = lubridate::hour(datetime)) %>% 
+crashes_dow = crashes_2021 |> 
+  mutate(hour = lubridate::hour(datetime)) |> 
   mutate(day = factor(weekdays(date), levels = dow)) 
 
-crashes_dow %>% 
-  filter(!is.na(hour) & !day %in% c("Saturday", "Sunday")) %>% 
+crashes_dow |> 
+  filter(!is.na(hour) & !day %in% c("Saturday", "Sunday")) |> 
   ggplot(aes(hour)) +
   geom_bar(width = 1.01) +
   facet_wrap(~day, nrow = 1)
@@ -107,16 +107,16 @@ These steps are shown in the code chunk below, which results in Figure 6.5.
 #| warning: false
 #| message: false
 #| fig-height: 2
-crashes_day_rel = crashes_dow %>%  # create 'day of week relative' object  
-  filter(!is.na(hour) & !day %in% c("Saturday", "Sunday")) %>% # none on weekends
-  select(day, hour) %>%            # keep only time columns
-  group_by(hour) %>%               # group by hour
-  mutate(n_per_hour = n()/5) %>%   # number per hour (divide by 5 for n. days)
-  group_by(day, hour) %>%          # group by day and hour
-  summarise(n_hday = n(), n_h = first(n_per_hour)) %>% # summarise results
+crashes_day_rel = crashes_dow |>  # create 'day of week relative' object  
+  filter(!is.na(hour) & !day %in% c("Saturday", "Sunday")) |> # none on weekends
+  select(day, hour) |>            # keep only time columns
+  group_by(hour) |>               # group by hour
+  mutate(n_per_hour = n()/5) |>   # number per hour (divide by 5 for n. days)
+  group_by(day, hour) |>          # group by day and hour
+  summarise(n_hday = n(), n_h = first(n_per_hour)) |> # summarise results
   mutate(hday_relative = n_hday / n_h) # calculate relative n. crashes per hour/day
 summary(crashes_day_rel)
-crashes_day_rel %>% 
+crashes_day_rel |> 
   ggplot() +
   geom_col(aes(hour, hday_relative)) +
   facet_wrap(~day, nrow = 1)

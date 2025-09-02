@@ -290,7 +290,7 @@ This should now be sufficient to tackle the following exercises:
 #| echo: false
 u = "https://github.com/ropensci/stats19/releases/download/1.1.0/roads_key.Rds" 
 roads_wgs = readRDS(url(u))
-roads = roads_wgs %>% st_transform(crs = 27700)
+roads = roads_wgs |> st_transform(crs = 27700)
 u = "https://github.com/ropensci/stats19/releases/download/1.1.0/car_accidents_2017_iow.Rds"
 crashes_iow = readRDS(url(u))
 plot(roads$geometry)
@@ -314,7 +314,7 @@ region_name = "essex" # "essex" can be changed to another area name as required
 osm_data = oe_get(region_name, extra_tags = c("maxspeed", "ref"))
 table(osm_data$highway)
 #filter osm_data to show only major roads
-roads = osm_data %>%
+roads = osm_data |>
   filter(str_detect(highway, pattern = "moto|prim|seco|tert|trunk"))
 # transform geometry and save
 roads = st_transform(roads, 27700) #converts to projected BNG system for later use

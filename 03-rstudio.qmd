@@ -12,6 +12,7 @@ Click on different buttons in RStudio’s GUI and try changing the Global Settin
 ```{r}
 #| label: fig-rstudioui
 #| fig-cap: "The RStudio user interface showing the four main 'panes'."
+#| echo: false
 knitr::include_graphics("figures/rstudio-ui.png")
 ```
 
@@ -202,6 +203,7 @@ y = c(0, 1, 3, 9 18.1) # R code with a typo
 
 ```{r}
 #| label: fig-debug
+#| echo: false
 #| fig-cap: "Debugging code with RStudio: notice the wavy red line highlighting a typo."
 knitr::include_graphics("figures/rstudio-autocomplete.png")
 ```
@@ -227,7 +229,7 @@ Rather than try to be comprehensive (an impossible task), this section provides 
   - `Ctrl+Enter` to send a line of code from the code editor (called the Source Editor in RStudio) to be executed or 'run' in the console. Amazingly, some other prominent IDEs such as Microsoft's VSCode editor, lack this important feature by default.
   - `Ctrl+1` and `Ctrl+2` to switch between the console (for writing test code and 'run once' commands) and the code editor (for writing code to keep).
   - `Alt+Up/Down` and `Alt+Shift+Up/Down` to move and copy lines of code up and down, handy when you want to re-order your code or make small changes to a copy of a line of code.
-  - [`Ctrl+Shift+M`](https://nhsrcommunity.com/blog/r-studio-shortcuts/) will create the pipe operator (` %>% `, this pipe was created using the shortcut!), saving time when creating `dplyr` pipelines, as discussed in @sec-data.
+  - [`Ctrl+Shift+M`](https://nhsrcommunity.com/blog/r-studio-shortcuts/) will create the pipe operator (` |> `, this pipe was created using the shortcut!), saving time when creating `dplyr` pipelines, as discussed in @sec-data.
   - `Ctrl+Shift+F10` when you want to restart R, leaving you with a 'blank slate' in which packages are not loaded and objects are removed from the global environment.
 
 - Git integration for collaboration: RStudio provides two mechanisms for sharing your code with others via sites such as GitHub and GitLab, with the 'Git' panel in the top right pane and via the Terminal panel described in the next section. 

@@ -49,23 +49,23 @@ Note the `<chr>`, `<dbl>` or `<lgl>` text below each column, providing a quick i
 ## filter() and select() rows and columns
 
 In the previous section, we briefly introduced the package `{dplyr}`, which provides an alternative to base R for manipulating objects. `{dplyr}` provides different, and some would argue simpler, approaches for subsetting rows and columns than base R.
-`dplyr` operations for subsetting rows (with the function `filter()`) and columns (with the function `select()`) are  demonstrated below. Here we can also see the use of the pipe operator `%>%` to take the dataset and apply the function to that dataset. 
+`dplyr` operations for subsetting rows (with the function `filter()`) and columns (with the function `select()`) are  demonstrated below. Here we can also see the use of the pipe operator `|>` to take the dataset and apply the function to that dataset. 
 
 ```{r}
-crashes %>% filter(casualty_age > 50) # filters rows
-crashes %>% select(casualty_type) # select just one column
+crashes |> filter(casualty_age > 50) # filters rows
+crashes |> select(casualty_type) # select just one column
 ```
 
 It should be clear what happened: `filter()` returns only rows that match the criteria in the function call, only observations with a `casualty_age` greater than 50 in this case.
 Likewise, `select()` returns data objects that include only columns named inside the function call, `casualty_type` in this case.
 
-To gain a greater understanding of the functions, type and run the following commands, which also illustrate how the `%>%` can be used more than once to manipulate data (more on this soon):
+To gain a greater understanding of the functions, type and run the following commands, which also illustrate how the `|>` can be used more than once to manipulate data (more on this soon):
 
 ```{r}
-crashes_darkness = crashes %>% filter(dark)
-crashes_a = crashes %>% select(contains("a"))
-crashes_darkness_a = crashes %>% 
-  filter(dark) %>% 
+crashes_darkness = crashes |> filter(dark)
+crashes_a = crashes |> select(contains("a"))
+crashes_darkness_a = crashes |> 
+  filter(dark) |> 
   select(contains("a"))
 ```
 
@@ -97,9 +97,9 @@ We can use these functions to arrange datasets and take the top most ‘n’ val
 
 
 ```{r}
-crashes %>% 
+crashes |> 
   arrange(vehicle_type)
-crashes %>% 
+crashes |> 
   top_n(n = 1, wt = casualty_age)
 ```
 
@@ -110,8 +110,8 @@ Used together, they can provide *grouped summaries* of datasets.
 In the example below, we find the mean age of casualties in dark and light conditions.
 
 ```{r}
-crashes %>%
-  group_by(dark) %>% 
+crashes |>
+  group_by(dark) |> 
   summarise(mean_age = mean(casualty_age))
 ```
 
@@ -121,7 +121,7 @@ If you have not noticed this already, you can test it by typing the following, p
 
 ```{r}
 #| eval: false
-crashes %>% select(ca) # press Tab when your cursor is just after the a
+crashes |> select(ca) # press Tab when your cursor is just after the a
 ```
 
 You should see `casualty_age` and `casualty_type` pop up as options that can be selected by pressing `Up` and `Down`.
@@ -134,6 +134,6 @@ For further information, check out up-to-date online courses from respected orga
 
 1. Use `{dplyr}` to filter rows in which `casualty_age` is less than 18, and then 28.
 2. Use the `arrange` function to sort the `crashes` object in descending order of age (**Hint:** see the `?arrange` help page).
-3. Read the help page of `{dplyr}::mutate()`. What does the function do?
+3. Read the help page of `dplyr::mutate()`. What does the function do?
 4. Use the mutate function to create a new variable, `birth_year`, in the `crashes` data.frame which is defined as the current year minus their age.
-5. **Bonus:** Use the ` %>% ` operator to filter the output from the previous exercise so that only observations with `birth_year` after 1969 are returned.
+5. **Bonus:** Use the ` |> ` operator to filter the output from the previous exercise so that only observations with `birth_year` after 1969 are returned.
