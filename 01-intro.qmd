@@ -113,7 +113,7 @@ Because road crash data is commonly attribute-rich and geographic, we will be us
 
 ```{r}
 # calculate number of available packages
-npkgs = length(available.packages()[,1])
+# npkgs = length(available.packages()[,1])
 npkgs = 22607
 date_now = Sys.Date()
 ```
