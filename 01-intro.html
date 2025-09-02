@@ -250,9 +250,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>This book teaches reproducible road safety analysis with R, a popular, free and open-source statistical programming language. It was initially developed for a 2-day course, <a href="https://www.racfoundation.org/introduction-to-r-for-road-safety">Introduction to R for Road Safety</a> course. Since then, interest in the topic has grown. The <a href="https://www.racfoundation.org/">RAC Foundation</a> charity in the UK funded the development of this manual as a free and open-source resource to support their objective of making the roads safer for everyone. The content is based on open-access road crash data from the UK, which is provided by the R package <strong>{stats19}</strong>. However, the content is designed to be general and should be of use to <strong>anyone working with road crash data worldwide,</strong> that has (at a minimum) the following variables (see <a href="#tbl-asample" class="quarto-xref">Table&nbsp;<span>1.1</span></a> for an example crash dataset):</p>
 <ul>
-<li>a timestamp;</li>
-<li>a location (or address that can be geocoded); and</li>
-<li>attribute data, such as severity of crash, and type of vehicles involved.</li>
+<li>Timestamp</li>
+<li>Location (represented as coordinates as per the table below or address that can be geocoded); and</li>
+<li>Attribute data, such as severity of crash (usually the minimum), and type of vehicles involved (there can be many variables, STATS19 has 50+ attributes, many of which can have more than one value per collision). Additional details are provided in the casualty and vehicle tables.</li>
 </ul>
 <div class="cell">
 <div id="tbl-asample" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -384,7 +384,7 @@ Table&nbsp;1.2: Four elements of reproducibility adapted from Peng, Dominici, an
 </section>
 <section id="why-r-for-road-safety-research" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="why-r-for-road-safety-research"><span class="header-section-number">1.3</span> Why R for road safety research?</h2>
-<p>R is an outstanding language for reproducible research. It is accessible with no licensing restrictions and easy installation procedures on a wide range of computers, including most versions of Windows, Mac and Linux operating systems. Furthermore, R is highly extensible. With 2.2607^{4} packages available as of 2025-09-01, many of which are developed by professional statisticians and domain experts, R provides access to a wide array of statistical, computational and visualisation techniques. Many packages, such as <code>{markdown}</code> and <code>{reprex}</code>, were designed to support more reproducible research.</p>
+<p>R is an outstanding language for reproducible research. It is accessible with no licensing restrictions and easy installation procedures on a wide range of computers, including most versions of Windows, Mac and Linux operating systems. Furthermore, R is highly extensible. With 2.2607^{4} packages available as of 2025-09-02, many of which are developed by professional statisticians and domain experts, R provides access to a wide array of statistical, computational and visualisation techniques. Many packages, such as <code>{markdown}</code> and <code>{reprex}</code>, were designed to support more reproducible research.</p>
 <p>From a road safety perspective, R is well suited to handling data structures used in road safety research. R excels at the processing, analysis, modelling and visualisation of large spatio-temporal and attribute-rich datasets of the type key to road safety research. R is a mature and growing tool for data science, popular in industry, academia and government, so it creates multiple opportunities for collaboration within and between organisations and internationally.</p>
 </section>
 <section id="prerequisites" class="level2" data-number="1.4">
