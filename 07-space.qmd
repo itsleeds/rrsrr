@@ -281,6 +281,8 @@ This should now be sufficient to tackle the following exercises:
 8. Create an object called `a_zones_may` representing all the crashes that happened in the Isle of Wight in the month of May.
 9. **Bonus:** Calculate the average (`mean`) speed limit associated with each crash that happened in May across the zones of the Isle of Wight (the result is shown in the map).
 
+**Note:** You can also try the more recently developed [`osmactive` package](https://nptscot.github.io/osmactive/) on GitHub.
+
 
 ```{r}
 #| label: fig-iowbuff
@@ -309,6 +311,8 @@ tm_shape(roads_agg) + tm_fill("N. Crashes") +
 ```{r}
 #| eval: false
 remotes::install_github("itsleeds/osmextract") # install github package for osm data
+# Or nptscot/osmactive:
+remotes::install_github("nptscot/osmactive") # alternative package for osm data
 library(osmextract)
 region_name = "essex" # "essex" can be changed to another area name as required
 osm_data = oe_get(region_name, extra_tags = c("maxspeed", "ref"))
