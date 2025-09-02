@@ -183,10 +183,10 @@ As a final taught bit of `{ggplot2}` code in this section, create a facetted plo
 #| warning: false
 #| message: false
 library(tidyverse)
-crashes_2020 %>% 
-  mutate(hour = lubridate::hour(datetime)) %>% 
-  mutate(day = lubridate::wday(date)) %>% 
-  filter(!is.na(hour)) %>% 
+crashes_2020 |> 
+  mutate(hour = lubridate::hour(datetime)) |> 
+  mutate(day = lubridate::wday(date)) |> 
+  filter(!is.na(hour)) |> 
   ggplot(aes(hour, fill = accident_severity)) +
   geom_bar(width = 1.01) +
   facet_wrap(~day)
@@ -200,13 +200,13 @@ crashes_2020 %>%
 ## {dplyr}
 
 Another useful package in the tidyverse is `{dplyr}`, which stands for 'data pliers', which provides a handy syntax for data manipulation.
-`{dplyr}` has many functions for manipulating data frames and using the pipe operator ` %>% `.
+`{dplyr}` has many functions for manipulating data frames and using the pipe operator ` |> `.
 The pipe operator puts the output of one command into the first argument of the next, as shown below (**Note:** the results are the same):
 
 ```{r}
 library(dplyr)
 class(crashes_2020)       
-crashes_2020 %>% class()
+crashes_2020 |> class()
 ```
 
 We will learn more about this package and its other functions in @sec-data.

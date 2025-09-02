@@ -72,13 +72,13 @@ Note that the command worked by duplicating accident records for multiple casual
 We can see this finding the accident that had the most crashes and printing the results in the `ac` and new joined dataset, as follows:
 
 ```{r}
-id_with_most_crashes = ac %>% 
-  top_n(n = 1, wt = number_of_casualties) %>% 
+id_with_most_crashes = ac |> 
+  top_n(n = 1, wt = number_of_casualties) |> 
   pull(accident_index)
 id_with_most_crashes
-ac %>% filter(accident_index == id_with_most_crashes) %>% 
+ac |> filter(accident_index == id_with_most_crashes) |> 
   select(accident_index, accident_severity, number_of_vehicles, number_of_casualties)
-ac_cas_joined %>% filter(accident_index == id_with_most_crashes) %>% 
+ac_cas_joined |> filter(accident_index == id_with_most_crashes) |> 
   select(accident_index, accident_severity, number_of_vehicles, number_of_casualties, casualty_reference)
 ```
 
@@ -188,8 +188,8 @@ ac_veh_joined$veh_type = recode_vehicles(ac_veh_joined$vehicle_type)
 levels = c("Bicycle", "Car", "Other", "Van", "HGV")
 ac_veh_joined$vehicle = factor(ac_veh_joined$veh_type, levels = levels, ordered = TRUE)
 summary(ac_veh_joined$vehicle)
-ac_veh_largest = ac_veh_joined %>% 
-  group_by(accident_index) %>% 
+ac_veh_largest = ac_veh_joined |> 
+  group_by(accident_index) |> 
   summarise(largest_vehicle = max(vehicle))
 ```
 
@@ -217,13 +217,13 @@ library(tidyr)
 library(dplyr)
 ac_sf = format_sf(ac)
 lnd_police = c("City of London", "Metropolitan Police")
-ac_lnd = ac_sf %>% 
+ac_lnd = ac_sf |> 
   filter(police_force %in% lnd_police)
-ca_lnd = ca %>% 
+ca_lnd = ca |> 
   filter(accident_index %in% ac_lnd$accident_index)
-cas_types = ca_lnd %>% 
-  select(accident_index, casualty_type) %>% 
-  group_by(accident_index) %>% 
+cas_types = ca_lnd |> 
+  select(accident_index, casualty_type) |> 
+  group_by(accident_index) |> 
   summarise(
     Total = n(),
     walking = sum(casualty_type == "Pedestrian"),
@@ -277,8 +277,8 @@ For example, Figure 8.3 shows the spatial distribution of pedestrians and car pa
 #| fig-width: 9
 #| fig-height: 7
 library(ggplot2)
-ac_types = cj %>% 
-  filter(accident_severity != "Slight") %>% 
+ac_types = cj |> 
+  filter(accident_severity != "Slight") |> 
   mutate(type = case_when(
     walking > 0 ~ "Walking",
     cycling > 0 ~ "Cycling",

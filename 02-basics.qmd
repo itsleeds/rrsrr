@@ -11,6 +11,7 @@ The first step is to **start RStudio**, e.g. if you are on Windows, this can be 
 
 ```{r}
 #| label: fig-console
+#| echo: false
 #| fig-cap: 'The R console pane in RStudio that appears when you first open RStudio. After typing install.packages(stats), you should see the package name auto-complete. Pressing `Enter` at this point will trigger the autocompletion of the command `install.packages("stats19").'
 knitr::include_graphics("figures/console.png")
 ```
@@ -294,7 +295,7 @@ crashes2 = readRDS("crashes.Rds")
 identical(crashes, crashes2)
 ```
 
-R also supports many other formats, including CSV files, which can be created and imported with the functions `{readr}::read_csv()` and `{readr}::write_csv()` (see also the [{readr}](https://readr.tidyverse.org/) package).
+R also supports many other formats, including CSV files, which can be created and imported with the functions `readr::read_csv()` and `readr::write_csv()` (see also the [{readr}](https://readr.tidyverse.org/) package).
 
 ```{r}
 #| eval: false
