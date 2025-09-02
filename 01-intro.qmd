@@ -20,9 +20,9 @@ The [RAC Foundation](https://www.racfoundation.org/) charity in the UK funded th
 The content is based on open-access road crash data from the UK, which is provided by the R package **{stats19}**.
 However, the content is designed to be general and should be of use to **anyone working with road crash data worldwide,** that has (at a minimum) the following variables (see @tbl-asample for an example crash dataset):
 
-- a timestamp;
-- a location (or address that can be geocoded); and
-- attribute data, such as severity of crash, and type of vehicles involved.
+- Timestamp
+- Location (represented as coordinates as per the table below or address that can be geocoded); and
+- Attribute data, such as severity of crash (usually the minimum), and type of vehicles involved (there can be many variables, STATS19 has 50+ attributes, many of which can have more than one value per collision). Additional details are provided in the casualty and vehicle tables.
 
 ```{r}
 #| label: tbl-asample
