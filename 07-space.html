@@ -592,6 +592,7 @@ Figure&nbsp;7.10: Illustration of the plot and tmap approaches for creating maps
 <li>Create an object called <code>a_zones_may</code> representing all the crashes that happened in the Isle of Wight in the month of May.</li>
 <li><strong>Bonus:</strong> Calculate the average (<code>mean</code>) speed limit associated with each crash that happened in May across the zones of the Isle of Wight (the result is shown in the map).</li>
 </ol>
+<p><strong>Note:</strong> You can also try the more recently developed <a href="https://nptscot.github.io/osmactive/"><code>osmactive</code> package</a> on GitHub.</p>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -622,18 +623,20 @@ Figure&nbsp;7.12: Maps of the Isle of Wight.
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"itsleeds/osmextract"</span>) <span class="co"># install github package for osm data</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>region_name <span class="ot">=</span> <span class="st">"essex"</span> <span class="co"># "essex" can be changed to another area name as required</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>osm_data <span class="ot">=</span> <span class="fu">oe_get</span>(region_name, <span class="at">extra_tags =</span> <span class="fu">c</span>(<span class="st">"maxspeed"</span>, <span class="st">"ref"</span>))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(osm_data<span class="sc">$</span>highway)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#filter osm_data to show only major roads</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> osm_data <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(highway, <span class="at">pattern =</span> <span class="st">"moto|prim|seco|tert|trunk"</span>))</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># transform geometry and save</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> <span class="fu">st_transform</span>(roads, <span class="dv">27700</span>) <span class="co">#converts to projected BNG system for later use</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(roads$geometry) # basic plot of roads</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(roads) <span class="sc">+</span> <span class="fu">tm_lines</span>(<span class="st">"maxspeed"</span>, <span class="at">showNA =</span> T, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(roads, <span class="at">file =</span> <span class="st">"roads.Rds"</span>) <span class="co"># Saves road dataset for future use</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Or nptscot/osmactive:</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"nptscot/osmactive"</span>) <span class="co"># alternative package for osm data</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>region_name <span class="ot">=</span> <span class="st">"essex"</span> <span class="co"># "essex" can be changed to another area name as required</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>osm_data <span class="ot">=</span> <span class="fu">oe_get</span>(region_name, <span class="at">extra_tags =</span> <span class="fu">c</span>(<span class="st">"maxspeed"</span>, <span class="st">"ref"</span>))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(osm_data<span class="sc">$</span>highway)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#filter osm_data to show only major roads</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> osm_data <span class="sc">|&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(highway, <span class="at">pattern =</span> <span class="st">"moto|prim|seco|tert|trunk"</span>))</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># transform geometry and save</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">=</span> <span class="fu">st_transform</span>(roads, <span class="dv">27700</span>) <span class="co">#converts to projected BNG system for later use</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(roads$geometry) # basic plot of roads</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(roads) <span class="sc">+</span> <span class="fu">tm_lines</span>(<span class="st">"maxspeed"</span>, <span class="at">showNA =</span> T, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(roads, <span class="at">file =</span> <span class="st">"roads.Rds"</span>) <span class="co"># Saves road dataset for future use</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
